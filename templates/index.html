@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMD Dash</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>AMD Dash</h1>
+      <p class="tagline">Local LLM Benchmark Notebook</p>
+    </div>
+    <div class="actions">
+      <button id="addBtn" class="btn btn-primary">+ Add Benchmark</button>
+      <input id="searchBox" class="search" type="search" placeholder="Search models...">
+    </div>
+  </header>
+
+  <main id="board"></main>
+
+  <!-- Add / Edit modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="modalTitle">Add Benchmark</h2>
+      <form id="benchForm">
+        <input type="hidden" id="f_id">
+        <label>Model Name
+          <input type="text" id="f_name" required>
+        </label>
+        <label>Model URL
+          <input type="text" id="f_url" placeholder="https://...">
+        </label>
+        <label>Local Command
+          <textarea id="f_cmd" class="mono" placeholder="LD_LIBRARY_PATH=... llama-server -m ..."></textarea>
+        </label>
+        <label>MMProj Accuracy
+          <select id="f_acc">
+            <option value="good">Good</option>
+            <option value="unreliable">Unreliable</option>
+            <option value="bad">Bad</option>
+          </select>
+        </label>
+        <div class="row2">
+          <label>Prompt Speed (tok/s)
+            <input type="number" id="f_prompt" step="any" min="0">
+          </label>
+          <label>Generation Speed (tok/s)
+            <input type="number" id="f_gen" step="any" min="0" required>
+          </label>
+        </div>
+        <label>Notes
+          <textarea id="f_notes"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div id="delModal" class="modal hidden">
+    <div class="modal-card small">
+      <h2>Delete this benchmark?</h2>
+      <div class="modal-actions">
+        <button type="button" id="delCancel" class="btn btn-ghost">Cancel</button>
+        <button type="button" id="delConfirm" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

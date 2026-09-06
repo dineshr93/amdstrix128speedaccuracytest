@@ -1,0 +1,28 @@
+# AMD Dash via Docker Compose.
+# The host directory ~/amddash/ is bind-mounted into the container at
+# /data/amddash/. The app reads/writes /data/amddash/data.yaml (== the host's
+# ~/amddash/data.yaml) using atomic writes (temp file + rename). A whole
+# directory mount is required: bind-mounting only the single data file breaks
+# atomic rename (EBUSY), because you cannot rename over a file mount point.
+#
+# Usage:
+#   docker compose up -d
+#   open http://127.0.0.1:5000
+
+services:
+  amd-dash:
+    build: .
+    image: amd-dash
+    ports:
+      - "127.0.0.1:5000:5000"   # bind to localhost only (not publicly exposed)
+    user: "${UID:-1000}:${GID:-1000}"   # run as the host user so bind-mounted
+                                        # data files stay host-ownable
+    volumes:
+      # Mount the host data directory into the container. The app writes
+      # data.yaml atomically inside it, so host data stays in sync.
+      - "${HOME}/amddash:/data/amddash"
+    environment:
+      AMDASH_DATA_FILE: /data/amddash/data.yaml
+      AMDASH_HOST: 0.0.0.0
+      AMDASH_PORT: 5000
+    restart: unless-stopped

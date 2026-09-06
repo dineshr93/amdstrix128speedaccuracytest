@@ -1,0 +1,7 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+examples/
+_verify.py
+data.yaml
