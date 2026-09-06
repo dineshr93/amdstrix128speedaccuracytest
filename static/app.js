@@ -245,7 +245,7 @@ board.addEventListener("click", (ev) => {
   const btn = ev.target.closest("button");
   if (!btn) return;
   const card = btn.closest(".card");
-  if (btn.dataset.add) { openModal(null); return; }
+  if ("add" in btn.dataset) { openModal(null); return; }
   if (!card) return;
   const id = card.dataset.id;
   if (btn.dataset.copy) {
