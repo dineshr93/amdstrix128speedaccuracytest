@@ -28,9 +28,9 @@ DATA_FILE = Path(os.environ.get("AMDASH_DATA_FILE", "")).expanduser() \
     else Path.home() / "amddash" / "data.yaml"
 DATA_DIR = DATA_FILE.parent
 
-ALLOWED_ACCURACY = ("good", "unreliable", "bad")
+ALLOWED_ACCURACY = ("good", "unreliable", "bad", "untested")
 
-ACCURACY_ORDER = {"good": 0, "unreliable": 1, "bad": 2}
+ACCURACY_ORDER = {"good": 0, "unreliable": 1, "bad": 2, "untested": 3}
 
 # ---------------------------------------------------------------------------
 # YAML helpers
@@ -68,6 +68,8 @@ def load_entries():
             entry['mtp_generation_speed'] = 0
         if 'parameter_info' not in entry:
             entry['parameter_info'] = ""
+        if 'task_accuracy' not in entry:
+            entry['task_accuracy'] = 'untested'
             
     return entries
 
@@ -131,6 +133,8 @@ def validate_entries(entries):
             return False
         if e.get("mmproj_accuracy") not in ALLOWED_ACCURACY:
             return False
+        if e.get("task_accuracy") not in ALLOWED_ACCURACY:
+            return False
         for field in ("prompt_speed", "generation_speed"):
             v = e.get(field)
             if v is None:
@@ -169,7 +173,10 @@ def normalize_entry(raw):
         raise ValueError("Model name is required.")
     accuracy = (raw.get("mmproj_accuracy") or "").strip().lower()
     if accuracy not in ALLOWED_ACCURACY:
-        raise ValueError("mmproj_accuracy must be good, unreliable, or bad.")
+        raise ValueError("mmproj_accuracy must be good, unreliable, bad, or untested.")
+    task_accuracy = (raw.get("task_accuracy") or "").strip().lower()
+    if task_accuracy not in ALLOWED_ACCURACY:
+        raise ValueError("task_accuracy must be good, unreliable, bad, or untested.")
     try:
         prompt = float(raw.get("prompt_speed") or 0)
     except (TypeError, ValueError):
@@ -198,6 +205,7 @@ def normalize_entry(raw):
         "model_url": (raw.get("model_url") or "").strip(),
         "local_command": raw.get("local_command") or "",
         "mmproj_accuracy": accuracy,
+        "task_accuracy": task_accuracy,
         "prompt_speed": prompt,
         "generation_speed": gen,
         "notes": raw.get("notes") or "",
