@@ -9,8 +9,8 @@
 
     podman run --rm -it --name ds4-cockpit-server --device /dev/dri --device /dev/kfd
     --group-add keep-groups --security-opt seccomp=unconfined --ipc=host --cap-add=SYS_PTRACE
-    --security-opt label=disable --userns=keep-id -p 8888:8888 -v ~/ds4:/models:ro
-    -v ~/.cache/ds4-kv:/var/cache/ds4-kv docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-7.14
+    --security-opt label=disable --userns=keep-id -p 8888:8888 -v /home/dinesh/ds4:/models:ro
+    -v /home/dinesh/.cache/ds4-kv:/var/cache/ds4-kv docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-7.14
     ds4-server -m /models/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
     --ctx 126000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
     150000 --mtp /models/DeepSeek-V4-Flash-MTP-Q4K-Q8_0-F32.gguf --mtp-draft 1'
@@ -25,12 +25,12 @@
 - id: qwen3-8-flash-next-ud-iq4-xs-00001-of-00003-gguf-f043a4
   name: Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
-  local_command: 'LD_LIBRARY_PATH=''~/llamacpps/drluoto/build-vulkan/bin''
-    HSA_OVERRIDE_GFX_VERSION=11.5.1 ~/llamacpps/drluoto/build-vulkan/bin/llama-server
-    -m ~/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
-    -a Qwen3.8-Flash-Next-UD-IQ4_XS -md ~/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+  local_command: 'LD_LIBRARY_PATH=''/home/dinesh/llamacpps/drluoto/build-vulkan/bin''
+    HSA_OVERRIDE_GFX_VERSION=11.5.1 /home/dinesh/llamacpps/drluoto/build-vulkan/bin/llama-server
+    -m /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+    -a Qwen3.8-Flash-Next-UD-IQ4_XS -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
     --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
-    --spec-ngram-mod-n-match 24 --mmproj ~/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+    --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024"
 
@@ -51,10 +51,10 @@
 - id: qwen3-8-flash-next-rocmfp4-fast-v2-ple16-gguf-9daad0
   name: Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf
   model_url: https://huggingface.co/agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/tree/main
-  local_command: LD_LIBRARY_PATH="~/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin"
-    "~/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin/llama-server"   -m
-    ~/models/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf   -a
-    Qwen3.8-Flash-Next-UD-ROCmFP4-FAST-imatrix-GGUF   --mmproj ~/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin"
+    "/home/dinesh/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin/llama-server"   -m
+    /home/dinesh/models/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf   -a
+    Qwen3.8-Flash-Next-UD-ROCmFP4-FAST-imatrix-GGUF   --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
     --image-min-tokens 1024   -ngl 999 --load-mode none -fa 1 -ctk q8_0 -ctv q8_0
     -c 162144 -np 1 --jinja --host 0.0.0.0 --port 8888 -b 2048 -ub 2048   --temp 1.0
     --top-k 20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0
@@ -69,8 +69,8 @@
 - id: glm-5-3-flash-ud-iq2-xxs-00001-of-00004-gguf-d1fb3d
   name: GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ2_XXS
-  local_command: LD_LIBRARY_PATH='/opt/rocm/lib:~/llamacpps/glm5next/build-vulkan/bin'
-    '~/llamacpps/glm5next/build-vulkan/bin/llama-server' -m ~/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf   -a
+  local_command: LD_LIBRARY_PATH='/opt/rocm/lib:/home/dinesh/llamacpps/glm5next/build-vulkan/bin'
+    '/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server' -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf   -a
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t
     16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
     -ctk q4_1 -ctv q4_1 --agent --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
@@ -87,8 +87,8 @@
 - id: glm-5-3-flash-ud-iq1-m-c26b90
   name: GLM-5.3-Flash-UD-IQ1_M
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ1_M
-  local_command: 'LD_LIBRARY_PATH="~/llamacpps/glm5next/build-vulkan/bin"
-    "~/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m ~/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin"
+    "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
@@ -177,8 +177,8 @@
 - id: minimax-m2-7-gguf-009f25
   name: MiniMax-M2.7-GGUF
   model_url: https://huggingface.co/unsloth/MiniMax-M2.7-GGUF/tree/main
-  local_command: LD_LIBRARY_PATH='~/llamacpps/llama.cpp/build-vulkan/bin'
-    '~/llamacpps/llama.cpp/build-vulkan/bin/llama-server'   -m ~/models/MiniMax-M2.7-GGUF/MiniMax-M2.7-UD-IQ2_XXS-00001-of-00003.gguf   -a
+  local_command: LD_LIBRARY_PATH='/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin'
+    '/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server'   -m ~/models/MiniMax-M2.7-GGUF/MiniMax-M2.7-UD-IQ2_XXS-00001-of-00003.gguf   -a
     MiniMax-M2.7-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 999 -b
     2048 -ub 1024 -t 16 -np 1   -c 196608   --load-mode none   -fa on --temp 1.0 --top-k
     20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0 --reasoning
@@ -194,7 +194,7 @@
 - id: unsloth-devstral-2-123b-instruct-2512-gguf-4baf69
   name: unsloth/Devstral-2-123B-Instruct-2512-GGUF
   model_url: https://huggingface.co/unsloth/Devstral-2-123B-Instruct-2512-GGUF/tree/main
-  local_command: llama-serverv -m ~/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
+  local_command: llama-serverv -m /home/dinesh/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
     -a Devstral-2-123B-Instruct-2512 --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c
     62144 --load-mode none -fa on
   mmproj_accuracy: bad
@@ -341,8 +341,8 @@
 - id: minicpm5-2b-gguf-c295e9
   name: MiniCPM5-2B-GGUF
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
-  local_command: "LD_LIBRARY_PATH=\"~/llamacpps/llama.cpp/build-vulkan/bin\"\
-    \ \\\n\"~/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
     \  -m ~/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q8_0.gguf \\\n  -a MiniCPM5-2B-Q8_0.gguf\
     \ \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072 --jinja -ngl 999 --load-mode\
     \ none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1 --chat-template-kwargs '{\"reasoning_effort\"\
@@ -358,8 +358,8 @@
 - id: unsloth-mistral-small-4-119b-2603-gguf-fda5a8
   name: unsloth/Mistral-Small-4-119B-2603-GGUF
   model_url: https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF
-  local_command: "LD_LIBRARY_PATH=\"~/llamacpps/llama.cpp/build-vulkan/bin\"\
-    \ \\\n\"~/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
     \  -m ~/models/Mistral-Small-4-119B-2603-GGUF/Mistral-Small-4-119B-2603-UD-Q4_K_M-00001-of-00003.gguf\
     \ \\\n  -a Mistral-Small-4-119B-2603-UD-Q4_K_M \\\n  -mm ~/models/Mistral-Small-4-119B-2603-GGUF/mmproj-BF16.gguf\
     \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
@@ -379,3 +379,21 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 119B-A6B
+- id: qwen-agentworld-35b-a3b-gguf-78fa23
+  name: Qwen-AgentWorld-35B-A3B-GGUF
+  model_url: https://huggingface.co/unsloth/Qwen-AgentWorld-35B-A3B-GGUF
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+    \  -m ~/models/Qwen-AgentWorld-35B-A3B-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf\
+    \ \\\n  -a Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf \\\n  -mm ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf\
+    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
+    \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
+    \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}' --agent"
+  mmproj_accuracy: good
+  task_accuracy: untested
+  prompt_speed: 1139.369688
+  generation_speed: 60.316653
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 35B-A3B
