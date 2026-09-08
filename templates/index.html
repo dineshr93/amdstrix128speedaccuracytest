@@ -50,6 +50,18 @@
             <input type="number" id="f_gen" step="any" min="0" required>
           </label>
         </div>
+        <label>
+          <input type="checkbox" id="f_speculative_decoding"> 
+          Enable Speculative Decoding (-md)
+        </label>
+        <div id="mtp_speed_container" style="display: none;">
+          <label>MTP Generation Speed (tok/s)
+            <input type="number" id="f_mtp_gen" step="any" min="0">
+          </label>
+        </div>
+        <label>Parameter Info
+          <input type="text" id="f_param_info" placeholder="e.g., 35-A3B">
+        </label>
         <label>Notes
           <textarea id="f_notes"></textarea>
         </label>

@@ -58,7 +58,18 @@ def load_entries():
         return []
     if not isinstance(data, list):
         raise ValueError(f"{DATA_FILE} should contain a YAML list of benchmarks")
-    return list(data)
+    
+    # Ensure backward compatibility with existing data files
+    entries = list(data)
+    for entry in entries:
+        if 'speculative_decoding' not in entry:
+            entry['speculative_decoding'] = False
+        if 'mtp_generation_speed' not in entry:
+            entry['mtp_generation_speed'] = 0
+        if 'parameter_info' not in entry:
+            entry['parameter_info'] = ""
+            
+    return entries
 
 
 def save_entries(entries):
@@ -130,6 +141,21 @@ def validate_entries(entries):
                 return False
             if f < 0:
                 return False
+        # Validate new fields
+        if 'speculative_decoding' in e and not isinstance(e['speculative_decoding'], bool):
+            return False
+        if 'mtp_generation_speed' in e:
+            v = e.get('mtp_generation_speed')
+            if v is None:
+                return False
+            try:
+                f = float(v)
+            except (TypeError, ValueError):
+                return False
+            if f < 0:
+                return False
+        if 'parameter_info' in e and not isinstance(e['parameter_info'], str):
+            return False
     return True
 
 
@@ -154,6 +180,17 @@ def normalize_entry(raw):
         raise ValueError("Generation speed must be a number.")
     if prompt < 0 or gen < 0:
         raise ValueError("Speeds must be non-negative numbers.")
+    
+    # Handle speculative decoding and MTP generation speed
+    speculative_decoding = bool(raw.get("speculative_decoding", False))
+    try:
+        mtp_gen = float(raw.get("mtp_generation_speed") or 0)
+    except (TypeError, ValueError):
+        raise ValueError("MTP generation speed must be a number.")
+    if mtp_gen < 0:
+        raise ValueError("MTP generation speed must be a non-negative number.")
+        
+    parameter_info = (raw.get("parameter_info") or "").strip()
 
     entry = {
         "id": (raw.get("id") or "").strip() or None,
@@ -164,10 +201,14 @@ def normalize_entry(raw):
         "prompt_speed": prompt,
         "generation_speed": gen,
         "notes": raw.get("notes") or "",
+        "speculative_decoding": speculative_decoding,
+        "mtp_generation_speed": mtp_gen,
+        "parameter_info": parameter_info,
     }
     # speeds: keep the number clean (int if integral, else float)
     entry["prompt_speed"] = int(prompt) if prompt.is_integer() else prompt
     entry["generation_speed"] = int(gen) if gen.is_integer() else gen
+    entry["mtp_generation_speed"] = int(mtp_gen) if mtp_gen.is_integer() else mtp_gen
     return entry
 
 

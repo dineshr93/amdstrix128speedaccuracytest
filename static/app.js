@@ -77,6 +77,22 @@ function cardHTML(e) {
   const notesHtml = e.notes
     ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
     : "";
+    
+  // Add parameter info if present
+  const paramInfoHtml = e.parameter_info
+    ? `<div class="field-label">Parameter Info</div><div class="param-info">${esc(e.parameter_info)}</div>`
+    : "";
+    
+  // Add MTP generation speed if speculative decoding is enabled and MTP speed is present
+  let mtpSpeedHtml = "";
+  if (e.speculative_decoding && e.mtp_generation_speed > 0) {
+    const mtpGen = fmtSpeed(e.mtp_generation_speed);
+    mtpSpeedHtml = `
+      <div class="speed-block">
+        <div class="speed-label">MTP Generation</div>
+        <div class="speed-value">${mtpGen} <small>tok/s</small></div>
+      </div>`;
+  }
 
   return `
     <div class="card" data-id="${escAttr(e.id)}">
@@ -93,9 +109,11 @@ function cardHTML(e) {
           <div class="speed-label">Prompt</div>
           <div class="speed-value">${prompt} <small>tok/s</small></div>
         </div>
+        ${mtpSpeedHtml}
       </div>
       ${urlHtml}
       ${cmdHtml}
+      ${paramInfoHtml}
       ${notesHtml}
       <div class="card-actions">
         <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
@@ -148,6 +166,25 @@ function openModal(entry) {
   document.getElementById("f_prompt").value = entry ? entry.prompt_speed : "";
   document.getElementById("f_gen").value = entry ? entry.generation_speed : "";
   document.getElementById("f_notes").value = entry ? (entry.notes || "") : "";
+  
+  // Handle new fields
+  const speculativeDecoding = entry ? entry.speculative_decoding : false;
+  document.getElementById("f_speculative_decoding").checked = speculativeDecoding;
+  
+  const mtpGenerationSpeed = entry ? entry.mtp_generation_speed : 0;
+  document.getElementById("f_mtp_gen").value = mtpGenerationSpeed > 0 ? mtpGenerationSpeed : "";
+  
+  const parameterInfo = entry ? (entry.parameter_info || "") : "";
+  document.getElementById("f_param_info").value = parameterInfo;
+  
+  // Show/hide MTP speed container based on speculative decoding checkbox
+  const mtpSpeedContainer = document.getElementById("mtp_speed_container");
+  if (speculativeDecoding) {
+    mtpSpeedContainer.style.display = "block";
+  } else {
+    mtpSpeedContainer.style.display = "none";
+  }
+  
   modal.classList.remove("hidden");
   document.getElementById("f_name").focus();
 }
@@ -159,6 +196,9 @@ function closeModal() {
 benchForm.addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const id = document.getElementById("f_id").value;
+  const speculativeDecoding = document.getElementById("f_speculative_decoding").checked;
+  const mtpGenerationSpeed = document.getElementById("f_mtp_gen").value;
+  
   const payload = {
     id: id || undefined,
     name: document.getElementById("f_name").value,
@@ -168,6 +208,9 @@ benchForm.addEventListener("submit", async (ev) => {
     prompt_speed: document.getElementById("f_prompt").value,
     generation_speed: document.getElementById("f_gen").value,
     notes: document.getElementById("f_notes").value,
+    speculative_decoding: speculativeDecoding,
+    mtp_generation_speed: speculativeDecoding ? (mtpGenerationSpeed || 0) : 0,
+    parameter_info: document.getElementById("f_param_info").value,
   };
 
   try {
@@ -279,10 +322,21 @@ async function copyCommand(id) {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Search (instant rerank while typing)
-// ---------------------------------------------------------------------------
 searchBox.addEventListener("input", refresh);
+
+// ---------------------------------------------------------------------------
+// Speculative decoding checkbox event listener
+// ---------------------------------------------------------------------------
+document.getElementById("f_speculative_decoding").addEventListener("change", function() {
+  const mtpSpeedContainer = document.getElementById("mtp_speed_container");
+  if (this.checked) {
+    mtpSpeedContainer.style.display = "block";
+  } else {
+    mtpSpeedContainer.style.display = "none";
+    // Clear the MTP generation speed field when hiding it
+    document.getElementById("f_mtp_gen").value = "";
+  }
+});
 
 // ---------------------------------------------------------------------------
 // Toast
