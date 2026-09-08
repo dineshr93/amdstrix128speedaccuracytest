@@ -81,7 +81,7 @@ function cardHTML(e) {
     
   // Add parameter info if present
   const paramInfoHtml = e.parameter_info
-    ? `<div class="field-label">Parameter Info</div><div class="param-info">${esc(e.parameter_info)}</div>`
+    ? `<div class="field-label">Parameter Info</div><div class="param-info param-info-strong">${esc(e.parameter_info)}</div>`
     : "";
     
   // Add MTP generation speed if speculative decoding is enabled and MTP speed is present
@@ -98,6 +98,7 @@ function cardHTML(e) {
   return `
     <div class="card" data-id="${escAttr(e.id)}">
       <h2>${esc(e.name)}</h2>
+      ${paramInfoHtml}
       <div>
         <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
         <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
@@ -115,7 +116,6 @@ function cardHTML(e) {
       </div>
       ${urlHtml}
       ${cmdHtml}
-      ${paramInfoHtml}
       ${notesHtml}
       <div class="card-actions">
         <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
