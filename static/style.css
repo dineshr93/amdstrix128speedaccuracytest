@@ -97,6 +97,7 @@ body {
 .acc.good { color: var(--good); }
 .acc.unreliable { color: var(--unreliable); }
 .acc.bad { color: var(--bad); }
+.acc.untested { color: var(--muted); }
 
 .speeds { display: flex; gap: 24px; }
 .speed-block { flex: 1; }
