@@ -66,6 +66,26 @@ body {
 }
 .search:focus { outline: none; border-color: var(--accent); }
 
+.filterbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border);
+}
+.filter {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  min-width: 120px;
+}
+.filter:focus { outline: none; border-color: var(--accent); }
+#filterGen, #filterMtp { width: 110px; }
+
 /* ---- board / cards ---- */
 #board {
   padding: 24px 28px;
@@ -210,4 +230,6 @@ body {
   .topbar { flex-direction: column; align-items: stretch; }
   .actions { flex-direction: column; }
   .search { width: 100%; }
+  .filterbar { flex-direction: column; align-items: stretch; }
+  .filter { width: 100%; }
 }

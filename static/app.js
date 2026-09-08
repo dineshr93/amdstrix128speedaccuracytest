@@ -40,9 +40,25 @@ function matches(e, q) {
   return hay.indexOf(q) !== -1;
 }
 
+function matchesFilters(e) {
+  const mm = document.getElementById("filterMmproj").value;
+  if (mm && e.mmproj_accuracy !== mm) return false;
+  const tk = document.getElementById("filterTask").value;
+  if (tk && (e.task_accuracy || "untested") !== tk) return false;
+  const p = document.getElementById("filterParam").value.trim().toLowerCase();
+  if (p && !String(e.parameter_info || "").toLowerCase().includes(p)) return false;
+  const g = Number(document.getElementById("filterGen").value) || 0;
+  if (g > 0 && !(Number(e.generation_speed) >= g)) return false;
+  const m = Number(document.getElementById("filterMtp").value) || 0;
+  if (m > 0 && !(Number(e.mtp_generation_speed) >= m)) return false;
+  return true;
+}
+
 function refresh() {
   const q = searchBox.value.trim();
-  rendered = entries.filter((e) => matches(e, q)).sort(rank);
+  rendered = entries
+    .filter((e) => matches(e, q) && matchesFilters(e))
+    .sort(rank);
   render();
 }
 
@@ -327,6 +343,20 @@ async function copyCommand(id) {
 }
 
 searchBox.addEventListener("input", refresh);
+
+document.getElementById("filterMmproj").addEventListener("change", refresh);
+document.getElementById("filterTask").addEventListener("change", refresh);
+document.getElementById("filterParam").addEventListener("input", refresh);
+document.getElementById("filterGen").addEventListener("input", refresh);
+document.getElementById("filterMtp").addEventListener("input", refresh);
+document.getElementById("filterReset").addEventListener("click", () => {
+  document.getElementById("filterMmproj").value = "";
+  document.getElementById("filterTask").value = "";
+  document.getElementById("filterParam").value = "";
+  document.getElementById("filterGen").value = "";
+  document.getElementById("filterMtp").value = "";
+  refresh();
+});
 
 // ---------------------------------------------------------------------------
 // Speculative decoding checkbox event listener

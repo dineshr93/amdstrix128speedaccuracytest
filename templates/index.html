@@ -18,6 +18,27 @@
     </div>
   </header>
 
+  <div class="filterbar">
+    <select id="filterMmproj" class="filter">
+      <option value="">All MMProj</option>
+      <option value="good">Good</option>
+      <option value="unreliable">Unreliable</option>
+      <option value="bad">Bad</option>
+      <option value="untested">Untested</option>
+    </select>
+    <select id="filterTask" class="filter">
+      <option value="">All Task</option>
+      <option value="good">Good</option>
+      <option value="unreliable">Unreliable</option>
+      <option value="bad">Bad</option>
+      <option value="untested">Untested</option>
+    </select>
+    <input id="filterParam" class="filter" type="text" placeholder="Parameter Info (e.g. 284B, 35B-A3B)">
+    <input id="filterGen" class="filter" type="number" step="any" min="0" placeholder="Gen >= tok/s">
+    <input id="filterMtp" class="filter" type="number" step="any" min="0" placeholder="MTP >= tok/s">
+    <button id="filterReset" class="btn btn-ghost">Reset</button>
+  </div>
+
   <main id="board"></main>
 
   <!-- Add / Edit modal -->
