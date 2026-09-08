@@ -388,12 +388,12 @@
     \ \\\n  -a Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf \\\n  -mm ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf\
     \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
     \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
-    \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}' --agent"
+    \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}'"
   mmproj_accuracy: good
-  task_accuracy: untested
+  task_accuracy: good
   prompt_speed: 1139.369688
   generation_speed: 60.316653
-  notes: ''
+  notes: with --agent the creative tasks are bad
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
