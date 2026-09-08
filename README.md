@@ -14,7 +14,8 @@ Each benchmark stores:
 - `name` — model name
 - `model_url` — optional, clickable link
 - `local_command` — the full command, kept exactly as typed (never executed)
-- `mmproj_accuracy` — `good`, `unreliable`, or `bad`
+- `mmproj_accuracy` — `good`, `unreliable`, `bad`, or `untested`
+- `task_accuracy` — `good`, `unreliable`, `bad`, or `untested` (task/vision quality, tracked separately from MMProj)
 - `prompt_speed` — prompt processing speed (tok/s)
 - `generation_speed` — generation speed (tok/s)
 - `notes` — optional notes
@@ -23,7 +24,7 @@ Each benchmark stores:
 
 - Add / edit / delete / search benchmarks
 - Copy Command button (clipboard), with a "Copied!" confirmation
-- MMProj status indicators: 🟢 Good, 🟡 Unreliable, 🔴 Bad
+- MMProj and Task status indicators: 🟢 Good, 🟡 Unreliable, 🔴 Bad, ⚪ Untested
 - Prominent generation-speed numbers
 - Automatic ranking + **instant reranking** (no page reload)
 - Friendly errors instead of stack traces
@@ -126,6 +127,7 @@ overwrite it.
   model_url: https://example.com/model
   local_command: LD_LIBRARY_PATH="/home/user/..." llama-server -m /home/user/model.gguf -ngl 999
   mmproj_accuracy: good
+  task_accuracy: good
   prompt_speed: 458
   generation_speed: 28.9
   notes: Fast and reliable vision performance.
@@ -139,7 +141,7 @@ exactly as entered.
 
 Entries are ranked automatically, best first:
 
-1. **MMProj accuracy** descending: `good` → `unreliable` → `bad`
+1. **MMProj accuracy** descending: `good` → `unreliable` → `bad` → `untested`
 2. **Generation speed** descending (within the same accuracy group)
 3. **Prompt speed** descending (breaks ties)
 
