@@ -10,8 +10,8 @@ const delModal = document.getElementById("delModal");
 const toast = document.getElementById("toast");
 const benchForm = document.getElementById("benchForm");
 
-const ACC_ORDER = { good: 0, unreliable: 1, bad: 2 };
-const ACC_ICON = { good: "🟢", unreliable: "🟡", bad: "🔴" };
+const ACC_ORDER = { good: 0, unreliable: 1, bad: 2, untested: 3 };
+const ACC_ICON = { good: "🟢", unreliable: "🟡", bad: "🔴", untested: "⚪" };
 
 let entries = [];       // all benchmarks (unsorted, as returned by server)
 let rendered = [];      // currently displayed (ranked + filtered)
@@ -57,6 +57,7 @@ function fmtSpeed(v) {
 
 function cardHTML(e) {
   const acc = e.mmproj_accuracy;
+  const taskAcc = e.task_accuracy || "untested";
   const gen = fmtSpeed(e.generation_speed);
   const prompt = fmtSpeed(e.prompt_speed);
 
@@ -98,7 +99,8 @@ function cardHTML(e) {
     <div class="card" data-id="${escAttr(e.id)}">
       <h2>${esc(e.name)}</h2>
       <div>
-        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} ${esc(acc)}</span>
+        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
+        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
       </div>
       <div class="speeds">
         <div class="speed-block">
@@ -162,7 +164,8 @@ function openModal(entry) {
   document.getElementById("f_name").value = entry ? entry.name : "";
   document.getElementById("f_url").value = entry ? (entry.model_url || "") : "";
   document.getElementById("f_cmd").value = entry ? (entry.local_command || "") : "";
-  document.getElementById("f_acc").value = entry ? entry.mmproj_accuracy : "good";
+  document.getElementById("f_acc").value = entry ? entry.mmproj_accuracy : "untested";
+  document.getElementById("f_task_acc").value = entry ? (entry.task_accuracy || "untested") : "untested";
   document.getElementById("f_prompt").value = entry ? entry.prompt_speed : "";
   document.getElementById("f_gen").value = entry ? entry.generation_speed : "";
   document.getElementById("f_notes").value = entry ? (entry.notes || "") : "";
@@ -205,6 +208,7 @@ benchForm.addEventListener("submit", async (ev) => {
     model_url: document.getElementById("f_url").value,
     local_command: document.getElementById("f_cmd").value,
     mmproj_accuracy: document.getElementById("f_acc").value,
+    task_accuracy: document.getElementById("f_task_acc").value,
     prompt_speed: document.getElementById("f_prompt").value,
     generation_speed: document.getElementById("f_gen").value,
     notes: document.getElementById("f_notes").value,
