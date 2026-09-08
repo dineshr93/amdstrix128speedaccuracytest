@@ -1,0 +1,381 @@
+- id: deepseek-v4-flash-iq2xxs-w2q2k-aprojq8-sexpq8-outq8-chat-v2-imatrix-0731-13c677
+  name: DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731
+  model_url: https://huggingface.co/antirez/deepseek-v4-gguf/blob/main/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+  local_command: 'llama-serverv -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+    -a DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731 -c
+    126000 --host 0.0.0.0 --port 8888 --agent -fa on -ngl 999 -b 2048 -ub 1024 -t
+    16 --load-mode none -ctk q4_0 -ctv q4_0
+
+
+    podman run --rm -it --name ds4-cockpit-server --device /dev/dri --device /dev/kfd
+    --group-add keep-groups --security-opt seccomp=unconfined --ipc=host --cap-add=SYS_PTRACE
+    --security-opt label=disable --userns=keep-id -p 8888:8888 -v ~/ds4:/models:ro
+    -v ~/.cache/ds4-kv:/var/cache/ds4-kv docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-7.14
+    ds4-server -m /models/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+    --ctx 126000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
+    150000 --mtp /models/DeepSeek-V4-Flash-MTP-Q4K-Q8_0-F32.gguf --mtp-draft 1'
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 240.498171
+  generation_speed: 18.208367
+  notes: ' with MTP, with no vision'
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 284B
+- id: qwen3-8-flash-next-ud-iq4-xs-00001-of-00003-gguf-f043a4
+  name: Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+  model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
+  local_command: 'LD_LIBRARY_PATH=''~/llamacpps/drluoto/build-vulkan/bin''
+    HSA_OVERRIDE_GFX_VERSION=11.5.1 ~/llamacpps/drluoto/build-vulkan/bin/llama-server
+    -m ~/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+    -a Qwen3.8-Flash-Next-UD-IQ4_XS -md ~/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-ngram-mod-n-match 24 --mmproj ~/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024"
+
+    alias orn=''llama-server -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
+    -a Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
+    --jinja -ngl 999 -c 262144 -fa on  -b 2048 -ub 1024 -t 16 --load-mode none --temp
+    0.45 --top-p 0.75 --top-k 30 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning
+    on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0'
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 381.584861
+  generation_speed: 25.901495
+  notes: with vision
+  speculative_decoding: true
+  mtp_generation_speed: 26
+  parameter_info: 177B
+- id: qwen3-8-flash-next-rocmfp4-fast-v2-ple16-gguf-9daad0
+  name: Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf
+  model_url: https://huggingface.co/agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/tree/main
+  local_command: LD_LIBRARY_PATH="~/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin"
+    "~/llamacpps/glm5next/qwen4exp-rocmfpx/build-vulkan/bin/llama-server"   -m
+    ~/models/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf   -a
+    Qwen3.8-Flash-Next-UD-ROCmFP4-FAST-imatrix-GGUF   --mmproj ~/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   -ngl 999 --load-mode none -fa 1 -ctk q8_0 -ctv q8_0
+    -c 162144 -np 1 --jinja --host 0.0.0.0 --port 8888 -b 2048 -ub 2048   --temp 1.0
+    --top-k 20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 468.448111
+  generation_speed: 28.144389
+  notes: no MTP, with vision
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 117B
+- id: glm-5-3-flash-ud-iq2-xxs-00001-of-00004-gguf-d1fb3d
+  name: GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf
+  model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ2_XXS
+  local_command: LD_LIBRARY_PATH='/opt/rocm/lib:~/llamacpps/glm5next/build-vulkan/bin'
+    '~/llamacpps/glm5next/build-vulkan/bin/llama-server' -m ~/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf   -a
+    GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t
+    16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
+    -ctk q4_1 -ctv q4_1 --agent --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
+    --chat-template-kwargs '{"reasoning_effort":"low","clear_thinking":true}' --spec-type
+    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 144
+  generation_speed: 8.73
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 11
+  parameter_info: 321B
+- id: glm-5-3-flash-ud-iq1-m-c26b90
+  name: GLM-5.3-Flash-UD-IQ1_M
+  model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ1_M
+  local_command: 'LD_LIBRARY_PATH="~/llamacpps/glm5next/build-vulkan/bin"
+    "~/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m ~/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
+    GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
+    2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
+    1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
+    --chat-template-kwargs ''{"reasoning_effort":" low","clear_thinking":true}'' --spec-type
+    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
+
+    0.00.098.007 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust
+    with the `-lv N` CLI arg)'
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 145.89
+  generation_speed: 8.79
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 15.67
+  parameter_info: 321B
+- id: hauhaucs-gptoss-120b-uncensored-hauhaucs-aggressive-600d44
+  name: HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
+  model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/tree/main
+  local_command: llama-serverv   -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf   -a
+    GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf   --host 0.0.0.0 --port
+    8888   --jinja -ngl 99 -c 131072   --load-mode none -fa on   --temp 0.75 --top-k
+    64 --top-p 0.95 --min-p 0.05   --presence-penalty 0 --repeat-penalty 1.0   --reasoning
+    on --reasoning-effort xhigh
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 777.03615
+  generation_speed: 38.991453
+  notes: no MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 117B
+- id: gemma4-31b-qat-uncensored-hauhaucs-balanced-mtp-dff209
+  name: Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
+  model_url: https://huggingface.co/HauhauCS/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
+  local_command: "llama-serverv \\\n  -m ~/models/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-Q4_K_M.gguf\
+    \ \\\n  -a Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-Q4_K_M.gguf \\\n  -md ~/models/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP/mtp-gemma-4-31B-it.gguf\
+    \ \\\n  -mm ~/models/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP/mmproj-Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-BF16.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8888 \\\n  --jinja -ngl 99 -c 131072 \\\n  --load-mode\
+    \ none -fa on \\\n  --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05 \\\n  --presence-penalty\
+    \ 0 --repeat-penalty 1.0 \\\n  --reasoning on --reasoning-effort xhigh --spec-type\
+    \ draft-mtp --spec-draft-ngl all --spec-draft-n-max 3"
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 234.224692
+  generation_speed: 11.346481
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 15
+  parameter_info: 31B
+- id: hauhaucs-qwen3-8-27b-uncensored-hauhaucs-aggressive-mtp-gguf-17a95c
+  name: HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF
+  model_url: https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF
+  local_command: llama-serverhsv   -m ~/models/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf   -a
+    Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-Q4_K_P.gguf   -md ~/models/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-FastMTP-32K.gguf   -mm
+    ~/models/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF/mmproj-Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   --jinja   -ngl 99   -c
+    162144   --load-mode none   -fa on   --temp 1.0   --top-k 20   --top-p 0.95   --min-p
+    0   --presence-penalty 0   --repeat-penalty 1.0   --reasoning on   --reasoning-effort
+    xhigh   --reasoning-preserve   --reasoning-format deepseek   --spec-type draft-mtp   --spec-draft-ngl
+    all --spec-draft-n-max 3 -ctk q8_0 -ctv q8_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 230.559034
+  generation_speed: 11.905505
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 26
+  parameter_info: 27B
+- id: empero-ai-qwen3-8-27b-ridge-gguf-b3b896
+  name: empero-ai/Qwen3.8-27B-Ridge-GGUF
+  model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
+    -a Qwen3.8-27B.Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --cache-type-k
+    q4_0 --cache-type-v q4_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
+    0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
+    --load-mode none --reasoning on --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 260.982606
+  generation_speed: 15.990881
+  notes: 27B with MTP 28.6 t/s
+  speculative_decoding: true
+  mtp_generation_speed: 28.6
+  parameter_info: 27B
+- id: minimax-m2-7-gguf-009f25
+  name: MiniMax-M2.7-GGUF
+  model_url: https://huggingface.co/unsloth/MiniMax-M2.7-GGUF/tree/main
+  local_command: LD_LIBRARY_PATH='~/llamacpps/llama.cpp/build-vulkan/bin'
+    '~/llamacpps/llama.cpp/build-vulkan/bin/llama-server'   -m ~/models/MiniMax-M2.7-GGUF/MiniMax-M2.7-UD-IQ2_XXS-00001-of-00003.gguf   -a
+    MiniMax-M2.7-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 999 -b
+    2048 -ub 1024 -t 16 -np 1   -c 196608   --load-mode none   -fa on --temp 1.0 --top-k
+    20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0 --reasoning
+    on --reasoning-effort xhigh --reasoning-preserve   -ctk q4_0   -ctv q4_0 --agent
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 290.650127
+  generation_speed: 40.434984
+  notes: without --agent 38 t/s
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 229B
+- id: unsloth-devstral-2-123b-instruct-2512-gguf-4baf69
+  name: unsloth/Devstral-2-123B-Instruct-2512-GGUF
+  model_url: https://huggingface.co/unsloth/Devstral-2-123B-Instruct-2512-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
+    -a Devstral-2-123B-Instruct-2512 --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c
+    62144 --load-mode none -fa on
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 38.724951
+  generation_speed: 3
+  notes: No MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 125B
+- id: inkling-small-gguf-b445b5
+  name: Inkling-Small-GGUF
+  model_url: https://huggingface.co/unsloth/Inkling-Small-GGUF
+  local_command: "LD_LIBRARY_PATH=\"~/llamacpps/inkling/build-vulkan/bin\" \\\n~/llamacpps/inkling/build-vulkan/bin/llama-server\
+    \ \\\n  -m ~/models/Inkling-Small-GGUF/Inkling-Small-UD-IQ2_M-00001-of-00003.gguf\
+    \ \\\n  -a Inkling-Small-UD-IQ2_M-00001-of-00003 \\\n  -mm ~/models/Inkling-Small-GGUF/mmproj-BF16.gguf\
+    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 32144\
+    \ --jinja -ngl 999 \\\n  --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16\
+    \ -np 1 --temp 1.0  --top-p 1.0  --min-p 0.0 \\\n  --presence-penalty 0 --repeat-penalty\
+    \ 1.0 --chat-template-kwargs '{\"reasoning_effort\":\"none\"}'"
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 97.663455
+  generation_speed: 13.193133
+  notes: No MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 284B
+- id: thinkingcap-qwen3-6-27b-q4-k-m-gguf-8a2158
+  name: ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+  model_url: https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.6-27B-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/ThinkingCap-Qwen3.6-27B-GGUF/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+    --mmproj ~/models/ThinkingCap-Qwen3.6-27B-GGUF/mmproj-ThinkingCap-Qwen3.6-27B-f16.gguf
+    --image-min-tokens 3192 -a ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf --host 0.0.0.0
+    --port 8888 --jinja -fa on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0
+    --presence-penalty 1.1 --repeat-penalty 1.0 -ngl 99 -c 162144
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 240.457645
+  generation_speed: 12.900301
+  notes: ' no MTP, Vision: Vulkan Ok | ROCM Not OK'
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 27B
+- id: badtheorylabs-btl-4-gguf-8d8e7f
+  name: badtheorylabs_BTL-4-GGUF
+  model_url: https://huggingface.co/bartowski/badtheorylabs_BTL-4-GGUF
+  local_command: llama-serverv -m ~/models/badtheorylabs_BTL-4-GGUF/badtheorylabs_BTL-4-Q5_K_L.gguf   --host
+    0.0.0.0 --port 8888 --jinja -ngl 999 -c 162144 -fa on   --temp 1.0 --top-p 0.95   --mmproj
+    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
+    1024
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 1049.436536
+  generation_speed: 61.559588
+  notes: No MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 35B
+- id: jashepp-agents-a1-35b-a3b-mxfp4-moe-hybrid-imatrix-gguf-a87a4c
+  name: jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
+  model_url: https://huggingface.co/jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
+  local_command: llama-serverv -m ~/models/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Agents-A1-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
+    -a Agents-A1-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
+    --jinja -ngl 999 -c 262144 --rope-scaling yarn --rope-scale 8 --yarn-orig-ctx
+    32768 -fa on --load-mode none --temp 1.0 --top-p 0.90 --min-p 0.15 --top-k 15
+    --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    --image-min-tokens 1024
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 1110.81255
+  generation_speed: 53.792727
+  notes: NO MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 35B-A3B
+- id: deepseek-v4-flash-vision-exp-gguf-9f1410
+  name: DeepSeek-V4-Flash-Vision-Exp-GGUF
+  model_url: https://huggingface.co/unsloth/DeepSeek-V4-Flash-Vision-Exp-GGUF
+  local_command: LD_LIBRARY_PATH="~/llamacpps/llama.cpp/build-vulkan/bin" ~/llamacpps/llama.cpp/build-vulkan/bin/llama-server   -m
+    ~/models/DeepSeek-V4-Flash-Vision-Exp-GGUF/DeepSeek-V4-Flash-Vision-Exp-UD-IQ2_XXS-00001-of-00003.gguf   -a
+    DeepSeek-V4-Flash-Vision-Exp-UD-IQ2_XXS   -mm ~/models/DeepSeek-V4-Flash-Vision-Exp-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 132144 --jinja -ngl
+    999   --load-mode none -fa on   -b 2048 -ub 1024 -t 16 -np 1 --temp 1.0  --top-p
+    1.0  --min-p 0.0   --presence-penalty 0 --repeat-penalty 1.0 --chat-template-kwargs
+    '{"reasoning_effort":"low"}'
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 199.742355
+  generation_speed: 12.941687
+  notes: No MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 284B
+- id: hauhaucs-gptoss-120b-uncensored-hauhaucs-aggressive-62bd85
+  name: GPTOSS-120B-Uncensored-HauhauCS-Aggressive
+  model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
+  local_command: llama-serverv -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf
+    -a GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf --host 0.0.0.0 --port
+    8888 --jinja -ngl 99 -c 128000 --load-mode none -fa on -b 2048 -ub 2048 --temp
+    1.0 --top-k 40
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 769.014408
+  generation_speed: 38.838591
+  notes: No MTP, No mmproj
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 117B-A5.1B
+- id: unsloth-qwen3-8-27b-gguf-2d3292
+  name: unsloth/Qwen3.8-27B-GGUF
+  model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
+    -a Qwen3.8-27B-UD-Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
+    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
+    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
+    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q4_0 -ctv q4_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 240.80615
+  generation_speed: 12.817526
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 22.4
+  parameter_info: 27B
+- id: unsloth-qwen3-8-27b-gguf-9330d2
+  name: unsloth/Qwen3.8-27B-GGUF
+  model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
+    -a Qwen3.8-27B-UD-Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
+    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
+    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
+    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q4_0 -ctv q4_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 245.096951
+  generation_speed: 12.810343
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 27
+  parameter_info: 27B
+- id: minicpm5-2b-gguf-c295e9
+  name: MiniCPM5-2B-GGUF
+  model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
+  local_command: "LD_LIBRARY_PATH=\"~/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"~/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+    \  -m ~/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q8_0.gguf \\\n  -a MiniCPM5-2B-Q8_0.gguf\
+    \ \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072 --jinja -ngl 999 --load-mode\
+    \ none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1 --chat-template-kwargs '{\"reasoning_effort\"\
+    :\"none\"}' --agent"
+  mmproj_accuracy: untested
+  task_accuracy: unreliable
+  prompt_speed: 2740.49401
+  generation_speed: 84.598967
+  notes: No MTP
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 2B
+- id: unsloth-mistral-small-4-119b-2603-gguf-fda5a8
+  name: unsloth/Mistral-Small-4-119B-2603-GGUF
+  model_url: https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF
+  local_command: "LD_LIBRARY_PATH=\"~/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"~/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+    \  -m ~/models/Mistral-Small-4-119B-2603-GGUF/Mistral-Small-4-119B-2603-UD-Q4_K_M-00001-of-00003.gguf\
+    \ \\\n  -a Mistral-Small-4-119B-2603-UD-Q4_K_M \\\n  -mm ~/models/Mistral-Small-4-119B-2603-GGUF/mmproj-BF16.gguf\
+    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
+    \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
+    \ --agent"
+  mmproj_accuracy: unreliable
+  task_accuracy: unreliable
+  prompt_speed: 617.069921
+  generation_speed: 41.316019
+  notes: " I reached the maximum iterations (90) but couldn't summarize. Error: Error\
+    \ code: 500 - {'error': {'code': 500, 'message':\n \"\\n------------\\nWhile executing\
+    \ CallExpression at line 197, column 32 in source:\\n...== 0) %}\u21B5       \
+    \     {{-\n raise_exception('After the optional system message, con...\\n    \
+    \                                       ^\\nError: Jinja\n Exception: After the\
+    \ optional system message, conversation roles must alternate user and assistant\
+    \ roles except for tool calls\n and results.\", 'type': 'server_error'}}"
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 119B-A6B

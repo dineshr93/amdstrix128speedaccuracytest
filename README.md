@@ -1,10 +1,13 @@
 # AMD Dash — Local LLM Benchmark Notebook
 
+![Demo of the app](amddash.gif)
+
 A tiny, local-only web app for tracking local LLM testing results over time.
 Save, edit, delete, and search benchmarks, then compare previous tests.
 
-**Application source:** the current project directory (this directory).
-**Benchmark data:** `~/amddash/data.yaml` (the only persistent store).
+**Self host?:** yes.
+
+**Benchmark data:** `~/amddash/data.yaml` (the only persistent store). **Sample data** [data/data.yaml](data/data.yaml) Tested on AMD Ryzen AI Max+ 395 128 GB Strix Halo Framework Desktop
 
 ## What it tracks
 
