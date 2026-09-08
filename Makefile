@@ -5,12 +5,12 @@
 #   make run       run the app locally (native Python, port 5000)
 #   make stop      stop a locally-running app (kills app.py on this port)
 #   make build     build the Docker image
-#   make up        start the Docker container (compose up -d)
+#   make up        start a fresh Docker container (teardown, rebuild, up)
 #   make down      stop the Docker container (compose down)
 #   make clean     remove local build artifacts (.venv, __pycache__)
 #   make help      show this help
 
-.PHONY: help install run stop build up down clean
+.PHONY: help install run stop build up down fresh clean
 
 PYTHON ?= .venv/bin/python
 PIP     = .venv/bin/pip
@@ -22,7 +22,7 @@ help:
 	@echo "  make run       run the app locally (port $(PORT))"
 	@echo "  make stop      stop a locally-running app"
 	@echo "  make build     build the Docker image (amd-dash)"
-	@echo "  make up        start Docker container via compose"
+	@echo "  make up        start a fresh Docker container (teardown, rebuild, up)"
 	@echo "  make down      stop Docker container via compose"
 	@echo "  make clean     remove local build artifacts"
 
@@ -42,11 +42,17 @@ stop:
 build:
 	docker build -t amd-dash .
 
-up:
-	docker compose up -d --build
-
 down:
-	docker compose down
+	docker compose down --remove-orphans
+
+# fresh: hard-reset helper — stop/remove the container, then delete the image so
+# the next build is guaranteed to start from the current source.
+fresh:
+	$(MAKE) down
+	docker image rm -f amd-dash 2>/dev/null || true
+
+up: fresh
+	docker compose up -d --build
 
 clean:
 	rm -rf .venv __pycache__ *.pyc
