@@ -25,7 +25,7 @@
 - id: qwen3-8-flash-next-ud-iq4-xs-00001-of-00003-gguf-f043a4
   name: Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
-  local_command: 'LD_LIBRARY_PATH=''/home/dinesh/llamacpps/drluoto/build-vulkan/bin''
+  local_command: LD_LIBRARY_PATH='/home/dinesh/llamacpps/drluoto/build-vulkan/bin'
     HSA_OVERRIDE_GFX_VERSION=11.5.1 /home/dinesh/llamacpps/drluoto/build-vulkan/bin/llama-server
     -m /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
     -a Qwen3.8-Flash-Next-UD-IQ4_XS -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
@@ -33,13 +33,6 @@
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024"
-
-    alias orn=''llama-server -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 -fa on  -b 2048 -ub 1024 -t 16 --load-mode none --temp
-    0.45 --top-p 0.75 --top-k 30 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning
-    on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
-    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0'
   mmproj_accuracy: bad
   task_accuracy: good
   prompt_speed: 381.584861
@@ -187,7 +180,7 @@
   task_accuracy: good
   prompt_speed: 290.650127
   generation_speed: 40.434984
-  notes: without --agent 38 t/s
+  notes: with --agent the creative tasks are bad
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 229B
@@ -394,6 +387,66 @@
   prompt_speed: 1139.369688
   generation_speed: 60.316653
   notes: with --agent the creative tasks are bad
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 35B-A3B
+- id: prism-ml-ternary-bonsai-27b-gguf-966167
+  name: prism-ml/Ternary-Bonsai-27B-gguf BF16
+  model_url: https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf/tree/main
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
+    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
+    \  -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-F16.gguf \\\n  -a Ternary-Bonsai-27B-mmproj-BF16\
+    \ \\\n  -mm ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf\
+    \  --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 162144\
+    \ --jinja -ngl 999 \\\n  -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf\
+    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all \\\n\
+    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa on "
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 130.391192
+  generation_speed: 4.329817
+  notes: draft-dspark not working https://github.com/PrismML-Eng/llama.cpp
+  speculative_decoding: true
+  mtp_generation_speed: 4.29
+  parameter_info: 27B
+- id: ternary-bonsai-27b-q2-g64-gguf-1f574d
+  name: Ternary-Bonsai-27B-Q2_g64.gguf
+  model_url: https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf
+  local_command: 'LD_LIBRARY_PATH=~/llamacpps/prism/llama-prism-b10683-d8f26ee ~/llamacpps/prism/llama-prism-b10683-d8f26ee/llama-server
+    -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-Q2_g64.gguf   -a Ternary-Bonsai-27B-mmproj-BF16   -mm
+    ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf  --image-min-tokens
+    1024   --host 0.0.0.0   --port 8888 -c 160000 -b 2048 -ub 1024 -t 16 -np 1 --load-mode
+    none -fa on --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all
+
+
+
+    LD_LIBRARY_PATH=~/llamacpps/prism/llama-prism-b10683-d8f26ee ~/llamacpps/prism/llama-prism-b10683-d8f26ee/llama-server
+    -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-Q2_g64.gguf   -a Ternary-Bonsai-27B-mmproj-BF16   -mm
+    ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf  --image-min-tokens
+    1024   --host 0.0.0.0   --port 8888 -c 160000 -b 2048 -ub 1024 -t 16 -np 1 --load-mode
+    none -fa on -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf'
+  mmproj_accuracy: good
+  task_accuracy: untested
+  prompt_speed: 262.547592
+  generation_speed: 24.720794
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 27B
+- id: ornith-1-0-35b-a3b-mxfp4-moe-q8-0-f16-imatrix-c7f009
+  name: Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix
+  model_url: https://huggingface.co/jashepp/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
+  local_command: llama-serverv -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
+    -a Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
+    --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
+    0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
+    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
+    1024 -ctk q8_0 -ctv q8_0
+  mmproj_accuracy: good
+  task_accuracy: untested
+  prompt_speed: 1185.755463
+  generation_speed: 54.00731
+  notes: ''
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
