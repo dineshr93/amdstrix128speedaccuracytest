@@ -152,17 +152,18 @@
   mtp_generation_speed: 26
   parameter_info: 27B
 - id: empero-ai-qwen3-8-27b-ridge-gguf-b3b896
-  name: empero-ai/Qwen3.8-27B-Ridge-GGUF
+  name: empero-ai/Qwen3.8-27B-Ridge-GGUF (Nathanw1014/strix-halo-llamacpp)
   model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
-  local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
-    -a Qwen3.8-27B.Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --cache-type-k
-    q4_0 --cache-type-v q4_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
-    0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
-    --load-mode none --reasoning on --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a Qwen3.8-27B.Q4_K_M.gguf
+    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
+    2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
+    999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 260.982606
-  generation_speed: 15.990881
+  prompt_speed: 305.662444
+  generation_speed: 15.917331
   notes: 27B with MTP 28.6 t/s
   speculative_decoding: true
   mtp_generation_speed: 28.6
@@ -219,15 +220,16 @@
 - id: thinkingcap-qwen3-6-27b-q4-k-m-gguf-8a2158
   name: ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
   model_url: https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.6-27B-GGUF/tree/main
-  local_command: llama-serverv -m ~/models/ThinkingCap-Qwen3.6-27B-GGUF/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
-    --mmproj ~/models/ThinkingCap-Qwen3.6-27B-GGUF/mmproj-ThinkingCap-Qwen3.6-27B-f16.gguf
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/models/ThinkingCap-Qwen3.6-27B-GGUF/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf --mmproj
+    ~/models/ThinkingCap-Qwen3.6-27B-GGUF/mmproj-ThinkingCap-Qwen3.6-27B-f16.gguf
     --image-min-tokens 3192 -a ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf --host 0.0.0.0
     --port 8888 --jinja -fa on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0
     --presence-penalty 1.1 --repeat-penalty 1.0 -ngl 99 -c 162144
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 240.457645
-  generation_speed: 12.900301
+  prompt_speed: 333.450275
+  generation_speed: 12.804938
   notes: ' no MTP, Vision: Vulkan Ok | ROCM Not OK'
   speculative_decoding: false
   mtp_generation_speed: 0
@@ -375,17 +377,22 @@
 - id: qwen-agentworld-35b-a3b-gguf-78fa23
   name: Qwen-AgentWorld-35B-A3B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen-AgentWorld-35B-A3B-GGUF
-  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
-    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
-    \  -m ~/models/Qwen-AgentWorld-35B-A3B-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf\
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/stix/vulkan/bin\" \"/home/dinesh/llamacpps/stix/vulkan/llama-server\"\
+    \ -m ~/models/Qwen-AgentWorld-35B-A3B-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf\
+    \ \\\n  -a Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf \\\n  -mm ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf\
+    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
+    \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
+    \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}'\n\n\n\nLD_LIBRARY_PATH=\"\
+    /home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\" \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\"\
+    \ \\\n  -m ~/models/Qwen-AgentWorld-35B-A3B-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf\
     \ \\\n  -a Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf \\\n  -mm ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf\
     \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
     \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
     \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}'"
-  mmproj_accuracy: good
+  mmproj_accuracy: unreliable
   task_accuracy: good
-  prompt_speed: 1139.369688
-  generation_speed: 60.316653
+  prompt_speed: 1429.782722
+  generation_speed: 60.45951
   notes: with --agent the creative tasks are bad
   speculative_decoding: false
   mtp_generation_speed: 0
@@ -436,17 +443,125 @@
 - id: ornith-1-0-35b-a3b-mxfp4-moe-q8-0-f16-imatrix-c7f009
   name: Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix
   model_url: https://huggingface.co/jashepp/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
-  local_command: llama-serverv -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" \
+
+    "/home/dinesh/llamacpps/stix/vulkan/llama-server" \
+
+    -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
     -a Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
     --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
     0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
     ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
     1024 -ctk q8_0 -ctv q8_0
-  mmproj_accuracy: good
-  task_accuracy: untested
+
+
+
+    llama-serverv -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
+    -a Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf --host 0.0.0.0 --port 8888
+    --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
+    0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
+    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
+    1024 -ctk q8_0 -ctv q8_0'
+  mmproj_accuracy: unreliable
+  task_accuracy: good
   prompt_speed: 1185.755463
   generation_speed: 54.00731
-  notes: ''
+  notes: https://github.com/Nathanw1014/strix-halo-llamacpp has prefill 1606.433621
+    decode 53.545416
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
+- id: qwen3-8-27b-turbofcfusion-735-882-here-uncen-neo-coder-max-mtp-q4-k-m-gguf-bb91fa
+  name: Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    (Nathanw1014/strix-halo-llamacpp)
+  model_url: https://huggingface.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    -a Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
+    0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
+    --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 336.041894
+  generation_speed: 11.893472
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 24.18
+  parameter_info: 27B
+- id: qwen3-8-flash-next-ud-iq4-xs-engramhalo-cpp-8cb2f7
+  name: Qwen3.8-Flash-Next-UD-IQ4_XS (EngramHalo.cpp)
+  model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+    -a Qwen3.8-Flash-Next-UD-IQ4_XS -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024'
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 411.668046
+  generation_speed: 27.33367
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 43.42
+  parameter_info: 117B
+- id: empero-ai-qwen3-8-27b-ridge-gguf-engramhalo-cpp-49985d
+  name: empero-ai/Qwen3.8-27B-Ridge-GGUF (EngramHalo.cpp)
+  model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
+    -a Qwen3.8-27B.Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type
+    draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja
+    -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024
+    -ctk q8_0 -ctv q8_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 290.418957
+  generation_speed: 16.063636
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 29.8
+  parameter_info: 27B
+- id: unsloth-qwen3-8-27b-gguf-engramhalo-cpp-58fd0f
+  name: unsloth/Qwen3.8-27B-GGUF (EngramHalo.cpp)
+  model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
+    -a Qwen3.8-27B-UD-Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
+    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
+    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
+    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q4_0 -ctv q4_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 274.452422
+  generation_speed: 13.080004
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 26.59
+  parameter_info: 27B
+- id: qwen3-8-27b-turbofcfusion-735-882-here-uncen-neo-coder-max-mtp-q4-k-m-gguf-engramhalo-cpp-dd8a0f
+  name: Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    (EngramHalo.cpp)
+  model_url: https://huggingface.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    -a Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
+    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min
+    0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
+    --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+    --reasoning-effort xhigh
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 272.962686
+  generation_speed: 11.974753
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 29.47
+  parameter_info: 27B
