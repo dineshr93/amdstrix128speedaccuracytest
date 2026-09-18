@@ -5,6 +5,8 @@
 const board = document.getElementById("board");
 const searchBox = document.getElementById("searchBox");
 const addBtn = document.getElementById("addBtn");
+const viewModal = document.getElementById("viewModal");
+const viewModalBody = document.getElementById("viewModalBody");
 const modal = document.getElementById("modal");
 const delModal = document.getElementById("delModal");
 const toast = document.getElementById("toast");
@@ -134,6 +136,7 @@ function cardHTML(e) {
       ${cmdHtml}
       ${notesHtml}
       <div class="card-actions">
+        <button class="btn" data-view="${escAttr(e.id)}">View</button>
         <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
         <button class="btn btn-danger" data-del="${escAttr(e.id)}">Delete</button>
       </div>
@@ -301,6 +304,92 @@ document.getElementById("delConfirm").addEventListener("click", async () => {
 });
 
 // ---------------------------------------------------------------------------
+// View a single card (read-only modal)
+// ---------------------------------------------------------------------------
+function openView(id) {
+  const e = entries.find((x) => x.id === id);
+  if (!e) return;
+  const acc = e.mmproj_accuracy;
+  const taskAcc = e.task_accuracy || "untested";
+  const gen = fmtSpeed(e.generation_speed);
+  const prompt = fmtSpeed(e.prompt_speed);
+
+  let urlHtml = "";
+  if (e.model_url) {
+    urlHtml = `<div class="field-label">Model URL</div>
+      <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`;
+  }
+  const cmdHtml = e.local_command
+    ? `<div class="field-label">Local Command</div>
+       <div class="cmd-block"><pre>${esc(e.local_command)}</pre></div>`
+    : "";
+  const notesHtml = e.notes
+    ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
+    : "";
+  const paramInfoHtml = e.parameter_info
+    ? `<div class="field-label">Parameter Info</div><div class="param-info param-info-strong">${esc(e.parameter_info)}</div>`
+    : "";
+  let mtpSpeedHtml = "";
+  if (e.speculative_decoding && e.mtp_generation_speed > 0) {
+    const mtpGen = fmtSpeed(e.mtp_generation_speed);
+    mtpSpeedHtml = `
+      <div class="speed-block">
+        <div class="speed-label">MTP Generation</div>
+        <div class="speed-value">${mtpGen} <small>tok/s</small></div>
+      </div>`;
+  }
+
+  viewModalBody.innerHTML = `
+    <h2>${esc(e.name)}</h2>
+    ${paramInfoHtml}
+    <div>
+      <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
+      <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
+    </div>
+    <div class="speeds">
+      <div class="speed-block">
+        <div class="speed-label">Generation</div>
+        <div class="speed-value">${gen} <small>tok/s</small></div>
+      </div>
+      <div class="speed-block">
+        <div class="speed-label">Prompt</div>
+        <div class="speed-value">${prompt} <small>tok/s</small></div>
+      </div>
+      ${mtpSpeedHtml}
+    </div>
+    ${urlHtml}
+    ${cmdHtml}
+    ${notesHtml}
+  `;
+  viewModal.classList.remove("hidden");
+}
+function closeView() {
+  viewModal.classList.add("hidden");
+}
+document.getElementById("viewModalClose").addEventListener("click", closeView);
+viewModal.addEventListener("click", (ev) => {
+  if (ev.target === viewModal) closeView();
+});
+
+// ---------------------------------------------------------------------------
+// Global keyboard shortcuts
+// ---------------------------------------------------------------------------
+document.addEventListener("keydown", (ev) => {
+  // Ignore shortcuts while typing in an input, textarea, or select.
+  const tag = ev.target.tagName;
+  const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+  if (typing && ev.key !== "Escape") return;
+
+  if (ev.key === "Escape") {
+    if (!modal.classList.contains("hidden")) { closeModal(); }
+    else if (!delModal.classList.contains("hidden")) { closeDelete(); }
+    else if (!viewModal.classList.contains("hidden")) { closeView(); }
+  } else if (!typing) {
+    if (ev.key === "n" || ev.key === "a") { openModal(null); }
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Delegated clicks (cards)
 // ---------------------------------------------------------------------------
 board.addEventListener("click", (ev) => {
@@ -312,6 +401,8 @@ board.addEventListener("click", (ev) => {
   const id = card.dataset.id;
   if (btn.dataset.copy) {
     copyCommand(id);
+  } else if (btn.dataset.view) {
+    openView(id);
   } else if (btn.dataset.edit) {
     const e = entries.find((x) => x.id === id);
     if (e) openModal(e);
