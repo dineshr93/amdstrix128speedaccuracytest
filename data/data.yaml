@@ -1,11 +1,22 @@
 - id: deepseek-v4-flash-iq2xxs-w2q2k-aprojq8-sexpq8-outq8-chat-v2-imatrix-0731-13c677
   name: DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731
   model_url: https://huggingface.co/antirez/deepseek-v4-gguf/blob/main/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
-  local_command: llama-serverv -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
     -a DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731 -c
-    126000 --host 0.0.0.0 --port 8888 --agent -fa on -ngl 999 -b 2048 -ub 1024 -t
-    16 --load-mode none -ctk q4_0 -ctv q4_0
+    126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub 1024 -t 16 --load-mode
+    none -ctk q4_0 -ctv q4_0 --agent
   local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+    -a DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731 -c
+    126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub 1024 -t 16 --load-mode
+    none -ctk q4_0 -ctv q4_0 --agent
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
+    -a DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731 -c
+    126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub 1024 -t 16 --load-mode
+    none -ctk q4_0 -ctv q4_0 --agent
   - llama-serverv -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
     -a DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731 -c
     126000 --host 0.0.0.0 --port 8888 --agent -fa on -ngl 999 -b 2048 -ub 1024 -t
@@ -19,9 +30,11 @@
     150000 --mtp /models/DeepSeek-V4-Flash-MTP-Q4K-Q8_0-F32.gguf --mtp-draft 1
   mmproj_accuracy: bad
   task_accuracy: good
-  prompt_speed: 240.498171
-  generation_speed: 18.208367
-  notes: ' with MTP, with no vision'
+  prompt_speed: 324.94568
+  generation_speed: 18.189774
+  notes: ' with MTP, with no vision
+
+    engram t-18.399268 / pp-254.943213'
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 284B
