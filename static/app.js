@@ -263,9 +263,8 @@ benchForm.addEventListener("submit", async (ev) => {
 
 addBtn.addEventListener("click", () => openModal(null));
 document.getElementById("cancelBtn").addEventListener("click", closeModal);
-modal.addEventListener("click", (ev) => {
-  if (ev.target === modal) closeModal();
-});
+// Intentionally no click-outside-to-close here: clicking the backdrop must NOT
+// discard unsaved form data. Only Cancel / Save (form submit) dismiss this modal.
 
 // ---------------------------------------------------------------------------
 // Delete confirmation
