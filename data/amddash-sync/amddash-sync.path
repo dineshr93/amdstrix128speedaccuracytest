@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch ~/amddash/data.yaml and trigger amddash-sync on every change
+
+[Path]
+PathChanged=/home/dinesh/amddash/data.yaml
+Unit=amddash-sync.service
+
+[Install]
+WantedBy=default.target

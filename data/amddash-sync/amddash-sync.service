@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync ~/amddash/data.yaml into repo data/data.yaml and push to GitHub
+
+[Service]
+Type=oneshot
+ExecStart=/home/dinesh/amddash/amddash-sync.sh
