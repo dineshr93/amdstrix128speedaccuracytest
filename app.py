@@ -9,6 +9,7 @@ Commands stored in entries are never executed; they exist only for reference/cop
 
 import os
 import tempfile
+import json
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template, request
@@ -70,7 +71,11 @@ def load_entries():
             entry['parameter_info'] = ""
         if 'task_accuracy' not in entry:
             entry['task_accuracy'] = 'untested'
-            
+        if 'local_commands' not in entry:
+            # migrate single-string local_command -> list of commands
+            lc = entry.get('local_command', '')
+            entry['local_commands'] = [lc] if isinstance(lc, str) and lc.strip() else []
+
     return entries
 
 
@@ -160,6 +165,12 @@ def validate_entries(entries):
                 return False
         if 'parameter_info' in e and not isinstance(e['parameter_info'], str):
             return False
+        cmds = e.get("local_commands")
+        if cmds is not None:
+            if not isinstance(cmds, list) or not all(
+                isinstance(c, str) for c in cmds
+            ):
+                return False
     return True
 
 
@@ -199,11 +210,33 @@ def normalize_entry(raw):
         
     parameter_info = (raw.get("parameter_info") or "").strip()
 
+    # local_commands: list of strings. Accept a list directly, a single string
+    # (single command), or a JSON-encoded array in a string.
+    cmds = raw.get("local_commands")
+    if cmds is None or cmds == "":
+        cmds = raw.get("local_command") or ""
+    if isinstance(cmds, str):
+        if cmds.strip() == "":
+            cmds = []
+        else:
+            try:
+                parsed = json.loads(cmds)
+            except (ValueError, TypeError):
+                parsed = [cmds]
+            cmds = parsed if isinstance(parsed, list) else [cmds]
+    if not isinstance(cmds, list):
+        raise ValueError("local_commands must be a list of command strings.")
+    local_commands = []
+    for c in cmds:
+        if isinstance(c, str) and c.strip():
+            local_commands.append(c)
+
     entry = {
         "id": (raw.get("id") or "").strip() or None,
         "name": name,
         "model_url": (raw.get("model_url") or "").strip(),
-        "local_command": raw.get("local_command") or "",
+        "local_command": local_commands[0] if local_commands else "",
+        "local_commands": local_commands,
         "mmproj_accuracy": accuracy,
         "task_accuracy": task_accuracy,
         "prompt_speed": prompt,

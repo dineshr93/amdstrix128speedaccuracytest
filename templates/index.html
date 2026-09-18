@@ -53,8 +53,11 @@
         <label>Model URL
           <input type="text" id="f_url" placeholder="https://...">
         </label>
-        <label>Local Command
-          <textarea id="f_cmd" class="mono" placeholder="LD_LIBRARY_PATH=... llama-server -m ..."></textarea>
+        <label>Local Commands
+          <div id="f_cmd_container"></div>
+          <div class="cmd-manager-actions">
+            <button type="button" id="addCmdBtn" class="btn btn-ghost">+ Add Command</button>
+          </div>
         </label>
         <label>MMProj Accuracy
           <select id="f_acc">

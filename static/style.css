@@ -55,6 +55,14 @@ body {
 .btn-primary:hover { filter: brightness(1.1); }
 .btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
 .btn-ghost { background: transparent; }
+.btn-grip {
+  background: transparent;
+  cursor: grab;
+  line-height: 1;
+  padding: 4px 8px;
+  align-self: flex-start;
+}
+.btn-grip:active { cursor: grabbing; }
 
 .search {
   background: var(--panel);
@@ -104,6 +112,29 @@ body {
 }
 .card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.3px; }
 
+/* Fixed-height scroll area: keep card from growing with many commands */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: -4px 0;
+}
+
+/* Commands block: bounded height with its own scrollbar, so the card stays
+   compact and the rest of the card passes wheel events through to the page. */
+.commands {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.commands::-webkit-scrollbar { width: 8px; }
+.commands::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.commands::-webkit-scrollbar-thumb:hover { background: #363b45; }
+
 .acc {
   display: inline-flex;
   align-items: center;
@@ -130,6 +161,13 @@ body {
 .url a:hover { text-decoration: underline; }
 
 .cmd-block { border: 1px solid var(--border); border-radius: 10px; background: #0a0c10; }
+.cmd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cmd-header .field-label { margin-bottom: 0; }
 .cmd-block pre {
   margin: 0;
   padding: 12px 14px;
@@ -143,7 +181,25 @@ body {
   max-height: 260px;
   overflow-y: auto;
 }
-.cmd-foot { display: flex; justify-content: flex-end; padding: 8px 10px; }
+.cmd-foot { display: flex; gap: 8px; padding: 8px 10px; justify-content: flex-end; align-items: center; }
+.cmd-foot .btn { flex: 1; justify-content: center; }
+
+/* Prominent "popping" Copy button used on each command block and the header */
+.btn-copy {
+  background: linear-gradient(180deg, #f472b6, #ec4899);
+  border-color: #db2777;
+  color: #fff;
+  font-weight: 600;
+}
+.btn-copy:hover { background: linear-gradient(180deg, #f9a8d4, #f472b6); filter: brightness(1.05); }
+
+/* ---- command manager (edit form) ---- */
+.cmd-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.cmd-row-controls { flex: 0 0 auto; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.cmd-row-body { flex: 1 1 0; min-width: 0; }
+.cmd-row-input { margin-top: 0; max-height: 200px; resize: vertical; width: 100%; }
+.cmd-row-foot { display: flex; justify-content: flex-end; margin-top: 6px; }
+.cmd-manager-actions { margin-top: 8px; }
 
 .notes { color: var(--muted); white-space: pre-wrap; word-break: break-word; }
 .card-actions { display: flex; gap: 10px; margin-top: auto; }
@@ -172,7 +228,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 22px;
-  max-width: 560px;
+  max-width: 920px;
   width: 100%;
 }
 .modal-card.small { max-width: 380px; }

@@ -73,6 +73,34 @@ function fmtSpeed(v) {
   return n;
 }
 
+// Build a command block: pre + copy button. `display` is what shows,
+// `copyText` is what goes to clipboard (may differ on reorder).
+// `idx`/`total` feed the toast so users know which command was copied.
+function commandBlockHtml(display, copyText, idx, total) {
+  const label = "command " + (idx + 1) + " of " + total;
+  return `<div class="cmd-block">
+    <pre>${esc(display)}</pre>
+    <div class="cmd-foot"><button class="btn btn-sm" data-copy="${escAttr(copyText)}" data-copy-label="${escAttr(label)}">Copy</button></div>
+  </div>`;
+}
+
+// Commands section shared by card and view modal. The header button copies
+// ALL commands at once ("Copy all"); shown only when there are 2+ commands,
+// since with one command the per-block button already covers it.
+function commandsSectionHtml(e) {
+  const cmds = e.local_commands || [];
+  if (!cmds.length) return "";
+  const copyAll = cmds.length > 1
+    ? ` <button class="btn btn-sm btn-copy" data-copy="${escAttr(cmds.join("\n"))}" data-copy-label="all ${cmds.length} commands">Copy all</button>`
+    : "";
+  return `<div class="cmd-header">
+         <span class="field-label">Commands (${cmds.length})</span>${copyAll}
+       </div>
+       <div class="commands">
+       ${cmds.map((c, i) => commandBlockHtml(c, c, i, cmds.length)).join("")}
+       </div>`;
+}
+
 function cardHTML(e) {
   const acc = e.mmproj_accuracy;
   const taskAcc = e.task_accuracy || "untested";
@@ -85,13 +113,7 @@ function cardHTML(e) {
       <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`;
   }
 
-  const cmdHtml = e.local_command
-    ? `<div class="field-label">Local Command</div>
-       <div class="cmd-block">
-         <pre>${esc(e.local_command)}</pre>
-         <div class="cmd-foot"><button class="btn" data-copy="${escAttr(e.id)}">Copy Command</button></div>
-       </div>`
-    : "";
+  const cmdHtml = commandsSectionHtml(e);
 
   const notesHtml = e.notes
     ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
@@ -116,25 +138,27 @@ function cardHTML(e) {
   return `
     <div class="card" data-id="${escAttr(e.id)}">
       <h2>${esc(e.name)}</h2>
-      ${paramInfoHtml}
-      <div>
-        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
-        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
-      </div>
-      <div class="speeds">
-        <div class="speed-block">
-          <div class="speed-label">Generation</div>
-          <div class="speed-value">${gen} <small>tok/s</small></div>
+      <div class="card-body">
+        ${paramInfoHtml}
+        <div>
+          <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
+          <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
         </div>
-        <div class="speed-block">
-          <div class="speed-label">Prompt</div>
-          <div class="speed-value">${prompt} <small>tok/s</small></div>
+        <div class="speeds">
+          <div class="speed-block">
+            <div class="speed-label">Generation</div>
+            <div class="speed-value">${gen} <small>tok/s</small></div>
+          </div>
+          <div class="speed-block">
+            <div class="speed-label">Prompt</div>
+            <div class="speed-value">${prompt} <small>tok/s</small></div>
+          </div>
+          ${mtpSpeedHtml}
         </div>
-        ${mtpSpeedHtml}
+        ${urlHtml}
+        ${cmdHtml}
+        ${notesHtml}
       </div>
-      ${urlHtml}
-      ${cmdHtml}
-      ${notesHtml}
       <div class="card-actions">
         <button class="btn" data-view="${escAttr(e.id)}">View</button>
         <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
@@ -182,7 +206,7 @@ function openModal(entry) {
   document.getElementById("f_id").value = entry ? entry.id : "";
   document.getElementById("f_name").value = entry ? entry.name : "";
   document.getElementById("f_url").value = entry ? (entry.model_url || "") : "";
-  document.getElementById("f_cmd").value = entry ? (entry.local_command || "") : "";
+  loadCommandsIntoForm(entry ? entry.local_commands : [""]);
   document.getElementById("f_acc").value = entry ? entry.mmproj_accuracy : "untested";
   document.getElementById("f_task_acc").value = entry ? (entry.task_accuracy || "untested") : "untested";
   document.getElementById("f_prompt").value = entry ? entry.prompt_speed : "";
@@ -215,6 +239,132 @@ function closeModal() {
   benchForm.reset();
 }
 
+// ---------------------------------------------------------------------------
+// Multi-command manager (edit form). Rows are reorderable (drag the ⋮⋮ handle
+// or use the ↑/↓ buttons), each has its own remove button.
+// ---------------------------------------------------------------------------
+// The row currently being dragged. Must live OUTSIDE makeCommandRow: the
+// drop handler runs on the target row and needs to see the source row set
+// by the source row's dragstart — per-row state can never see it.
+let activeDragRow = null;
+
+function makeCommandRow(text = "") {
+  const row = document.createElement("div");
+  row.className = "cmd-row";
+  row.innerHTML = `
+    <div class="cmd-row-controls">
+      <button type="button" class="btn btn-grip" title="Drag or move up/down">⋮⋮</button>
+    </div>
+    <div class="cmd-row-body">
+      <textarea class="mono cmd-row-input" placeholder="e.g. llama-server -m model.gguf -ngl 999">${esc(text)}</textarea>
+      <div class="cmd-row-foot"><button type="button" class="btn btn-danger" data-remove title="Remove command">Remove</button></div>
+    </div>`;
+  const textarea = row.querySelector(".cmd-row-input");
+  textarea.addEventListener("input", () => {
+    textarea.style.height = "auto";
+    textarea.style.height = Math.min(textarea.scrollHeight, 200) + "px";
+  });
+
+  // Grip handle is the drag source. Click it to move the row down, double-click
+  // to move up. Drag-and-drop can leave the browser firing a stray `click` on
+  // the drop target, which would undo the reorder — the `suppressNextClick`
+  // latch swallows exactly that one click. It works regardless of whether
+  // `dragend` fires before or after the click, because mousedown clears the
+  // latch for the next ordinary (non-drag) click.
+  const grip = row.querySelector(".btn-grip");
+  let dragging = false;
+  let suppressNextClick = false;
+
+  const move = (dir) => {
+    const prev = row.previousElementSibling;
+    const next = row.nextElementSibling;
+    if (dir === "up" && prev) row.parentNode.insertBefore(row, prev);
+    // insertBefore(row, next) is a no-op when row is already before next;
+    // to move down we must insert BEFORE the row after next.
+    if (dir === "down" && next) {
+      if (next.nextElementSibling) row.parentNode.insertBefore(row, next.nextElementSibling);
+      else row.parentNode.appendChild(row);
+    }
+  };
+
+  grip.addEventListener("mousedown", () => { suppressNextClick = false; });
+  grip.addEventListener("click", (e) => {
+    if (dragging || suppressNextClick) {
+      e.stopImmediatePropagation();
+      dragging = false;
+      suppressNextClick = false;
+      return;
+    }
+    move("down");
+  });
+  grip.addEventListener("dblclick", (e) => {
+    if (dragging || suppressNextClick) {
+      e.stopImmediatePropagation();
+      dragging = false;
+      suppressNextClick = false;
+      return;
+    }
+    move("up");
+  });
+
+  row.querySelector("[data-remove]").addEventListener("click", () => row.remove());
+
+  // Drag-and-drop reorder: the grip is the drag source, the whole row is the
+  // drop zone. Note dragstart fires on the nearest draggable element, so the
+  // grip itself must be draggable and row must NOT be (otherwise dragstart
+  // fires on the row and text selection in the textarea breaks).
+  row.draggable = false;
+  grip.draggable = true;
+  grip.style.cursor = "grab";
+
+  row.addEventListener("dragstart", (e) => {
+    if (e.target !== grip) {
+      e.preventDefault();
+      return;
+    }
+    activeDragRow = row;
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", "grip");
+    dragging = true;
+    suppressNextClick = false;
+  });
+  row.addEventListener("dragover", (e) => {
+    if (!activeDragRow || activeDragRow === row) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  });
+  row.addEventListener("drop", (e) => {
+    e.preventDefault();
+    if (activeDragRow && activeDragRow !== row) {
+      const rect = row.getBoundingClientRect();
+      const before = (e.clientY - rect.top) < rect.height / 2;
+      if (before) row.parentNode.insertBefore(activeDragRow, row);
+      else if (row.nextElementSibling) row.parentNode.insertBefore(activeDragRow, row.nextElementSibling);
+      else row.parentNode.appendChild(activeDragRow);
+    }
+    activeDragRow = null;
+  });
+  grip.addEventListener("dragend", () => {
+    dragging = false;
+    suppressNextClick = true;
+    activeDragRow = null;
+  });
+
+  return row;
+}
+
+function loadCommandsIntoForm(cmds) {
+  const container = document.getElementById("f_cmd_container");
+  const rows = Array.isArray(cmds) ? cmds : (cmds ? [cmds] : []);
+  container.innerHTML = "";
+  rows.forEach((c) => container.appendChild(makeCommandRow(c)));
+}
+
+function collectCommandsFromForm() {
+  const inputs = document.querySelectorAll("#f_cmd_container .cmd-row-input");
+  return Array.from(inputs).map((i) => i.value.trim()).filter((v) => v.length > 0);
+}
+
 benchForm.addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const id = document.getElementById("f_id").value;
@@ -225,7 +375,7 @@ benchForm.addEventListener("submit", async (ev) => {
     id: id || undefined,
     name: document.getElementById("f_name").value,
     model_url: document.getElementById("f_url").value,
-    local_command: document.getElementById("f_cmd").value,
+    local_commands: collectCommandsFromForm(),
     mmproj_accuracy: document.getElementById("f_acc").value,
     task_accuracy: document.getElementById("f_task_acc").value,
     prompt_speed: document.getElementById("f_prompt").value,
@@ -265,6 +415,10 @@ benchForm.addEventListener("submit", async (ev) => {
 });
 
 addBtn.addEventListener("click", () => openModal(null));
+document.getElementById("addCmdBtn").addEventListener("click", () => {
+  const container = document.getElementById("f_cmd_container");
+  container.appendChild(makeCommandRow(""));
+});
 document.getElementById("cancelBtn").addEventListener("click", closeModal);
 // Intentionally no click-outside-to-close here: clicking the backdrop must NOT
 // discard unsaved form data. Only Cancel / Save (form submit) dismiss this modal.
@@ -319,10 +473,7 @@ function openView(id) {
     urlHtml = `<div class="field-label">Model URL</div>
       <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`;
   }
-  const cmdHtml = e.local_command
-    ? `<div class="field-label">Local Command</div>
-       <div class="cmd-block"><pre>${esc(e.local_command)}</pre></div>`
-    : "";
+  const cmdHtml = commandsSectionHtml(e);
   const notesHtml = e.notes
     ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
     : "";
@@ -341,25 +492,27 @@ function openView(id) {
 
   viewModalBody.innerHTML = `
     <h2>${esc(e.name)}</h2>
-    ${paramInfoHtml}
-    <div>
-      <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
-      <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
-    </div>
-    <div class="speeds">
-      <div class="speed-block">
-        <div class="speed-label">Generation</div>
-        <div class="speed-value">${gen} <small>tok/s</small></div>
+    <div class="card-body">
+      ${paramInfoHtml}
+      <div>
+        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
+        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
       </div>
-      <div class="speed-block">
-        <div class="speed-label">Prompt</div>
-        <div class="speed-value">${prompt} <small>tok/s</small></div>
+      <div class="speeds">
+        <div class="speed-block">
+          <div class="speed-label">Generation</div>
+          <div class="speed-value">${gen} <small>tok/s</small></div>
+        </div>
+        <div class="speed-block">
+          <div class="speed-label">Prompt</div>
+          <div class="speed-value">${prompt} <small>tok/s</small></div>
+        </div>
+        ${mtpSpeedHtml}
       </div>
-      ${mtpSpeedHtml}
+      ${urlHtml}
+      ${cmdHtml}
+      ${notesHtml}
     </div>
-    ${urlHtml}
-    ${cmdHtml}
-    ${notesHtml}
   `;
   viewModal.classList.remove("hidden");
 }
@@ -368,6 +521,8 @@ function closeView() {
 }
 document.getElementById("viewModalClose").addEventListener("click", closeView);
 viewModal.addEventListener("click", (ev) => {
+  const btn = ev.target.closest("button");
+  if (btn && btn.dataset.copy) { copyCommand(btn.dataset.copy, btn.dataset.copyLabel); return; }
   if (ev.target === viewModal) closeView();
 });
 
@@ -400,7 +555,7 @@ board.addEventListener("click", (ev) => {
   if (!card) return;
   const id = card.dataset.id;
   if (btn.dataset.copy) {
-    copyCommand(id);
+    copyCommand(btn.dataset.copy, btn.dataset.copyLabel);
   } else if (btn.dataset.view) {
     openView(id);
   } else if (btn.dataset.edit) {
@@ -411,13 +566,12 @@ board.addEventListener("click", (ev) => {
   }
 });
 
-async function copyCommand(id) {
-  const e = entries.find((x) => x.id === id);
-  if (!e) return;
-  const cmd = e.local_command || "";
+async function copyCommand(cmd, label) {
+  if (!cmd) { showToast("Nothing to copy.", true); return; }
+  const toast = () => showToast(label ? "Copied " + label : "Copied!", false);
   try {
     await navigator.clipboard.writeText(cmd);
-    showToast("Copied!", false);
+    toast();
   } catch (err) {
     // fallback for older browsers / non-secure contexts
     const ta = document.createElement("textarea");
@@ -428,7 +582,7 @@ async function copyCommand(id) {
     ta.select();
     try { document.execCommand("copy"); } catch (e2) {}
     document.body.removeChild(ta);
-    showToast("Copied!", false);
+    toast();
   }
 }
 
