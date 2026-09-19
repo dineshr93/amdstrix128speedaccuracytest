@@ -125,16 +125,14 @@
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}' --spec-type
-    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
+    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}'
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin" "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m
     /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}' --spec-type
-    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
+    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}'
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 145.89
