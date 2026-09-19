@@ -120,16 +120,21 @@
 - id: glm-5-3-flash-ud-iq1-m-c26b90
   name: GLM-5.3-Flash-UD-IQ1_M
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ1_M
-  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin"
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin"
     "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs ''{"reasoning_effort":" low","clear_thinking":true}'' --spec-type
+    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}' --spec-type
     draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
-
-    0.00.098.007 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust
-    with the `-lv N` CLI arg)'
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin" "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m
+    /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
+    GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
+    2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
+    1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
+    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}' --spec-type
+    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 145.89
@@ -138,17 +143,6 @@
   speculative_decoding: true
   mtp_generation_speed: 15.67
   parameter_info: 321B
-  local_commands:
-  - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin" "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"   -m
-    /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
-    GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
-    2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
-    1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs ''{"reasoning_effort":" low","clear_thinking":true}'' --spec-type
-    draft-mtp --spec-draft-n-max 4 --spec-draft-ngl all
-
-    0.00.098.007 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust
-    with the `-lv N` CLI arg)'
 - id: hauhaucs-gptoss-120b-uncensored-hauhaucs-aggressive-600d44
   name: HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/tree/main
