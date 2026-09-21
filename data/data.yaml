@@ -806,3 +806,33 @@
   speculative_decoding: true
   mtp_generation_speed: 68
   parameter_info: 35B-A3B
+- id: xingchen-agi-xing4-0-29b-a4b-gguf-86b273
+  name: XingChen-AGI/Xing4.0-29B-A4B-GGUF
+  model_url: https://huggingface.co/XingChen-AGI/Xing4.0-29B-A4B-GGUF/tree/main
+  local_command: 'LD_LIBRARY_PATH="/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/xing/build-rocm10/bin"
+    \
+
+    ROCBLAS_USE_HIPBLASLT=1 \
+
+    "/home/dinesh/llamacpps/xing/build-rocm10/bin/llama-server" -m /home/dinesh/models/Xing4.0-29B-A4B-GGUF/xing4_0-29b-IQ4_NL.gguf
+    -a xing4_0-29b-IQ4_NL --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np
+    1 --jinja --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max
+    1'
+  local_commands:
+  - 'LD_LIBRARY_PATH="/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/xing/build-rocm10/bin"
+    \
+
+    ROCBLAS_USE_HIPBLASLT=1 \
+
+    "/home/dinesh/llamacpps/xing/build-rocm10/bin/llama-server" -m /home/dinesh/models/Xing4.0-29B-A4B-GGUF/xing4_0-29b-IQ4_NL.gguf
+    -a xing4_0-29b-IQ4_NL --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np
+    1 --jinja --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max
+    1'
+  mmproj_accuracy: untested
+  task_accuracy: good
+  prompt_speed: 0
+  generation_speed: 0
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 39.05
+  parameter_info: 29B
