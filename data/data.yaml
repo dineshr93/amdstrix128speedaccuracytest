@@ -241,7 +241,9 @@
   task_accuracy: good
   prompt_speed: 305.662444
   generation_speed: 15.917331
-  notes: 27B with MTP 28.6 t/s
+  notes: '27B with MTP 28.6 t/s
+
+    rocm10 pp(307.810327) t(14.638593)'
   speculative_decoding: true
   mtp_generation_speed: 28.6
   parameter_info: 27B
