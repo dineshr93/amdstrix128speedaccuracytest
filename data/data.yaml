@@ -621,7 +621,7 @@
     1024   --host 0.0.0.0   --port 8888 -c 160000 -b 2048 -ub 1024 -t 16 -np 1 --load-mode
     none -fa on --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all
     -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf
-  mmproj_accuracy: good
+  mmproj_accuracy: unreliable
   task_accuracy: untested
   prompt_speed: 262.547592
   generation_speed: 24.720794
