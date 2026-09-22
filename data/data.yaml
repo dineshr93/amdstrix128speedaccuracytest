@@ -872,3 +872,25 @@
   speculative_decoding: true
   mtp_generation_speed: 39.05
   parameter_info: 29B
+- id: bartowski-mimo-v2-6-distill-qwen-9b-gguf-b9c0ae
+  name: bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF
+  model_url: https://huggingface.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF/tree/main
+  local_command: LD_LIBRARY_PATH=~/llamacpps/llama.cpp/build-vulkan/bin ~/llamacpps/llama.cpp/build-vulkan/bin/llama-server
+    -m ~/models/MiMo-V2.6-Distill-Qwen-9B-GGUF/MiMo-V2.6-Distill-Qwen-9B-Q4_K_M.gguf
+    --host 0.0.0.0 --port 8888 --jinja -ngl 99 -t 16 -c 165144 --load-mode none -fa
+    on -mm ~/models/MiMo-V2.6-Distill-Qwen-9B-GGUF/mmproj-MiMo-V2.6-Distill-Qwen-9B-bf16.gguf
+    --image-min-tokens 1024
+  local_commands:
+  - LD_LIBRARY_PATH=~/llamacpps/llama.cpp/build-vulkan/bin ~/llamacpps/llama.cpp/build-vulkan/bin/llama-server
+    -m ~/models/MiMo-V2.6-Distill-Qwen-9B-GGUF/MiMo-V2.6-Distill-Qwen-9B-Q4_K_M.gguf
+    --host 0.0.0.0 --port 8888 --jinja -ngl 99 -t 16 -c 165144 --load-mode none -fa
+    on -mm ~/models/MiMo-V2.6-Distill-Qwen-9B-GGUF/mmproj-MiMo-V2.6-Distill-Qwen-9B-bf16.gguf
+    --image-min-tokens 1024
+  mmproj_accuracy: unreliable
+  task_accuracy: untested
+  prompt_speed: 926.704093
+  generation_speed: 38.300724
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 9B
