@@ -224,6 +224,19 @@
     2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
     999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
     q8_0 -ctv q8_0
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a Qwen3.8-27B.Q4_K_M.gguf
+    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
+    2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
+    999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q8_0 -ctv q8_0
+  - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
+    -a Qwen3.8-27B.Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type
+    draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0
+    --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on
+    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 305.662444
@@ -232,13 +245,6 @@
   speculative_decoding: true
   mtp_generation_speed: 28.6
   parameter_info: 27B
-  local_commands:
-  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a Qwen3.8-27B.Q4_K_M.gguf
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
-    2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
-    999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
-    q8_0 -ctv q8_0
 - id: minimax-m2-7-gguf-009f25
   name: MiniMax-M2.7-GGUF
   model_url: https://huggingface.co/unsloth/MiniMax-M2.7-GGUF/tree/main
