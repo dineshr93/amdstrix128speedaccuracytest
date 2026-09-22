@@ -131,12 +131,16 @@
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
     --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}'
-  - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
-    "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
+  - 'LD_LIBRARY_PATH="/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/glm5next/build-rocm10/bin"
+    \
+
+    ROCBLAS_USE_HIPBLASLT=1 \
+
+    "/home/dinesh/llamacpps/glm5next/build-rocm10/bin/llama-server" -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
     GLM-5.3-Flash-UD-IQ2_XXS   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
     2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
     1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs '{"reasoning_effort":" low","clear_thinking":true}'
+    --chat-template-kwargs ''{"reasoning_effort":" low","clear_thinking":true}'''
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 145.89
