@@ -145,7 +145,7 @@
   task_accuracy: good
   prompt_speed: 145.89
   generation_speed: 8.79
-  notes: ''
+  notes: 'rocm10: pp(153.124196) t(15.952282)'
   speculative_decoding: true
   mtp_generation_speed: 15.67
   parameter_info: 321B
