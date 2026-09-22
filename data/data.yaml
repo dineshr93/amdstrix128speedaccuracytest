@@ -709,20 +709,27 @@
     draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja
     -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024
     -ctk q8_0 -ctv q8_0
-  mmproj_accuracy: good
-  task_accuracy: good
-  prompt_speed: 290.418957
-  generation_speed: 16.063636
-  notes: ''
-  speculative_decoding: true
-  mtp_generation_speed: 29.8
-  parameter_info: 27B
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a Qwen3.8-27B.Q4_K_M.gguf
     -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
     3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode
     none --reasoning on --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
+  - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+    -a Qwen3.8-Flash-Next-UD-IQ4_XS -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 290.418957
+  generation_speed: 16.063636
+  notes: rocm 10 pp (323.175127) t(14.643728)
+  speculative_decoding: true
+  mtp_generation_speed: 29.8
+  parameter_info: 27B
 - id: unsloth-qwen3-8-27b-gguf-engramhalo-cpp-58fd0f
   name: unsloth/Qwen3.8-27B-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
