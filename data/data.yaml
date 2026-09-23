@@ -1006,10 +1006,24 @@
     --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
     999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs ''{"reasoning_effort":"none"}''
     --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1'
+  - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -a
+    Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -mm /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
+    999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs '{"reasoning_effort":"none"}'
+    --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1
+  - 'LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/EngramHalo.cpp/build-rocm10/bin"
+    \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-rocm10/bin/llama-server" -m /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -a
+    Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -mm /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
+    999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs ''{"reasoning_effort":"none"}''
+    --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1'
   mmproj_accuracy: unreliable
   task_accuracy: good
-  prompt_speed: 0
-  generation_speed: 90
+  prompt_speed: 1254.905627
+  generation_speed: 60.672016
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 90
