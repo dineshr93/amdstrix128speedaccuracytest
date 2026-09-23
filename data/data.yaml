@@ -944,8 +944,8 @@
     -a Qwen3.8-35B-A3B-Q4_K_M.gguf --mmproj /home/dinesh/models/Qwen3.8-35B-A3B-Distill-GGUF/mmproj-Qwen3.8-35B-A3B-F16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
-  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin" "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server"
-    -m /home/dinesh/models/Qwen3.8-35B-A3B-Distill-GGUF/Qwen3.8-35B-A3B-Q4_K_M.gguf
+  - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m /home/dinesh/models/Qwen3.8-35B-A3B-Distill-GGUF/Qwen3.8-35B-A3B-Q4_K_M.gguf
     -a Qwen3.8-35B-A3B-Q4_K_M.gguf --mmproj /home/dinesh/models/Qwen3.8-35B-A3B-Distill-GGUF/mmproj-Qwen3.8-35B-A3B-F16.gguf
     --load-mode none -fa 1 -c 262144 -np 1 --jinja --host 0.0.0.0 --port 8888 --image-min-tokens
     1024 --spec-type draft-mtp --spec-draft-n-max 2
