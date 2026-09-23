@@ -983,3 +983,34 @@
   speculative_decoding: true
   mtp_generation_speed: 27
   parameter_info: 27B
+- id: vadikulous-ai-qwen-agentworld-35b-a3b-ud-q4-k-xl-mtp-gguf-2fcbea
+  name: vadikulous-ai/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF
+  model_url: https://huggingface.co/vadikulous-ai/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -a
+    Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -mm /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
+    999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs '{"reasoning_effort":"none"}'
+    --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m
+    /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -a
+    Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -mm /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
+    999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs '{"reasoning_effort":"none"}'
+    --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1
+  - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -a
+    Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP.gguf   -mm /home/dinesh/models/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 262144 --jinja -ngl
+    999 --load-mode none -fa 1  -t 16 -np 1 --chat-template-kwargs ''{"reasoning_effort":"none"}''
+    --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1'
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 0
+  generation_speed: 90
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 90
+  parameter_info: 35B-A3B
