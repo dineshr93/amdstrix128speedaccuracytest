@@ -957,3 +957,29 @@
   speculative_decoding: true
   mtp_generation_speed: 92.38
   parameter_info: 35B-A3B
+- id: brainnxdomain-hemmingway-1-heretic-mtp-gguf-v2-0d1da1
+  name: brainnxdomain/Hemmingway-1-Heretic-MTP-GGUF-V2
+  model_url: https://huggingface.co/brainnxdomain/Hemmingway-1-Heretic-MTP-GGUF-V2/tree/main
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Hemmingway-1-Heretic-MTP-GGUF-V2/Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf
+    -a Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel
+    1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none
+    --reasoning on -ctk q8_0 -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k
+    40
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m /home/dinesh/models/Hemmingway-1-Heretic-MTP-GGUF-V2/Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf
+    -a Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel
+    1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none
+    --reasoning on -ctk q8_0 -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k
+    40
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 271.472076
+  generation_speed: 12.969769
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 27
+  parameter_info: 27B
