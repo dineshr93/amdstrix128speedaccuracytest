@@ -827,7 +827,7 @@
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf
     -a Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf -md /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mtp-Tiel-Coder-35B-A3B.gguf
-    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 2 --spec-ngram-mod-n-max 64
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
@@ -836,7 +836,7 @@
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf
     -a Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf -md /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mtp-Tiel-Coder-35B-A3B.gguf
-    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 2 --spec-ngram-mod-n-max 64
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
@@ -844,7 +844,7 @@
 
     "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf
     -a Tiel-Coder-35B-A3B-UD-Q4_K_XL.gguf -md /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mtp-Tiel-Coder-35B-A3B.gguf
-    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 2 --spec-ngram-mod-n-max 64
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
