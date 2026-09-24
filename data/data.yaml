@@ -927,14 +927,14 @@
     -m ~/models/Ternary-Bonsai-2-27B-gguf/Ternary-Bonsai-2-27B-PQ2_0.gguf -a Ternary-Bonsai-2-27B   -mm
     ~/models/Ternary-Bonsai-2-27B-gguf/Ternary-Bonsai-2-27B-mmproj-BF16.gguf  --image-min-tokens
     1024 --host 0.0.0.0 --port 8888 -c 262144 -t 16 -np 1 --load-mode none -fa on
-    --jinja -ctk q4_0 -ctv q4_0 --reasoning-preserve
+    --jinja -ctk q4_0 -ctv q4_0 --reasoning-preserve  -ngl 999
   local_commands:
   - LD_LIBRARY_PATH=~/llamacpps/prism/llama-prism-b10735-842b188 ~/llamacpps/prism/llama-prism-b10735-842b188/llama-server
     -m ~/models/Ternary-Bonsai-2-27B-gguf/Ternary-Bonsai-2-27B-PQ2_0.gguf -a Ternary-Bonsai-2-27B   -mm
     ~/models/Ternary-Bonsai-2-27B-gguf/Ternary-Bonsai-2-27B-mmproj-BF16.gguf  --image-min-tokens
     1024 --host 0.0.0.0 --port 8888 -c 262144 -t 16 -np 1 --load-mode none -fa on
-    --jinja -ctk q4_0 -ctv q4_0 --reasoning-preserve
-  mmproj_accuracy: untested
+    --jinja -ctk q4_0 -ctv q4_0 --reasoning-preserve  -ngl 999
+  mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 260.999674
   generation_speed: 24.35496
