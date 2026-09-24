@@ -621,6 +621,12 @@
     1024   --host 0.0.0.0   --port 8888 -c 160000 -b 2048 -ub 1024 -t 16 -np 1 --load-mode
     none -fa on --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all
     -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf
+  - LD_LIBRARY_PATH=~/llamacpps/prism/llama-prism-b10735-842b188 ~/llamacpps/prism/llama-prism-b10735-842b188/llama-server
+    -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-Q2_g64.gguf   -a Ternary-Bonsai-27B-mmproj-BF16   -mm
+    ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf  --image-min-tokens
+    1024   --host 0.0.0.0   --port 8888 -c 160000 -b 2048 -ub 1024 -t 16 -np 1 --load-mode
+    none -fa on --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all
+    -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf
   mmproj_accuracy: unreliable
   task_accuracy: untested
   prompt_speed: 262.547592
