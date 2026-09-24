@@ -1045,26 +1045,38 @@
 - id: ornith-ai-ornith-1-5-35b-a3b-gguf-acc197
   name: ornith-ai/Ornith-1.5-35B-A3B-GGUF
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF/tree/main
-  local_command: llama-serverhsv   -m /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/Ornith-1.5-35B-Q4_K_M.gguf
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/Ornith-1.5-35B-Q4_K_M.gguf
     -a Ornith-1.5-35B-Q4_K_M.gguf -mm /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/mmproj-Ornith-1.5-35B-BF16.gguf
     --image-min-tokens 1024 --host 0.0.0.0   --port 8888   --jinja   -ngl 99   -c
-    262144   --load-mode none   -fa on   --temp 1.0   --top-k 20   --top-p 0.95   --min-p
-    0   --presence-penalty 0   --repeat-penalty 1.0   --reasoning on   --reasoning-effort
-    xhigh   --reasoning-preserve   --reasoning-format deepseek   --spec-type draft-mtp   --spec-draft-ngl
-    all --spec-draft-n-max 2 -ctk q8_0 -ctv q8_0
+    262144   --load-mode none   -fa on   --temp 0.6   --top-p 0.95 --repeat-penalty
+    1.0   --reasoning on   --reasoning-effort xhigh --reasoning-preserve --reasoning-format
+    deepseek --spec-type draft-mtp --spec-draft-ngl all --spec-draft-n-max 2 -ctk
+    q8_0 -ctv q8_0'
   local_commands:
-  - llama-serverhsv   -m /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/Ornith-1.5-35B-Q4_K_M.gguf
+  - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/Ornith-1.5-35B-Q4_K_M.gguf
     -a Ornith-1.5-35B-Q4_K_M.gguf -mm /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/mmproj-Ornith-1.5-35B-BF16.gguf
     --image-min-tokens 1024 --host 0.0.0.0   --port 8888   --jinja   -ngl 99   -c
-    262144   --load-mode none   -fa on   --temp 1.0   --top-k 20   --top-p 0.95   --min-p
-    0   --presence-penalty 0   --repeat-penalty 1.0   --reasoning on   --reasoning-effort
-    xhigh   --reasoning-preserve   --reasoning-format deepseek   --spec-type draft-mtp   --spec-draft-ngl
-    all --spec-draft-n-max 2 -ctk q8_0 -ctv q8_0
-  mmproj_accuracy: untested
-  task_accuracy: untested
-  prompt_speed: 0
-  generation_speed: 0
+    262144   --load-mode none   -fa on   --temp 0.6   --top-p 0.95 --repeat-penalty
+    1.0   --reasoning on   --reasoning-effort xhigh --reasoning-preserve --reasoning-format
+    deepseek --spec-type draft-mtp --spec-draft-ngl all --spec-draft-n-max 2 -ctk
+    q8_0 -ctv q8_0'
+  - llama-serverhsv -m /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/Ornith-1.5-35B-Q4_K_M.gguf
+    -a Ornith-1.5-35B-Q4_K_M.gguf -mm /home/dinesh/models/Ornith-1.5-35B-A3B-GGUF/mmproj-Ornith-1.5-35B-BF16.gguf
+    --image-min-tokens 1024 --host 0.0.0.0   --port 8888   --jinja   -ngl 99   -c
+    262144   --load-mode none   -fa on   --temp 0.6   --top-p 0.95 --repeat-penalty
+    1.0   --reasoning on   --reasoning-effort xhigh --reasoning-preserve --reasoning-format
+    deepseek --spec-type draft-mtp --spec-draft-ngl all --spec-draft-n-max 2 -ctk
+    q8_0 -ctv q8_0
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 1227.93663
+  generation_speed: 75.481525
   notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
+  speculative_decoding: true
+  mtp_generation_speed: 90
   parameter_info: 35B-A3B
