@@ -569,33 +569,6 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
-- id: prism-ml-ternary-bonsai-27b-gguf-966167
-  name: prism-ml/Ternary-Bonsai-27B-gguf BF16
-  model_url: https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf/tree/main
-  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
-    \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
-    \  -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-F16.gguf \\\n  -a Ternary-Bonsai-27B-mmproj-BF16\
-    \ \\\n  -mm ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf\
-    \  --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 162144\
-    \ --jinja -ngl 999 \\\n  -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf\
-    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all \\\n\
-    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa on "
-  mmproj_accuracy: untested
-  task_accuracy: untested
-  prompt_speed: 130.391192
-  generation_speed: 4.329817
-  notes: draft-dspark not working https://github.com/PrismML-Eng/llama.cpp
-  speculative_decoding: true
-  mtp_generation_speed: 4.29
-  parameter_info: 27B
-  local_commands:
-  - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\" \\\n\"\
-    /home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n  -m ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-F16.gguf\
-    \ \\\n  -a Ternary-Bonsai-27B-mmproj-BF16 \\\n  -mm ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-mmproj-BF16.gguf\
-    \  --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 162144\
-    \ --jinja -ngl 999 \\\n  -md ~/models/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-bf16.gguf\
-    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all \\\n\
-    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa on "
 - id: ornith-1-0-35b-a3b-mxfp4-moe-q8-0-f16-imatrix-c7f009
   name: Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix
   model_url: https://huggingface.co/jashepp/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
