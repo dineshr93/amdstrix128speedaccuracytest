@@ -1023,22 +1023,22 @@
   model_url: https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-27B-GGUF/tree/main
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m  /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/Swift-1.5-Qwen3.8-27B-IQ4_XS.gguf
-    -mm  /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/mmproj-Swift-1.5-Qwen3.8-27B-F16.gguf
+    -a Swift-1.5-Qwen3.8-27B-IQ4_XS.gguf -mm /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/mmproj-Swift-1.5-Qwen3.8-27B-F16.gguf
     --spec-type draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port
     8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0
+    1024 -ctk q8_0 -ctv q8_0 --no-reasoning-preserve
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m  /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/Swift-1.5-Qwen3.8-27B-IQ4_XS.gguf
-    -mm  /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/mmproj-Swift-1.5-Qwen3.8-27B-F16.gguf
+    -a Swift-1.5-Qwen3.8-27B-IQ4_XS.gguf -mm /home/dinesh/models/Swift-1.5-Qwen3.8-27B-GGUF/mmproj-Swift-1.5-Qwen3.8-27B-F16.gguf
     --spec-type draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port
     8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0
-  mmproj_accuracy: untested
-  task_accuracy: untested
-  prompt_speed: 0
-  generation_speed: 0
+    1024 -ctk q8_0 -ctv q8_0 --no-reasoning-preserve
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 278.649385
+  generation_speed: 13.9125
   notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
+  speculative_decoding: true
+  mtp_generation_speed: 32.02
   parameter_info: 27B
