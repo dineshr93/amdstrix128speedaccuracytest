@@ -1042,3 +1042,32 @@
   speculative_decoding: true
   mtp_generation_speed: 32.02
   parameter_info: 27B
+- id: ukisai-swift-1-5-qwen3-8-flash-next-gguf-677a2f
+  name: ukisai/Swift-1.5-Qwen3.8-Flash-Next-GGUF
+  model_url: https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-Flash-Next-GGUF/tree/main
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Swift-1.5-Qwen3.8-Flash-Next-GGUF/Swift-1.5-Qwen3.8-Flash-Next-IQ3_M-00001-of-00003.gguf
+    -a Swift-1.5-Qwen3.8-Flash-Next-IQ3_M -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Swift-1.5-Qwen3.8-Flash-Next-GGUF/mmproj-Swift-1.5-Qwen3.8-Flash-Next-BF16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024'
+  local_commands:
+  - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Swift-1.5-Qwen3.8-Flash-Next-GGUF/Swift-1.5-Qwen3.8-Flash-Next-IQ3_M-00001-of-00003.gguf
+    -a Swift-1.5-Qwen3.8-Flash-Next-IQ3_M -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
+    --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max 64
+    --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Swift-1.5-Qwen3.8-Flash-Next-GGUF/mmproj-Swift-1.5-Qwen3.8-Flash-Next-BF16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024'
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 552.056656
+  generation_speed: 32.689727
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 45.33
+  parameter_info: 117B
