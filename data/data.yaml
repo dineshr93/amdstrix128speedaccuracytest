@@ -847,7 +847,7 @@
     on -mm ~/models/MiMo-V2.6-Distill-Qwen-9B-GGUF/mmproj-MiMo-V2.6-Distill-Qwen-9B-bf16.gguf
     --image-min-tokens 1024
   mmproj_accuracy: unreliable
-  task_accuracy: untested
+  task_accuracy: good
   prompt_speed: 926.704093
   generation_speed: 38.300724
   notes: ''
