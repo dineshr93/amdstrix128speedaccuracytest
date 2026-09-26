@@ -1063,8 +1063,8 @@
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Swift-1.5-Qwen3.8-Flash-Next-GGUF/mmproj-Swift-1.5-Qwen3.8-Flash-Next-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
-  mmproj_accuracy: untested
-  task_accuracy: untested
+  mmproj_accuracy: good
+  task_accuracy: good
   prompt_speed: 552.056656
   generation_speed: 32.689727
   notes: ''
