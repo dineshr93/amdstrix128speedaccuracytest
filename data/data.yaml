@@ -1074,12 +1074,11 @@
 - id: sc117-occamy-1-0-abliterated-fit-gguf-engramhalo-cpp-ed05bf
   name: SC117/occamy-1.0-abliterated-FIT-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/SC117/occamy-1.0-abliterated-FIT-GGUF/tree/main
-    ,  https://huggingface.co/moontato/occamy-1.0-mtp-gguf/blob/main/occamy-1.0-mtp-Q8_0.gguf
   local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     \
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/occamy-1.0-abliterated-FIT-GGUF/occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf
-    -a occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf -md /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mtp-Tiel-Coder-35B-A3B.gguf
+    -a occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf -md /home/dinesh/models/occamy-1.0-mtp-gguf/occamy-1.0-mtp-Q8_0.gguf
     --spec-type draft-mtp,ngram-mod --spec-draft-n-max 2 --spec-ngram-mod-n-max 64
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/occamy-1.0-abliterated-FIT-GGUF/mmproj-occamy-1.0-abliterated-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
@@ -1088,16 +1087,16 @@
   - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/occamy-1.0-abliterated-FIT-GGUF/occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf
-    -a occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf -md /home/dinesh/models/Tiel-Coder-35B-A3B-GGUF/mtp-Tiel-Coder-35B-A3B.gguf
+    -a occamy-1.0-abliterated-APEX-I-COMPACT-Q4_K_M.gguf -md /home/dinesh/models/occamy-1.0-mtp-gguf/occamy-1.0-mtp-Q8_0.gguf
     --spec-type draft-mtp,ngram-mod --spec-draft-n-max 2 --spec-ngram-mod-n-max 64
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/occamy-1.0-abliterated-FIT-GGUF/mmproj-occamy-1.0-abliterated-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
   mmproj_accuracy: untested
   task_accuracy: untested
-  prompt_speed: 0
-  generation_speed: 0
-  notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
+  prompt_speed: 1145.97296
+  generation_speed: 78.630845
+  notes: 'MTP: https://huggingface.co/moontato/occamy-1.0-mtp-gguf/blob/main/occamy-1.0-mtp-Q8_0.gguf'
+  speculative_decoding: true
+  mtp_generation_speed: 91.2
   parameter_info: 35B-A3B
