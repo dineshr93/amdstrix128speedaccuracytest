@@ -1127,8 +1127,8 @@
     -ctk q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 0
-  generation_speed: 0
+  prompt_speed: 272.028414
+  generation_speed: 12.906957
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 25
