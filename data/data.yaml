@@ -1098,5 +1098,5 @@
   generation_speed: 78.630845
   notes: 'MTP: https://huggingface.co/moontato/occamy-1.0-mtp-gguf/blob/main/occamy-1.0-mtp-Q8_0.gguf'
   speculative_decoding: true
-  mtp_generation_speed: 91.2
+  mtp_generation_speed: 119.95
   parameter_info: 35B-A3B
