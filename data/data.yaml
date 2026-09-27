@@ -1092,8 +1092,8 @@
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/occamy-1.0-abliterated-FIT-GGUF/mmproj-occamy-1.0-abliterated-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024'
-  mmproj_accuracy: untested
-  task_accuracy: untested
+  mmproj_accuracy: unreliable
+  task_accuracy: good
   prompt_speed: 1145.97296
   generation_speed: 78.630845
   notes: 'MTP: https://huggingface.co/moontato/occamy-1.0-mtp-gguf/blob/main/occamy-1.0-mtp-Q8_0.gguf'
