@@ -1160,7 +1160,7 @@
   mtp_generation_speed: 30
   parameter_info: 188B
 - id: openbmb-minicpm5-2b-gguf-dspark-349071
-  name: openbmb/MiniCPM5-2B-GGUF (dspark)
+  name: openbmb/MiniCPM5-2B-GGUF (dspark) (command and tools)
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
   local_command: llama-serverv   -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf   -a
     MiniCPM5-2.6B-DSpark   -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf   --spec-type
