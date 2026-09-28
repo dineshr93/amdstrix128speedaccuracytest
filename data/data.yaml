@@ -1162,11 +1162,15 @@
 - id: openbmb-minicpm5-2b-gguf-dspark-349071
   name: openbmb/MiniCPM5-2B-GGUF (dspark)
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
-  local_command: "llama-serverv \\\n  -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf\
-    \ \\\n  -a MiniCPM5-2.6B-DSpark \\\n  -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf\
-    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 7 \\\n  -ngl 99 -ngld 99 -fa\
-    \ on \\\n  -c 131072 --jinja --host 0.0.0.0 --port 8888 --agent"
+  local_command: llama-serverv   -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf   -a
+    MiniCPM5-2.6B-DSpark   -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf   --spec-type
+    draft-dspark --spec-draft-n-max 2   -ngl 99 -ngld 99 -fa on   -c 131072 --jinja
+    --host 0.0.0.0 --port 8888
   local_commands:
+  - llama-serverv   -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf   -a
+    MiniCPM5-2.6B-DSpark   -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf   --spec-type
+    draft-dspark --spec-draft-n-max 2   -ngl 99 -ngld 99 -fa on   -c 131072 --jinja
+    --host 0.0.0.0 --port 8888
   - "llama-serverv \\\n  -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf\
     \ \\\n  -a MiniCPM5-2.6B-DSpark \\\n  -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf\
     \ \\\n  --spec-type draft-dspark --spec-draft-n-max 7 \\\n  -ngl 99 -ngld 99 -fa\
