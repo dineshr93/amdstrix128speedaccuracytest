@@ -1179,7 +1179,7 @@
     \ \\\n  -a MiniCPM5-2.6B \\\n  -ngl 99 -fa on \\\n  -c 131072 --jinja --host 0.0.0.0\
     \ --port 8888"
   mmproj_accuracy: untested
-  task_accuracy: good
+  task_accuracy: unreliable
   prompt_speed: 3296.249448
   generation_speed: 130.572852
   notes: 'dspark: https://huggingface.co/openbmb/MiniCPM5-2B-DSpark-GGUF/tree/main'
