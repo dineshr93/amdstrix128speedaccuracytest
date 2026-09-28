@@ -1159,3 +1159,23 @@
   speculative_decoding: true
   mtp_generation_speed: 30
   parameter_info: 188B
+- id: openbmb-minicpm5-2b-gguf-dspark-349071
+  name: openbmb/MiniCPM5-2B-GGUF (dspark)
+  model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
+  local_command: "llama-serverv \\\n  -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf\
+    \ \\\n  -a MiniCPM5-2.6B-DSpark \\\n  -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf\
+    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 7 \\\n  -ngl 99 -ngld 99 -fa\
+    \ on \\\n  -c 131072 --jinja --host 0.0.0.0 --port 8888 --agent"
+  local_commands:
+  - "llama-serverv \\\n  -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf\
+    \ \\\n  -a MiniCPM5-2.6B-DSpark \\\n  -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf\
+    \ \\\n  --spec-type draft-dspark --spec-draft-n-max 7 \\\n  -ngl 99 -ngld 99 -fa\
+    \ on \\\n  -c 131072 --jinja --host 0.0.0.0 --port 8888 --agent"
+  mmproj_accuracy: untested
+  task_accuracy: good
+  prompt_speed: 3296.249448
+  generation_speed: 130.572852
+  notes: 'dspark: https://huggingface.co/openbmb/MiniCPM5-2B-DSpark-GGUF/tree/main'
+  speculative_decoding: true
+  mtp_generation_speed: 100
+  parameter_info: 2B
