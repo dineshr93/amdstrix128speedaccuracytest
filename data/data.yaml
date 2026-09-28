@@ -1133,3 +1133,29 @@
   speculative_decoding: true
   mtp_generation_speed: 25
   parameter_info: 27B
+- id: antirez-qwen3-8-flash-next-gguf-ds4-bab108
+  name: antirez/qwen3.8-flash-next-gguf (ds4)
+  model_url: https://huggingface.co/antirez/qwen3.8-flash-next-gguf/tree/main
+  local_command: podman run --rm -it --name ds4-cockpit-server-2e274f28 --env DS4_LOCK_FILE=/tmp/ds4-cockpit-server-2e274f28.lock
+    --device /dev/dri --device /dev/kfd --group-add keep-groups --security-opt seccomp=unconfined
+    --ipc=host --cap-add=SYS_PTRACE --security-opt label=disable --userns=keep-id
+    -p 8888:8888 -v /home/dinesh/ds4:/models:ro -v /home/dinesh/.cache/ds4-kv:/var/cache/ds4-kv
+    docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-10.0 ds4-server -m /models/Qwen3.8-Flash-Next-Q2.gguf
+    --ctx 216000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
+    64000 --mtp
+  local_commands:
+  - podman run --rm -it --name ds4-cockpit-server-2e274f28 --env DS4_LOCK_FILE=/tmp/ds4-cockpit-server-2e274f28.lock
+    --device /dev/dri --device /dev/kfd --group-add keep-groups --security-opt seccomp=unconfined
+    --ipc=host --cap-add=SYS_PTRACE --security-opt label=disable --userns=keep-id
+    -p 8888:8888 -v /home/dinesh/ds4:/models:ro -v /home/dinesh/.cache/ds4-kv:/var/cache/ds4-kv
+    docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-10.0 ds4-server -m /models/Qwen3.8-Flash-Next-Q2.gguf
+    --ctx 216000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
+    64000 --mtp
+  mmproj_accuracy: bad
+  task_accuracy: good
+  prompt_speed: 552
+  generation_speed: 30
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 30
+  parameter_info: 188B
