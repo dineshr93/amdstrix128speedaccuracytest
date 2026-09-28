@@ -1171,6 +1171,9 @@
     \ \\\n  -a MiniCPM5-2.6B-DSpark \\\n  -md /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2.6B-DSpark.gguf\
     \ \\\n  --spec-type draft-dspark --spec-draft-n-max 7 \\\n  -ngl 99 -ngld 99 -fa\
     \ on \\\n  -c 131072 --jinja --host 0.0.0.0 --port 8888 --agent"
+  - "llama-serverv \\\n  -m /home/dinesh/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q4_K_M.gguf\
+    \ \\\n  -a MiniCPM5-2.6B \\\n  -ngl 99 -fa on \\\n  -c 131072 --jinja --host 0.0.0.0\
+    \ --port 8888"
   mmproj_accuracy: untested
   task_accuracy: good
   prompt_speed: 3296.249448
