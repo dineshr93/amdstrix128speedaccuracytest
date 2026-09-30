@@ -1052,7 +1052,7 @@
   mtp_generation_speed: 32.02
   parameter_info: 27B
 - id: ukisai-swift-1-5-qwen3-8-flash-next-gguf-677a2f
-  name: ukisai/Swift-1.5-Qwen3.8-Flash-Next-GGUF (EngramHalo.cpp)
+  name: ukisai/Swift-1.5-Qwen3.8-Flash-Next-IQ3_M (EngramHalo.cpp)
   model_url: https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-Flash-Next-GGUF/tree/main
   local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     \
