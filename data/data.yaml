@@ -1276,3 +1276,27 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
+- id: frosty40-qwen3-8-27b-gguf-81e0e6
+  name: Frosty40/Qwen3.8-27B-GGUF
+  model_url: https://huggingface.co/Frosty40/Qwen3.8-27B-GGUF
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin\"\
+    \ \"/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server\" -m /home/dinesh/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q6_K-QKV8-MTP.gguf\
+    \ --mmproj /home/dinesh/models/Qwen3.8-27B-GGUF/mmproj-Qwen3.8-27B-F16.gguf \\\
+    \n  -ngl 99 -fa on -c 102400 -np 1 -ub 4096 -b 8192 \\\n  --spec-type draft-mtp\
+    \ --spec-draft-n-max 3 \\\n  --jinja --temp 1.0 --top-k 20 --top-p 0.95 --min-p\
+    \ 0.0 \\\n  --reasoning on --reasoning-budget -1"
+  local_commands:
+  - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin\" \"\
+    /home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server\" -m /home/dinesh/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q6_K-QKV8-MTP.gguf\
+    \ --mmproj /home/dinesh/models/Qwen3.8-27B-GGUF/mmproj-Qwen3.8-27B-F16.gguf \\\
+    \n  -ngl 99 -fa on -c 102400 -np 1 -ub 4096 -b 8192 \\\n  --spec-type draft-mtp\
+    \ --spec-draft-n-max 3 \\\n  --jinja --temp 1.0 --top-k 20 --top-p 0.95 --min-p\
+    \ 0.0 \\\n  --reasoning on --reasoning-budget -1"
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 0
+  generation_speed: 0
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 0
+  parameter_info: 27B
