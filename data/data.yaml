@@ -730,6 +730,18 @@
     3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
     999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
     q4_0 -ctv q4_0
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf -a Qwen3.8-27B-UD-Q4_K_M.gguf
+    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+    --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
+    --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
+    --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
+  - "podman run --rm \\\n  --userns=keep-id:uid=1000,gid=1000 \\\n  --device /dev/kfd\
+    \ \\\n  --device /dev/dri \\\n  --group-add keep-groups \\\n  --ulimit memlock=-1\
+    \ \\\n  -p 8888:8888 \\\n  -v /home/dinesh/models:/models:ro \\\n  ghcr.io/gufo-org/toolboxes/gufo-runtime:latest\
+    \ \\\n  gufo serve --host 0.0.0.0 --port 8888 llm \\\n  --model /models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf\
+    \ \\\n  --speculative dflash2 \\\n  --dflash-model /models/Qwen3.8-27B-DFlash2-GGUF/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 274.452422
@@ -738,13 +750,6 @@
   speculative_decoding: true
   mtp_generation_speed: 26.59
   parameter_info: 27B
-  local_commands:
-  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf -a Qwen3.8-27B-UD-Q4_K_M.gguf
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
-    --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
-    --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
-    --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
 - id: qwen3-8-27b-turbofcfusion-735-882-here-uncen-neo-coder-max-mtp-q4-k-m-gguf-engramhalo-cpp-dd8a0f
   name: Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
     (EngramHalo.cpp)
