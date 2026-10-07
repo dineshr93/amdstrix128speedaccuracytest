@@ -1312,3 +1312,33 @@
   speculative_decoding: true
   mtp_generation_speed: 20
   parameter_info: 27B
+- id: qwen3-8-27b-ud-q4-k-m-gguf-dflash2-mmproj-gufo-cockpit-server-5eb7d3
+  name: Qwen3.8-27B-UD-Q4_K_M.gguf + DFlash2 + mmproj (gufo-cockpit-server)
+  model_url: ''
+  local_command: podman run --rm -it --name gufo-cockpit-server --device /dev/dri
+    --device /dev/kfd --group-add keep-groups --security-opt seccomp=unconfined --ipc=host
+    --security-opt label=disable --userns=keep-id -p 8888:8888 -v /home/dinesh/models:/models/target:ro
+    docker.io/kyuz0/amd-strix-halo-toolboxes:rocm-10.0-gufo gufo serve --host 0.0.0.0
+    --port 8888 --sessions 1 llm --model /models/target/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
+    --context 262144 --max-tokens 32768 --served-model-name Qwen3.8-27B-UD-Q4_K_M.gguf
+    --think on --reasoning-effort high --max-pending-per-client 4 --speculative dflash2
+    --dflash-model /models/target/Qwen3.8-27B-GGUF/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+    --mmproj /models/target/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
+  local_commands:
+  - podman run --rm -it --name gufo-cockpit-server --device /dev/dri --device /dev/kfd
+    --group-add keep-groups --security-opt seccomp=unconfined --ipc=host --security-opt
+    label=disable --userns=keep-id -p 8888:8888 -v /home/dinesh/models:/models/target:ro
+    docker.io/kyuz0/amd-strix-halo-toolboxes:rocm-10.0-gufo gufo serve --host 0.0.0.0
+    --port 8888 --sessions 1 llm --model /models/target/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
+    --context 262144 --max-tokens 32768 --served-model-name Qwen3.8-27B-UD-Q4_K_M.gguf
+    --think on --reasoning-effort high --max-pending-per-client 4 --speculative dflash2
+    --dflash-model /models/target/Qwen3.8-27B-GGUF/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+    --mmproj /models/target/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 132
+  generation_speed: 30
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 30
+  parameter_info: 27B
