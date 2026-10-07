@@ -1249,3 +1249,30 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
+- id: hcompany-holo4-27b-gguf-21e54d
+  name: Hcompany/Holo4-27B-GGUF
+  model_url: https://huggingface.co/Hcompany/Holo4-27B-GGUF
+  local_command: 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Holo4-27B-GGUF/q4_k_m.gguf
+    -a Holo4-27B-GGUF --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024 --reasoning-preserve --chat-template-file
+    /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
+  local_commands:
+  - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
+
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Holo4-27B-GGUF/q4_k_m.gguf
+    -a Holo4-27B-GGUF --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf
+    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024 --reasoning-preserve --chat-template-file
+    /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 330.615548
+  generation_speed: 12.910757
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 27B
