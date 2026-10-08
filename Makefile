@@ -3,6 +3,7 @@
 # Targets:
 #   make install   create .venv and install requirements.txt
 #   make run       run the app locally (native Python, port 5000)
+#   make test      run the pytest suite
 #   make stop      stop a locally-running app (kills app.py on this port)
 #   make build     build the Docker image
 #   make up        start a fresh Docker container (teardown, rebuild, up)
@@ -10,7 +11,7 @@
 #   make clean     remove local build artifacts (.venv, __pycache__)
 #   make help      show this help
 
-.PHONY: help install run stop build up down fresh clean
+.PHONY: help install test run stop build up down fresh clean
 
 PYTHON ?= .venv/bin/python
 PIP     = .venv/bin/pip
@@ -20,6 +21,7 @@ help:
 	@echo "AMD Dash lifecycle targets:"
 	@echo "  make install   create .venv and install requirements.txt"
 	@echo "  make run       run the app locally (port $(PORT))"
+	@echo "  make test      run the pytest suite"
 	@echo "  make stop      stop a locally-running app"
 	@echo "  make build     build the Docker image (amd-dash)"
 	@echo "  make up        start a fresh Docker container (teardown, rebuild, up)"
@@ -29,6 +31,10 @@ help:
 install:
 	test -d .venv || python3 -m venv .venv
 	$(PIP) install -r requirements.txt
+
+test: install
+	@$(PIP) install -q -r requirements-dev.txt
+	$(PYTHON) -m pytest test_app.py -q
 
 run: install
 	$(PYTHON) app.py

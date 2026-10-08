@@ -7,14 +7,15 @@ A tiny local-only Flask app that stores benchmark entries in ~/amddash/data.yaml
 Commands stored in entries are never executed; they exist only for reference/copy.
 """
 
+import fcntl
+import json
 import os
 import tempfile
-import json
+from contextlib import contextmanager
 from pathlib import Path
 
-from flask import Flask, jsonify, render_template, request
-
 import yaml
+from flask import Flask, jsonify, render_template, request
 
 # ---------------------------------------------------------------------------
 # Data file location: ~/amddash/data.yaml  (the ONLY persistent store).
@@ -104,6 +105,23 @@ def save_entries(entries):
         except OSError:
             pass
         raise
+
+
+@contextmanager
+def data_lock():
+    """Exclusive cross-process lock over the data file.
+
+    Every mutating request is a read-modify-write of one YAML file. Without a
+    lock, two concurrent requests lose one update. Wrap the whole load+save
+    transaction, never just the save.
+    """
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    with open(DATA_DIR / ".lock", "w") as fh:
+        fcntl.flock(fh, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(fh, fcntl.LOCK_UN)
 
 
 # ---------------------------------------------------------------------------
@@ -256,8 +274,6 @@ def normalize_entry(raw):
 def gen_id(existing_ids):
     """Generate a stable, unique id. Prefers a slug from the name, then adds
     a short random suffix to guarantee uniqueness."""
-    import random
-    import string
     import uuid
 
     suffix = uuid.uuid4().hex[:6]
@@ -283,6 +299,12 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/healthz")
+def healthz():
+    """Liveness probe for Docker/orchestrators: 200 when the app is up."""
+    return jsonify({"ok": True})
+
+
 @app.route("/api/benchmarks", methods=["GET"])
 def list_benchmarks():
     try:
@@ -295,12 +317,6 @@ def list_benchmarks():
 
 @app.route("/api/benchmarks", methods=["POST"])
 def add_benchmark():
-    try:
-        entries = load_entries()
-    except Exception as exc:
-        app.logger.error("Failed to load %s: %s", DATA_FILE, exc)
-        return jsonify({"error": f"Could not load {DATA_FILE}."}), 500
-
     raw = request.get_json(silent=True) or {}
     try:
         entry = normalize_entry(raw)
@@ -308,64 +324,58 @@ def add_benchmark():
         return jsonify({"error": str(exc)}), 400
 
     entry["id"] = gen_id({"__name__": entry["name"]})
-    entries.append(entry)
-    if not validate_entries(entries):
-        return jsonify({"error": "Invalid benchmark data."}), 400
     try:
-        save_entries(entries)
+        with data_lock():
+            entries = load_entries()
+            entries.append(entry)
+            if not validate_entries(entries):
+                return jsonify({"error": "Invalid benchmark data."}), 400
+            save_entries(entries)
     except Exception as exc:
-        app.logger.error("Failed to save: %s", exc)
-        return jsonify({"error": "Could not save benchmark."}), 500
+        app.logger.error("Failed to add benchmark (%s): %s", DATA_FILE, exc)
+        return jsonify({"error": f"Could not load or save {DATA_FILE}."}), 500
     return jsonify(entry), 201
 
 
 @app.route("/api/benchmarks/<entry_id>", methods=["PUT"])
 def edit_benchmark(entry_id):
-    try:
-        entries = load_entries()
-    except Exception as exc:
-        app.logger.error("Failed to load %s: %s", DATA_FILE, exc)
-        return jsonify({"error": f"Could not load {DATA_FILE}."}), 500
-
     raw = request.get_json(silent=True) or {}
     try:
         entry = normalize_entry(raw)
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
 
-    target = next((e for e in entries if e.get("id") == entry_id), None)
-    if target is None:
-        return jsonify({"error": "Benchmark not found."}), 404
-
     entry["id"] = entry_id  # keep the stable id
-    index = entries.index(target)
-    entries[index] = entry
-    if not validate_entries(entries):
-        return jsonify({"error": "Invalid benchmark data."}), 400
     try:
-        save_entries(entries)
+        with data_lock():
+            entries = load_entries()
+            index = next(
+                (i for i, e in enumerate(entries) if e.get("id") == entry_id), None
+            )
+            if index is None:
+                return jsonify({"error": "Benchmark not found."}), 404
+            entries[index] = entry
+            if not validate_entries(entries):
+                return jsonify({"error": "Invalid benchmark data."}), 400
+            save_entries(entries)
     except Exception as exc:
-        app.logger.error("Failed to save: %s", exc)
-        return jsonify({"error": "Could not save benchmark."}), 500
+        app.logger.error("Failed to edit benchmark (%s): %s", DATA_FILE, exc)
+        return jsonify({"error": f"Could not load or save {DATA_FILE}."}), 500
     return jsonify(entry)
 
 
 @app.route("/api/benchmarks/<entry_id>", methods=["DELETE"])
 def delete_benchmark(entry_id):
     try:
-        entries = load_entries()
+        with data_lock():
+            entries = load_entries()
+            remaining = [e for e in entries if e.get("id") != entry_id]
+            if len(remaining) == len(entries):
+                return jsonify({"error": "Benchmark not found."}), 404
+            save_entries(remaining)
     except Exception as exc:
-        app.logger.error("Failed to load %s: %s", DATA_FILE, exc)
-        return jsonify({"error": f"Could not load {DATA_FILE}."}), 500
-
-    remaining = [e for e in entries if e.get("id") != entry_id]
-    if len(remaining) == len(entries):
-        return jsonify({"error": "Benchmark not found."}), 404
-    try:
-        save_entries(remaining)
-    except Exception as exc:
-        app.logger.error("Failed to save: %s", exc)
-        return jsonify({"error": "Could not save benchmark."}), 500
+        app.logger.error("Failed to delete benchmark (%s): %s", DATA_FILE, exc)
+        return jsonify({"error": f"Could not load or save {DATA_FILE}."}), 500
     return jsonify({"ok": True})
 
 
