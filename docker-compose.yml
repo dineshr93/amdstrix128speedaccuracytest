@@ -14,7 +14,7 @@ services:
     build: .
     image: amd-dash
     ports:
-      - "127.0.0.1:5000:5000"   # bind to localhost only (not publicly exposed)
+      - "0.0.0.0:5000:5000"   # bind to localhost only (not publicly exposed)
     user: "${UID:-1000}:${GID:-1000}"   # run as the host user so bind-mounted
                                         # data files stay host-ownable
     volumes:
