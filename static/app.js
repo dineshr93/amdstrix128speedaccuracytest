@@ -146,11 +146,11 @@ function cardHTML(e) {
         </div>
         <div class="speeds">
           <div class="speed-block">
-            <div class="speed-label">Generation</div>
+            <div class="speed-label">Token Generation</div>
             <div class="speed-value">${gen} <small>tok/s</small></div>
           </div>
           <div class="speed-block">
-            <div class="speed-label">Prompt</div>
+            <div class="speed-label">Prompt Processing</div>
             <div class="speed-value">${prompt} <small>tok/s</small></div>
           </div>
           ${mtpSpeedHtml}
@@ -500,11 +500,11 @@ function openView(id) {
       </div>
       <div class="speeds">
         <div class="speed-block">
-          <div class="speed-label">Generation</div>
+          <div class="speed-label">Token Generation</div>
           <div class="speed-value">${gen} <small>tok/s</small></div>
         </div>
         <div class="speed-block">
-          <div class="speed-label">Prompt</div>
+          <div class="speed-label">Prompt Processing</div>
           <div class="speed-value">${prompt} <small>tok/s</small></div>
         </div>
         ${mtpSpeedHtml}
