@@ -67,10 +67,60 @@ function refresh() {
 // ---------------------------------------------------------------------------
 // Rendering
 // ---------------------------------------------------------------------------
-function fmtSpeed(v) {
-  const n = Number(v);
-  if (Number.isInteger(n)) return n;
-  return n;
+// Shared read-only detail block used by both the card and the view modal.
+function detailHtml(e) {
+  const acc = e.mmproj_accuracy;
+  const taskAcc = e.task_accuracy || "untested";
+  const gen = Number(e.generation_speed) || 0;
+  const prompt = Number(e.prompt_speed) || 0;
+
+  const urlHtml = e.model_url
+    ? `<div class="field-label">Model URL</div>
+      <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`
+    : "";
+
+  const cmdHtml = commandsSectionHtml(e);
+
+  const notesHtml = e.notes
+    ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
+    : "";
+
+  const paramInfoHtml = e.parameter_info
+    ? `<div class="field-label">Parameter Info</div><div class="param-info param-info-strong">${esc(e.parameter_info)}</div>`
+    : "";
+
+  let mtpSpeedHtml = "";
+  if (e.speculative_decoding && e.mtp_generation_speed > 0) {
+    mtpSpeedHtml = `
+      <div class="speed-block">
+        <div class="speed-label">MTP Generation</div>
+        <div class="speed-value">${Number(e.mtp_generation_speed)} <small>tok/s</small></div>
+      </div>`;
+  }
+
+  return `
+    <h2>${esc(e.name)}</h2>
+    <div class="card-body">
+      ${paramInfoHtml}
+      <div>
+        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
+        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
+      </div>
+      <div class="speeds">
+        <div class="speed-block">
+          <div class="speed-label">Token Generation</div>
+          <div class="speed-value">${gen} <small>tok/s</small></div>
+        </div>
+        <div class="speed-block">
+          <div class="speed-label">Prompt Processing</div>
+          <div class="speed-value">${prompt} <small>tok/s</small></div>
+        </div>
+        ${mtpSpeedHtml}
+      </div>
+      ${urlHtml}
+      ${cmdHtml}
+      ${notesHtml}
+    </div>`;
 }
 
 // Build a command block: pre + copy button. `display` is what shows,
@@ -102,63 +152,9 @@ function commandsSectionHtml(e) {
 }
 
 function cardHTML(e) {
-  const acc = e.mmproj_accuracy;
-  const taskAcc = e.task_accuracy || "untested";
-  const gen = fmtSpeed(e.generation_speed);
-  const prompt = fmtSpeed(e.prompt_speed);
-
-  let urlHtml = "";
-  if (e.model_url) {
-    urlHtml = `<div class="field-label">Model URL</div>
-      <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`;
-  }
-
-  const cmdHtml = commandsSectionHtml(e);
-
-  const notesHtml = e.notes
-    ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
-    : "";
-    
-  // Add parameter info if present
-  const paramInfoHtml = e.parameter_info
-    ? `<div class="field-label">Parameter Info</div><div class="param-info param-info-strong">${esc(e.parameter_info)}</div>`
-    : "";
-    
-  // Add MTP generation speed if speculative decoding is enabled and MTP speed is present
-  let mtpSpeedHtml = "";
-  if (e.speculative_decoding && e.mtp_generation_speed > 0) {
-    const mtpGen = fmtSpeed(e.mtp_generation_speed);
-    mtpSpeedHtml = `
-      <div class="speed-block">
-        <div class="speed-label">MTP Generation</div>
-        <div class="speed-value">${mtpGen} <small>tok/s</small></div>
-      </div>`;
-  }
-
   return `
     <div class="card" data-id="${escAttr(e.id)}">
-      <h2>${esc(e.name)}</h2>
-      <div class="card-body">
-        ${paramInfoHtml}
-        <div>
-          <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
-          <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
-        </div>
-        <div class="speeds">
-          <div class="speed-block">
-            <div class="speed-label">Token Generation</div>
-            <div class="speed-value">${gen} <small>tok/s</small></div>
-          </div>
-          <div class="speed-block">
-            <div class="speed-label">Prompt Processing</div>
-            <div class="speed-value">${prompt} <small>tok/s</small></div>
-          </div>
-          ${mtpSpeedHtml}
-        </div>
-        ${urlHtml}
-        ${cmdHtml}
-        ${notesHtml}
-      </div>
+      ${detailHtml(e)}
       <div class="card-actions">
         <button class="btn" data-view="${escAttr(e.id)}">View</button>
         <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
@@ -463,57 +459,7 @@ document.getElementById("delConfirm").addEventListener("click", async () => {
 function openView(id) {
   const e = entries.find((x) => x.id === id);
   if (!e) return;
-  const acc = e.mmproj_accuracy;
-  const taskAcc = e.task_accuracy || "untested";
-  const gen = fmtSpeed(e.generation_speed);
-  const prompt = fmtSpeed(e.prompt_speed);
-
-  let urlHtml = "";
-  if (e.model_url) {
-    urlHtml = `<div class="field-label">Model URL</div>
-      <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`;
-  }
-  const cmdHtml = commandsSectionHtml(e);
-  const notesHtml = e.notes
-    ? `<div class="field-label">Notes</div><div class="notes">${esc(e.notes)}</div>`
-    : "";
-  const paramInfoHtml = e.parameter_info
-    ? `<div class="field-label">Parameter Info</div><div class="param-info param-info-strong">${esc(e.parameter_info)}</div>`
-    : "";
-  let mtpSpeedHtml = "";
-  if (e.speculative_decoding && e.mtp_generation_speed > 0) {
-    const mtpGen = fmtSpeed(e.mtp_generation_speed);
-    mtpSpeedHtml = `
-      <div class="speed-block">
-        <div class="speed-label">MTP Generation</div>
-        <div class="speed-value">${mtpGen} <small>tok/s</small></div>
-      </div>`;
-  }
-
-  viewModalBody.innerHTML = `
-    <h2>${esc(e.name)}</h2>
-    <div class="card-body">
-      ${paramInfoHtml}
-      <div>
-        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
-        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
-      </div>
-      <div class="speeds">
-        <div class="speed-block">
-          <div class="speed-label">Token Generation</div>
-          <div class="speed-value">${gen} <small>tok/s</small></div>
-        </div>
-        <div class="speed-block">
-          <div class="speed-label">Prompt Processing</div>
-          <div class="speed-value">${prompt} <small>tok/s</small></div>
-        </div>
-        ${mtpSpeedHtml}
-      </div>
-      ${urlHtml}
-      ${cmdHtml}
-      ${notesHtml}
-    </div>
-  `;
+  viewModalBody.innerHTML = detailHtml(e);
   viewModal.classList.remove("hidden");
 }
 function closeView() {

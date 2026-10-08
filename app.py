@@ -11,6 +11,7 @@ import fcntl
 import json
 import os
 import tempfile
+import uuid
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -271,20 +272,11 @@ def normalize_entry(raw):
     return entry
 
 
-def gen_id(existing_ids):
-    """Generate a stable, unique id. Prefers a slug from the name, then adds
-    a short random suffix to guarantee uniqueness."""
-    import uuid
-
-    suffix = uuid.uuid4().hex[:6]
-    base = "benchmark-" + suffix
-    # try to base it on the name if available
-    name = existing_ids.get("__name__", "")
-    if name:
-        slug = "".join(c.lower() if c.isalnum() else "-" for c in name)
-        slug = "-".join(x for x in slug.split("-") if x)
-        base = slug + "-" + suffix
-    return base
+def gen_id(name):
+    """Generate a unique id: slug of the name plus a short random suffix."""
+    slug = "".join(c.lower() if c.isalnum() else "-" for c in (name or ""))
+    slug = "-".join(x for x in slug.split("-") if x)
+    return (slug + "-" if slug else "benchmark-") + uuid.uuid4().hex[:6]
 
 
 # ---------------------------------------------------------------------------
@@ -323,7 +315,7 @@ def add_benchmark():
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
 
-    entry["id"] = gen_id({"__name__": entry["name"]})
+    entry["id"] = gen_id(entry["name"])
     try:
         with data_lock():
             entries = load_entries()
