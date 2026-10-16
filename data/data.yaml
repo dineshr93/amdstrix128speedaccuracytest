@@ -1373,7 +1373,7 @@
     "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
     MiniCPM-V-4_7-35B-A3B-mix_q3gud_im   -mm /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/mmproj-model-f16-4x.gguf
     --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
-    999   --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
+    999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
     2048 -ub 1024 -t 16 -np 1   --load-mode none -fa on --temp 0.7 --top-k 100 --top-p
     0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03
   local_commands:
@@ -1381,7 +1381,7 @@
     /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
     MiniCPM-V-4_7-35B-A3B-mix_q3gud_im   -mm /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/mmproj-model-f16-4x.gguf
     --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
-    999   --spec-type draft-dspark --spec-draft-n-max 4 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
+    999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
     2048 -ub 1024 -t 16 -np 1   --load-mode none -fa on --temp 0.7 --top-k 100 --top-p
     0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03
   mmproj_accuracy: good
@@ -1392,3 +1392,27 @@
   speculative_decoding: true
   mtp_generation_speed: 78
   parameter_info: 35B-A3B
+- id: atomicchat-nvidia-nemotron-3-5-super-vl-120b-a12b-uncensored-gguf-60104f
+  name: AtomicChat/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF
+  model_url: https://huggingface.co/AtomicChat/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m /home/dinesh/models/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-AD-Q4_K_S-00001-of-00059.gguf   -a
+    NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-AD-Q4_K_S   -mm /home/dinesh/models/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF/mmproj-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
+    999   -t 16 -np 1   --load-mode none -fa on --temp 1.0 --top-p 0.95 --spec-type
+    draft-mtp --spec-draft-n-max 2 --spec-draft-ngl all
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m
+    /home/dinesh/models/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-AD-Q4_K_S-00001-of-00059.gguf   -a
+    NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-AD-Q4_K_S   -mm /home/dinesh/models/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF/mmproj-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-BF16.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
+    999   -t 16 -np 1   --load-mode none -fa on --temp 1.0 --top-p 0.95 --spec-type
+    draft-mtp --spec-draft-n-max 2 --spec-draft-ngl all
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 473.512509
+  generation_speed: 17.508837
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 24
+  parameter_info: 124B
