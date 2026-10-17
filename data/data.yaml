@@ -1452,14 +1452,14 @@
   model_url: https://huggingface.co/DavidAU/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF
   local_command: llama-serverv   --model ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB_QAT_IQ2_S.gguf   --mmproj
     ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/mmproj-NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf   --batch-size
-    2048   --ubatch-size 512   --ctx-size 98304   --parallel 1   -ngl 999   --spec-type
+    2048   --ubatch-size 512   --ctx-size 262144   --parallel 1   -ngl 999   --spec-type
     draft-dflash   --spec-draft-n-max 6   --spec-draft-model ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr.gguf   --spec-draft-ngl
     999   --cache-type-k q8_0   --cache-type-v q8_0   --temp 1.0   --top-p 0.95   --flash-attn
     on   --jinja -a local-model --host 0.0.0.0 --port 8888
   local_commands:
   - llama-serverv   --model ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB_QAT_IQ2_S.gguf   --mmproj
     ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/mmproj-NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf   --batch-size
-    2048   --ubatch-size 512   --ctx-size 98304   --parallel 1   -ngl 999   --spec-type
+    2048   --ubatch-size 512   --ctx-size 262144   --parallel 1   -ngl 999   --spec-type
     draft-dflash   --spec-draft-n-max 6   --spec-draft-model ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr.gguf   --spec-draft-ngl
     999   --cache-type-k q8_0   --cache-type-v q8_0   --temp 1.0   --top-p 0.95   --flash-attn
     on   --jinja -a local-model --host 0.0.0.0 --port 8888
