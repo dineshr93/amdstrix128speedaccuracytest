@@ -1431,11 +1431,11 @@
   model_url: https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF
   local_command: llama-serverv -m ~/models/Mellum2.1-12B-A2.5B-Thinking-GGUF/Mellum2.1-12B-A2.5B-Thinking-Q4_K_M.gguf
     -a local-model --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 262144 -np 4 --jinja
-    --host 0.0.0.0 --port 8888 --no-reasoning-preserve --reasoning on
+    --host 0.0.0.0 --port 8888 --reasoning on
   local_commands:
   - llama-serverv -m ~/models/Mellum2.1-12B-A2.5B-Thinking-GGUF/Mellum2.1-12B-A2.5B-Thinking-Q4_K_M.gguf
     -a local-model --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 262144 -np 4 --jinja
-    --host 0.0.0.0 --port 8888 --no-reasoning-preserve --reasoning on
+    --host 0.0.0.0 --port 8888 --reasoning on
   mmproj_accuracy: untested
   task_accuracy: good
   prompt_speed: 778.822018
