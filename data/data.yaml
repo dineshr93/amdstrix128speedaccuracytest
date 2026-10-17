@@ -1395,15 +1395,18 @@
   parameter_info: 124B
 - id: nerkyor-qwen3-8-27b-coder390-efficientthink-opus5-5-gpt6astra-grok4-7-dsv4pro-k3-sft-rloo-mtp-dflash2-engram-fd5fcc
   name: nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
-    (Engram)
   model_url: https://huggingface.co/nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
-  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
-    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
+  local_command: llama-serverv -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
     -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
-    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 2 -np 4 --host
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 3 -np 4 --host
     0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning
     on
   local_commands:
+  - llama-serverv -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 3 -np 4 --host
+    0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning
+    on
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
     -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
@@ -1419,9 +1422,9 @@
     1024 -ctk q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 328.049636
-  generation_speed: 9.665972
+  prompt_speed: 341.390139
+  generation_speed: 9.650005
   notes: ''
   speculative_decoding: true
-  mtp_generation_speed: 17
+  mtp_generation_speed: 18.52
   parameter_info: 27B
