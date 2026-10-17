@@ -25,18 +25,15 @@
     --dspark --dspark-confidence 0.7
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
     -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
-    -a local-model -c
-    126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub 1024 -t 16 --load-mode
-    none -ctk q4_0 -ctv q4_0 --agent
+    -a local-model -c 126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub
+    1024 -t 16 --load-mode none -ctk q4_0 -ctv q4_0 --agent
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
-    -a local-model -c
-    126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub 1024 -t 16 --load-mode
-    none -ctk q4_0 -ctv q4_0 --agent
+    -a local-model -c 126000 --host 0.0.0.0 --port 8888 -fa on -ngl 999 -b 2048 -ub
+    1024 -t 16 --load-mode none -ctk q4_0 -ctv q4_0 --agent
   - llama-serverv -m ~/ds4/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
-    -a local-model -c
-    126000 --host 0.0.0.0 --port 8888 --agent -fa on -ngl 999 -b 2048 -ub 1024 -t
-    16 --load-mode none -ctk q4_0 -ctv q4_0
+    -a local-model -c 126000 --host 0.0.0.0 --port 8888 --agent -fa on -ngl 999 -b
+    2048 -ub 1024 -t 16 --load-mode none -ctk q4_0 -ctv q4_0
   - podman run --rm -it --name ds4-cockpit-server --device /dev/dri --device /dev/kfd
     --group-add keep-groups --security-opt seccomp=unconfined --ipc=host --cap-add=SYS_PTRACE
     --security-opt label=disable --userns=keep-id -p 8888:8888 -v /home/dinesh/ds4:/models:ro
@@ -112,17 +109,17 @@
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ2_XXS
   local_command: LD_LIBRARY_PATH='/opt/rocm/lib:/home/dinesh/llamacpps/glm5next/build-vulkan/bin'
     '/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server' -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf   -a
-    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t
-    16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
-    -ctk q4_1 -ctv q4_1 --agent --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs '{"reasoning_effort":"low","clear_thinking":true}'
+    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t 16   -c 165144   --load-mode
+    none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --agent
+    --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf --chat-template-kwargs
+    '{"reasoning_effort":"low","clear_thinking":true}'
   local_commands:
   - LD_LIBRARY_PATH='/opt/rocm/lib:/home/dinesh/llamacpps/glm5next/build-vulkan/bin'
     '/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server' -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf   -a
-    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t
-    16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
-    -ctk q4_1 -ctv q4_1 --agent --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs '{"reasoning_effort":"low","clear_thinking":true}'
+    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -t 16   -c 165144   --load-mode
+    none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --agent
+    --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf --chat-template-kwargs
+    '{"reasoning_effort":"low","clear_thinking":true}'
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 144
@@ -136,16 +133,16 @@
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ1_M
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin"
     "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server" -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
-    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
-    2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
-    1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
+    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b 2048 -ub 1024
+    -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
+    -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
     --chat-template-kwargs '{"reasoning_effort":"low","clear_thinking":true}'
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/glm5next/build-vulkan/bin" "/home/dinesh/llamacpps/glm5next/build-vulkan/bin/llama-server"
     -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
-    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b
-    2048 -ub 1024 -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p
-    1.0 --min-p 0.01 -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
+    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 99 -b 2048 -ub 1024
+    -t 16   -c 165144   --load-mode none   -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
+    -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
     --chat-template-kwargs '{"reasoning_effort":"low","clear_thinking":true}'
   - 'LD_LIBRARY_PATH="/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/glm5next/build-rocm10/bin"
     \
@@ -153,10 +150,10 @@
     ROCBLAS_USE_HIPBLASLT=1 \
 
     "/home/dinesh/llamacpps/glm5next/build-rocm10/bin/llama-server" -m /home/dinesh/models/GLM-5.3-Flash-GGUF/GLM-5.3-Flash-UD-IQ1_M-00001-of-00003.gguf   -a
-    local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -b 2048 -ub
-    1024 -t 16 -c 165144 --load-mode none -fa on --temp 1.0 --top-p 1.0 --min-p 0.01
-    -ctk q4_1 -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf
-    --chat-template-kwargs ''{"reasoning_effort":"low","clear_thinking":true}'''
+    local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -b 2048 -ub 1024 -t 16
+    -c 165144 --load-mode none -fa on --temp 1.0 --top-p 1.0 --min-p 0.01 -ctk q4_1
+    -ctv q4_1 --n-cpu-moe 0 -mm ~/models/GLM-5.3-Flash-GGUF/mmproj-BF16.gguf --chat-template-kwargs
+    ''{"reasoning_effort":"low","clear_thinking":true}'''
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 145.89
@@ -169,10 +166,9 @@
   name: HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/tree/main
   local_command: llama-serverv   -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf   -a
-    local-model   --host 0.0.0.0 --port
-    8888   --jinja -ngl 99 -c 131072   --load-mode none -fa on   --temp 0.75 --top-k
-    64 --top-p 0.95 --min-p 0.05   --presence-penalty 0 --repeat-penalty 1.0   --reasoning
-    on --reasoning-effort xhigh
+    local-model   --host 0.0.0.0 --port 8888   --jinja -ngl 99 -c 131072   --load-mode
+    none -fa on   --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05   --presence-penalty
+    0 --repeat-penalty 1.0   --reasoning on --reasoning-effort xhigh
   mmproj_accuracy: bad
   task_accuracy: good
   prompt_speed: 777.03615
@@ -183,10 +179,9 @@
   parameter_info: 117B
   local_commands:
   - llama-serverv   -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf   -a
-    local-model   --host 0.0.0.0 --port
-    8888   --jinja -ngl 99 -c 131072   --load-mode none -fa on   --temp 0.75 --top-k
-    64 --top-p 0.95 --min-p 0.05   --presence-penalty 0 --repeat-penalty 1.0   --reasoning
-    on --reasoning-effort xhigh
+    local-model   --host 0.0.0.0 --port 8888   --jinja -ngl 99 -c 131072   --load-mode
+    none -fa on   --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05   --presence-penalty
+    0 --repeat-penalty 1.0   --reasoning on --reasoning-effort xhigh
 - id: gemma4-31b-qat-uncensored-hauhaucs-balanced-mtp-dff209
   name: Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
   model_url: https://huggingface.co/HauhauCS/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
@@ -245,24 +240,24 @@
   name: empero-ai/Qwen3.8-27B-Ridge-GGUF (Nathanw1014/strix-halo-llamacpp)
   model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model -mm
+    ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
     2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
     999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
     q8_0 -ctv q8_0
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model -mm
+    ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
     2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
     999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
     q8_0 -ctv q8_0
   - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
     "/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type
-    draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0
-    --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on
-    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp
+    --spec-draft-n-max 2 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
+    1024 -ctk q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 305.662444
@@ -278,10 +273,10 @@
   model_url: https://huggingface.co/unsloth/MiniMax-M2.7-GGUF/tree/main
   local_command: LD_LIBRARY_PATH='/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin'
     '/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server'   -m ~/models/MiniMax-M2.7-GGUF/MiniMax-M2.7-UD-IQ2_XXS-00001-of-00003.gguf   -a
-    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 999 -b
-    2048 -ub 1024 -t 16 -np 1   -c 196608   --load-mode none   -fa on --temp 1.0 --top-k
-    20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0 --reasoning
-    on --reasoning-effort xhigh --reasoning-preserve   -ctk q4_0   -ctv q4_0 --agent
+    local-model   --host 0.0.0.0   --port 8888   --jinja   -ngl 999 -b 2048 -ub 1024
+    -t 16 -np 1   -c 196608   --load-mode none   -fa on --temp 1.0 --top-k 20 --top-p
+    0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0 --reasoning on --reasoning-effort
+    xhigh --reasoning-preserve   -ctk q4_0   -ctv q4_0 --agent
   mmproj_accuracy: bad
   task_accuracy: good
   prompt_speed: 290.650127
@@ -301,8 +296,8 @@
   name: unsloth/Devstral-2-123B-Instruct-2512-GGUF
   model_url: https://huggingface.co/unsloth/Devstral-2-123B-Instruct-2512-GGUF/tree/main
   local_command: llama-serverv -m /home/dinesh/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
-    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c
-    62144 --load-mode none -fa on
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 62144 --load-mode
+    none -fa on
   mmproj_accuracy: bad
   task_accuracy: good
   prompt_speed: 38.724951
@@ -313,8 +308,8 @@
   parameter_info: 125B
   local_commands:
   - llama-serverv -m /home/dinesh/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
-    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c
-    62144 --load-mode none -fa on
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 62144 --load-mode
+    none -fa on
 - id: inkling-small-gguf-b445b5
   name: Inkling-Small-GGUF
   model_url: https://huggingface.co/unsloth/Inkling-Small-GGUF
@@ -347,9 +342,9 @@
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
     -m ~/models/ThinkingCap-Qwen3.6-27B-GGUF/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf --mmproj
     ~/models/ThinkingCap-Qwen3.6-27B-GGUF/mmproj-ThinkingCap-Qwen3.6-27B-f16.gguf
-    --image-min-tokens 3192 -a local-model --host 0.0.0.0
-    --port 8888 --jinja -fa on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0
-    --presence-penalty 1.1 --repeat-penalty 1.0 -ngl 99 -c 162144
+    --image-min-tokens 3192 -a local-model --host 0.0.0.0 --port 8888 --jinja -fa
+    on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.1
+    --repeat-penalty 1.0 -ngl 99 -c 162144
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 333.450275
@@ -362,9 +357,9 @@
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
     -m ~/models/ThinkingCap-Qwen3.6-27B-GGUF/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf --mmproj
     ~/models/ThinkingCap-Qwen3.6-27B-GGUF/mmproj-ThinkingCap-Qwen3.6-27B-f16.gguf
-    --image-min-tokens 3192 -a local-model --host 0.0.0.0
-    --port 8888 --jinja -fa on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0
-    --presence-penalty 1.1 --repeat-penalty 1.0 -ngl 99 -c 162144
+    --image-min-tokens 3192 -a local-model --host 0.0.0.0 --port 8888 --jinja -fa
+    on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.1
+    --repeat-penalty 1.0 -ngl 99 -c 162144
 - id: badtheorylabs-btl-4-gguf-8d8e7f
   name: badtheorylabs_BTL-4-GGUF
   model_url: https://huggingface.co/bartowski/badtheorylabs_BTL-4-GGUF
@@ -389,10 +384,10 @@
   name: jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
   model_url: https://huggingface.co/jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
   local_command: llama-serverv -m ~/models/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Agents-A1-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a local-model --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 --rope-scaling yarn --rope-scale 8 --yarn-orig-ctx
-    32768 -fa on --load-mode none --temp 1.0 --top-p 0.90 --min-p 0.15 --top-k 15
-    --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 --rope-scaling
+    yarn --rope-scale 8 --yarn-orig-ctx 32768 -fa on --load-mode none --temp 1.0 --top-p
+    0.90 --min-p 0.15 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning
+    on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
     --image-min-tokens 1024
   mmproj_accuracy: unreliable
   task_accuracy: good
@@ -404,10 +399,10 @@
   parameter_info: 35B-A3B
   local_commands:
   - llama-serverv -m ~/models/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Agents-A1-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a local-model --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 --rope-scaling yarn --rope-scale 8 --yarn-orig-ctx
-    32768 -fa on --load-mode none --temp 1.0 --top-p 0.90 --min-p 0.15 --top-k 15
-    --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 --rope-scaling
+    yarn --rope-scale 8 --yarn-orig-ctx 32768 -fa on --load-mode none --temp 1.0 --top-p
+    0.90 --min-p 0.15 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning
+    on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
     --image-min-tokens 1024
 - id: deepseek-v4-flash-vision-exp-gguf-9f1410
   name: DeepSeek-V4-Flash-Vision-Exp-GGUF
@@ -439,9 +434,8 @@
   name: GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   local_command: llama-serverv -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf
-    -a local-model --host 0.0.0.0 --port
-    8888 --jinja -ngl 99 -c 128000 --load-mode none -fa on -b 2048 -ub 2048 --temp
-    1.0 --top-k 40
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 128000 --load-mode
+    none -fa on -b 2048 -ub 2048 --temp 1.0 --top-k 40
   mmproj_accuracy: bad
   task_accuracy: good
   prompt_speed: 769.014408
@@ -452,18 +446,16 @@
   parameter_info: 117B-A5.1B
   local_commands:
   - llama-serverv -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf
-    -a local-model --host 0.0.0.0 --port
-    8888 --jinja -ngl 99 -c 128000 --load-mode none -fa on -b 2048 -ub 2048 --temp
-    1.0 --top-k 40
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 128000 --load-mode
+    none -fa on -b 2048 -ub 2048 --temp 1.0 --top-k 40
 - id: unsloth-qwen3-8-27b-gguf-2d3292
   name: unsloth/Qwen3.8-27B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
   local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
-    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
-    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
-    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
-    q4_0 -ctv q4_0
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+    --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
+    --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
+    --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 240.80615
@@ -482,11 +474,10 @@
   name: unsloth/Qwen3.8-27B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
   local_command: llama-serverv -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
-    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
-    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
-    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
-    q4_0 -ctv q4_0
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+    --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
+    --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
+    --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 245.096951
@@ -506,8 +497,8 @@
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
   local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
     \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
-    \  -m ~/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q8_0.gguf \\\n  -a local-model
-    \ \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072 --jinja -ngl 999 --load-mode\
+    \  -m ~/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q8_0.gguf \\\n  -a local-model  \\\
+    \n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072 --jinja -ngl 999 --load-mode\
     \ none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1 --chat-template-kwargs '{\"reasoning_effort\"\
     :\"none\"}' --agent"
   mmproj_accuracy: untested
@@ -521,9 +512,9 @@
   local_commands:
   - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\" \\\n\"\
     /home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n  -m ~/models/MiniCPM5-2B-GGUF/MiniCPM5-2B-Q8_0.gguf\
-    \ \\\n  -a local-model \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n \
-    \ -c 131072 --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t\
-    \ 16 -np 1 --chat-template-kwargs '{\"reasoning_effort\":\"none\"}' --agent"
+    \ \\\n  -a local-model \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072\
+    \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
+    \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}' --agent"
 - id: unsloth-mistral-small-4-119b-2603-gguf-fda5a8
   name: unsloth/Mistral-Small-4-119B-2603-GGUF
   model_url: https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF
@@ -593,28 +584,25 @@
     "/home/dinesh/llamacpps/stix/vulkan/llama-server" \
 
     -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a local-model --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
-    0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
-    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0'
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode
+    none --temp 0.55 --top-p 0.90 --min-p 0.12 --top-k 15 --presence-penalty 0.00
+    --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0'
   local_commands:
   - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" \
 
     "/home/dinesh/llamacpps/stix/vulkan/llama-server" \
 
     -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a local-model --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
-    0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
-    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0'
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode
+    none --temp 0.55 --top-p 0.90 --min-p 0.12 --top-k 15 --presence-penalty 0.00
+    --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0'
   - llama-serverv -m ~/models/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF/Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix.gguf
-    -a local-model --host 0.0.0.0 --port 8888
-    --jinja -ngl 999 -c 262144 -fa on --load-mode none --temp 0.55 --top-p 0.90 --min-p
-    0.12 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning on --mmproj
-    ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0
+    -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode
+    none --temp 0.55 --top-p 0.90 --min-p 0.12 --top-k 15 --presence-penalty 0.00
+    --repeat-penalty 1.08 --reasoning on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
+    --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
   mmproj_accuracy: unreliable
   task_accuracy: good
   prompt_speed: 1185.755463
@@ -630,8 +618,7 @@
   model_url: https://huggingface.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
     -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
-    -a local-model
-    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
     -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
@@ -646,8 +633,7 @@
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/stix/vulkan/bin" "/home/dinesh/llamacpps/stix/vulkan/llama-server"
     -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
-    -a local-model
-    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
     -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
@@ -702,14 +688,14 @@
   model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type
-    draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja
-    -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024
-    -ctk q8_0 -ctv q8_0
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp
+    --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999
+    -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
+    q8_0 -ctv q8_0
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Ridge-3.7bpw.gguf -a local-model -mm
+    ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --spec-type draft-mtp --spec-draft-n-max
     3 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode
     none --reasoning on --image-min-tokens 1024 -ctk q8_0 -ctv q8_0
   - LD_LIBRARY_PATH="/opt/rocm/core-10/lib:/home/dinesh/llamacpps/llama.cpp/build-rocm10/bin"
@@ -732,18 +718,17 @@
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md
-    ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp --spec-draft-n-max
-    3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl
-    999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk
-    q4_0 -ctv q4_0
-  local_commands:
-  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
-    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf -a local-model
-    -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
     --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
     --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
     --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m ~/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-UD-Q4_K_M.gguf -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
+    -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf --spec-type draft-mtp
+    --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none --reasoning on --image-min-tokens
+    1024 -ctk q4_0 -ctv q4_0
   - "podman run --rm \\\n  --userns=keep-id:uid=1000,gid=1000 \\\n  --device /dev/kfd\
     \ \\\n  --device /dev/dri \\\n  --group-add keep-groups \\\n  --ulimit memlock=-1\
     \ \\\n  -p 8888:8888 \\\n  -v /home/dinesh/models:/models:ro \\\n  ghcr.io/gufo-org/toolboxes/gufo-runtime:latest\
@@ -763,8 +748,7 @@
   model_url: https://huggingface.co/DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
-    -a local-model
-    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
     -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
@@ -780,8 +764,7 @@
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
-    -a local-model
-    -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF/mmproj-BF16.gguf
     -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
@@ -832,9 +815,8 @@
     ROCBLAS_USE_HIPBLASLT=1 \
 
     "/home/dinesh/llamacpps/xing/build-rocm10/bin/llama-server" -m /home/dinesh/models/Xing4.0-29B-A4B-GGUF/xing4_0-29b-IQ4_NL.gguf
-    -a local-model --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np
-    1 --jinja --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max
-    1'
+    -a local-model --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np 1 --jinja
+    --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max 1'
   local_commands:
   - 'LD_LIBRARY_PATH="/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/xing/build-rocm10/bin"
     \
@@ -842,9 +824,8 @@
     ROCBLAS_USE_HIPBLASLT=1 \
 
     "/home/dinesh/llamacpps/xing/build-rocm10/bin/llama-server" -m /home/dinesh/models/Xing4.0-29B-A4B-GGUF/xing4_0-29b-IQ4_NL.gguf
-    -a local-model --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np
-    1 --jinja --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max
-    1'
+    -a local-model --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 262144 -np 1 --jinja
+    --host 0.0.0.0 --port 8888 --spec-type draft-mtp --spec-draft-n-max 1'
   mmproj_accuracy: untested
   task_accuracy: good
   prompt_speed: 0
@@ -935,19 +916,17 @@
   model_url: https://huggingface.co/brainnxdomain/Hemmingway-1-Heretic-MTP-GGUF-V2/tree/main
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Hemmingway-1-Heretic-MTP-GGUF-V2/Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
-    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel
-    1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none
-    --reasoning on -ctk q8_0 -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k
-    40
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --image-min-tokens
+    1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on -ctk q8_0
+    -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k 40
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m /home/dinesh/models/Hemmingway-1-Heretic-MTP-GGUF-V2/Hemmingway-1-Heretic-MTP-GGUF-V2-Q4_K_M.gguf
-    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf
-    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel
-    1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none
-    --reasoning on -ctk q8_0 -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k
-    40
+    -a local-model -mm ~/models/Qwen3.8-27B-GGUF/mmproj-BF16.gguf --image-min-tokens
+    1024 --spec-type draft-mtp --spec-draft-n-max 4 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on -ctk q8_0
+    -ctv q8_0 --temp 0.7 --min-p 0.1 --top-p 0.95 --top-k 40
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 271.472076
@@ -1132,11 +1111,11 @@
     1024 -ctk q8_0 -ctv q8_0
   local_commands:
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
-    -m /home/dinesh/models/Eikos-27B-GGUF/Eikos-27B.Q4_K_M.gguf -a local-model
-    -mm /home/dinesh/models/Eikos-27B-GGUF/Eikos-27B.mmproj-Q8_0.gguf --spec-type
-    draft-mtp --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8889 --jinja
-    -ngl 999 -c 82144 -fa on --load-mode none --reasoning on --image-min-tokens 1024
-    -ctk q8_0 -ctv q8_0
+    -m /home/dinesh/models/Eikos-27B-GGUF/Eikos-27B.Q4_K_M.gguf -a local-model -mm
+    /home/dinesh/models/Eikos-27B-GGUF/Eikos-27B.mmproj-Q8_0.gguf --spec-type draft-mtp
+    --spec-draft-n-max 3 --parallel 1 --host 0.0.0.0 --port 8889 --jinja -ngl 999
+    -c 82144 -fa on --load-mode none --reasoning on --image-min-tokens 1024 -ctk q8_0
+    -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 272.028414
@@ -1219,8 +1198,8 @@
     --cache-type-v q8_0 --host 0.0.0.0 --port 8888 --jinja -ngl 999
   - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin\" \"\
     /home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server\"  \\\n  --model\
-    \ /home/dinesh/models/Qwen3.8-27B-pi-GGUF/Qwen3.8-27B-pi-Q4_K_M.gguf -a local-model
-    \ \\\n  --mmproj /home/dinesh/models/Qwen3.8-27B-pi-GGUF/mmproj-Qwen3.8-27B-pi-BF16.gguf\
+    \ /home/dinesh/models/Qwen3.8-27B-pi-GGUF/Qwen3.8-27B-pi-Q4_K_M.gguf -a local-model\
+    \  \\\n  --mmproj /home/dinesh/models/Qwen3.8-27B-pi-GGUF/mmproj-Qwen3.8-27B-pi-BF16.gguf\
     \ --image-min-tokens 1024 \\\n  --model-draft /home/dinesh/models/Qwen3.8-27B-pi-GGUF/Qwen3.8-27B-DFlash2-BF16.gguf\
     \ \\\n  --spec-type draft-dflash \\\n  --spec-draft-n-max 7 \\\n  --ctx-size 262144\
     \ \\\n  --parallel 1 \\\n  --temp 1.0 \\\n  --top-p 0.95 \\\n  --top-k 20 \\\n\
@@ -1268,18 +1247,16 @@
     \
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Holo4-27B-GGUF/q4_k_m.gguf
-    -a local-model --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf
-    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
-    --port 8888 --image-min-tokens 1024 --reasoning-preserve --chat-template-file
-    /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
+    -a local-model --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf --load-mode
+    none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0 --port 8888
+    --image-min-tokens 1024 --reasoning-preserve --chat-template-file /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
   local_commands:
   - 'LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" \
 
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m /home/dinesh/models/Holo4-27B-GGUF/q4_k_m.gguf
-    -a local-model --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf
-    --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
-    --port 8888 --image-min-tokens 1024 --reasoning-preserve --chat-template-file
-    /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
+    -a local-model --mmproj /home/dinesh/models/Holo4-27B-GGUF/mmproj.f16.gguf --load-mode
+    none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0 --port 8888
+    --image-min-tokens 1024 --reasoning-preserve --chat-template-file /home/dinesh/models/Holo4-27B-GGUF/chat_template.jinja'
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 330.615548
@@ -1347,8 +1324,8 @@
   model_url: https://huggingface.co/ggml-org/vllm-d3-GGUF/tree/main
   local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
     \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
-    \  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf \\\n  -a local-model
-    \ \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf --image-min-tokens\
+    \  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf \\\n  -a local-model\
+    \  \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf --image-min-tokens\
     \ 1024 \\\n  --host 0.0.0.0 \\\n  --port 8809 \\\n  -c 65144 --jinja -ngl 999\
     \ \\\n  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa on"
   local_commands:
@@ -1416,3 +1393,30 @@
   speculative_decoding: true
   mtp_generation_speed: 24
   parameter_info: 124B
+- id: nerkyor-qwen3-8-27b-coder390-efficientthink-opus5-5-gpt6astra-grok4-7-dsv4pro-k3-sft-rloo-mtp-dflash2-engram-fd5fcc
+  name: nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
+    (Engram)
+  model_url: https://huggingface.co/nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
+  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
+    "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
+    -md ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mtp-Qwen3.8-27B-Coder390-EfficientThink-Q8_0.gguf
+    --spec-type draft-mtp --spec-draft-n-max 2 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
+    1024 -ctk q8_0 -ctv q8_0
+  local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
+    -md ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mtp-Qwen3.8-27B-Coder390-EfficientThink-Q8_0.gguf
+    --spec-type draft-mtp --spec-draft-n-max 2 --parallel 1 --host 0.0.0.0 --port
+    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
+    1024 -ctk q8_0 -ctv q8_0
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 328.049636
+  generation_speed: 9.665972
+  notes: ''
+  speculative_decoding: true
+  mtp_generation_speed: 17
+  parameter_info: 27B
