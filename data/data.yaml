@@ -1400,11 +1400,16 @@
   local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin"
     "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server" -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
     -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
-    -md ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mtp-Qwen3.8-27B-Coder390-EfficientThink-Q8_0.gguf
-    --spec-type draft-mtp --spec-draft-n-max 2 --parallel 1 --host 0.0.0.0 --port
-    8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning on --image-min-tokens
-    1024 -ctk q8_0 -ctv q8_0
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 2 -np 4 --host
+    0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning
+    on
   local_commands:
+  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
+    -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
+    -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
+    --image-min-tokens 1024 --spec-type draft-mtp --spec-draft-n-max 2 -np 4 --host
+    0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on --load-mode none --reasoning
+    on
   - LD_LIBRARY_PATH="/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/EngramHalo.cpp/build-vulkan/bin/llama-server"
     -m ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/Qwen3.8-27B-Coder390-EfficientThink-Q6_K-MTP.gguf
     -a local-model -mm ~/models/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2/mmproj-Qwen3.8-27B-Q8_0.gguf
