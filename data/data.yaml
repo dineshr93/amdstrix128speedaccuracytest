@@ -1426,3 +1426,21 @@
   speculative_decoding: true
   mtp_generation_speed: 18.52
   parameter_info: 27B
+- id: jetbrains-mellum2-1-12b-a2-5b-thinking-gguf-coding-f2d0d6
+  name: JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (coding)
+  model_url: https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF
+  local_command: llama-serverv -m ~/models/Mellum2.1-12B-A2.5B-Thinking-GGUF/Mellum2.1-12B-A2.5B-Thinking-Q4_K_M.gguf
+    -a local-model --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 262144 -np 4 --jinja
+    --host 0.0.0.0 --port 8888 --no-reasoning-preserve --reasoning on
+  local_commands:
+  - llama-serverv -m ~/models/Mellum2.1-12B-A2.5B-Thinking-GGUF/Mellum2.1-12B-A2.5B-Thinking-Q4_K_M.gguf
+    -a local-model --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 262144 -np 4 --jinja
+    --host 0.0.0.0 --port 8888 --no-reasoning-preserve --reasoning on
+  mmproj_accuracy: untested
+  task_accuracy: good
+  prompt_speed: 778.822018
+  generation_speed: 22.089851
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 12B-A2.5B
