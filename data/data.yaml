@@ -1346,16 +1346,14 @@
 - id: minicpm-v-4-7-35b-a3b-gguf-56f020
   name: MiniCPM-V-4.7-35B-A3B-gguf
   model_url: https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B-gguf
-  local_command: LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin"
-    "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
+  local_command: llama-serverv -m /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
     local-model   -mm /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/mmproj-model-f16-4x.gguf
     --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
     999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
     2048 -ub 1024 -t 16 -np 1   --load-mode none -fa on --temp 0.7 --top-k 100 --top-p
     0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03
   local_commands:
-  - LD_LIBRARY_PATH="/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin" "/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m
-    /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
+  - llama-serverv -m /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
     local-model   -mm /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/mmproj-model-f16-4x.gguf
     --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
     999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
