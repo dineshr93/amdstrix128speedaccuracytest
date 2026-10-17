@@ -1463,7 +1463,7 @@
     draft-dflash   --spec-draft-n-max 6   --spec-draft-model ~/models/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr.gguf   --spec-draft-ngl
     999   --cache-type-k q8_0   --cache-type-v q8_0   --temp 1.0   --top-p 0.95   --flash-attn
     on   --jinja -a local-model --host 0.0.0.0 --port 8888
-  mmproj_accuracy: good
+  mmproj_accuracy: unreliable
   task_accuracy: good
   prompt_speed: 555.747601
   generation_speed: 30.696874
