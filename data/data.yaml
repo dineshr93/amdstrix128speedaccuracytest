@@ -1073,7 +1073,7 @@
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 45.33
-  parameter_info: 117B
+  parameter_info: 177B
 - id: sc117-occamy-1-0-abliterated-fit-gguf-engramhalo-cpp-ed05bf
   name: SC117/occamy-1.0-abliterated-FIT-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/SC117/occamy-1.0-abliterated-FIT-GGUF/tree/main
