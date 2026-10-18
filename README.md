@@ -34,34 +34,20 @@ Each benchmark stores:
 
 ## Requirements
 
-- Python 3.9+
-- Flask
-- PyYAML
+- Docker with Compose v2. Nothing on the host beyond that — no Python env.
 
-## Installation
+## Running
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-```
-
-(Or simply `pip install -r requirements.txt` if you already have a Python env.)
-
-## Running the application
-
-```bash
-./run.sh
-```
-
-Or use the included Makefile:
-
-```bash
-make install   # create .venv + install requirements.txt
-make run       # run locally on port 5000
-make stop      # stop the local app
+make up      # build the image, start the container
 ```
 
 Then open http://127.0.0.1:5000 in your browser.
+
+The Makefile owns the whole lifecycle: `make up`, `make down`, `make update`,
+`make logs`, `make test`, `make fresh`, `make clean`, `make help`. After any
+source change, `make update` — it pulls, rebuilds, and recreates the container.
+Tests run in a throwaway container, so the repo needs no local Python.
 
 Optional environment variables (none are required):
 
@@ -73,23 +59,7 @@ Optional environment variables (none are required):
 The app binds to `127.0.0.1` by default and is never exposed publicly unless
 you change `AMDASH_HOST` yourself.
 
-## Running with Docker
-
-A `Dockerfile` and `docker-compose.yml` are included.
-
-```bash
-docker compose up -d --build
-```
-
-Or via the Makefile:
-
-```bash
-make build   # docker build -t amd-dash .
-make up      # docker compose up -d --build
-make down    # docker compose down
-```
-
-Then open http://127.0.0.1:5000.
+## Docker details
 
 The compose file bind-mounts the host directory `~/amddash/` into the
 container at `/data/amddash/`. The app reads/writes `/data/amddash/data.yaml`,

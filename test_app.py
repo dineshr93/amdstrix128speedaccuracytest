@@ -6,7 +6,7 @@
 Each test gets a fresh temp data file (AMDASH_DATA_FILE) and a reloaded app
 module, since DATA_FILE is resolved at import time.
 
-Run: make test   (or .venv/bin/python -m pytest test_app.py -q)
+Run: make test
 """
 
 import importlib
