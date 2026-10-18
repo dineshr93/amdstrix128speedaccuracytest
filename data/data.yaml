@@ -41,7 +41,7 @@
     ds4-server -m /models/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf
     --ctx 126000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
     150000 --mtp /models/DeepSeek-V4-Flash-MTP-Q4K-Q8_0-F32.gguf --mtp-draft 1
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 324.94568
   generation_speed: 18.189774
