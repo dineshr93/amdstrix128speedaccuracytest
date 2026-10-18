@@ -1490,6 +1490,6 @@
   prompt_speed: 535.852593
   generation_speed: 27.834378
   notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
+  speculative_decoding: true
+  mtp_generation_speed: 51.95
   parameter_info: 177B
