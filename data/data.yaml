@@ -1471,3 +1471,25 @@
   speculative_decoding: true
   mtp_generation_speed: 45.99
   parameter_info: 74B-A9B
+- id: sc117-swift-1-5-qwen3-8-flash-next-gsq-rco-abliterated-gguf-e7c19d
+  name: SC117/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF
+  model_url: https://huggingface.co/SC117/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/tree/main
+  local_command: llama-serverv -m ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/Swift-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-IQ3_S-00001-of-00002.gguf
+    -a local-model --spec-type ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max
+    64 --spec-ngram-mod-n-match 24 --mmproj ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mmproj-Qwen3.8-Flash-Next-BF16.gguf
+    --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 98144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024 --no-reasoning-preserve
+  local_commands:
+  - llama-serverv -m ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/Swift-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-IQ3_S-00001-of-00002.gguf
+    -a local-model --spec-type ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max
+    64 --spec-ngram-mod-n-match 24 --mmproj ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mmproj-Qwen3.8-Flash-Next-BF16.gguf
+    --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 98144 -np 1 --jinja --host 0.0.0.0
+    --port 8888 --image-min-tokens 1024 --no-reasoning-preserve
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 535.852593
+  generation_speed: 27.834378
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 177B
