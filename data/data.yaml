@@ -1478,13 +1478,13 @@
     -a local-model --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max
     64 --spec-ngram-mod-n-match 24 --mmproj ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mmproj-Qwen3.8-Flash-Next-BF16.gguf
     --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 162144 -np 1 --jinja --host 0.0.0.0
-    --port 8888 --image-min-tokens 1024 --reasoning-preserve -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q4_0.gguf
+    --port 8888 --image-min-tokens 1024 --reasoning-preserve -md ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mtp-Qwen3.8-Flash-Next-Q4_0.gguf
   local_commands:
   - llama-serverv -m ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/Swift-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-IQ3_S-00001-of-00002.gguf
     -a local-model --spec-type draft-mtp,ngram-mod --spec-draft-n-max 3 --spec-ngram-mod-n-max
     64 --spec-ngram-mod-n-match 24 --mmproj ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mmproj-Qwen3.8-Flash-Next-BF16.gguf
     --load-mode none -fa 1 -ctk q4_0 -ctv q4_0 -c 162144 -np 1 --jinja --host 0.0.0.0
-    --port 8888 --image-min-tokens 1024 --reasoning-preserve -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q4_0.gguf
+    --port 8888 --image-min-tokens 1024 --reasoning-preserve -md ~/models/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/mtp-Qwen3.8-Flash-Next-Q4_0.gguf
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 535.852593
