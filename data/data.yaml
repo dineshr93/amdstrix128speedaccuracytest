@@ -1493,3 +1493,26 @@
   speculative_decoding: true
   mtp_generation_speed: 51.95
   parameter_info: 177B
+- id: hob-forge-kolibri-1-gguf-dc2a66
+  name: Hob-forge/Kolibri-1-GGUF
+  model_url: https://huggingface.co/Hob-forge/Kolibri-1-GGUF
+  local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/kollibri/build-vulkan/bin\"\
+    \ \\\n\"/home/dinesh/llamacpps/kollibri/build-vulkan/bin/llama-server\" \\\n \
+    \ --model /home/dinesh/models/Kolibri-1-GGUF/Kolibri-1-Q4_K_M.gguf \\\n    --batch-size\
+    \ 2048 \\\n  --ubatch-size 512 \\\n  --ctx-size 98304 \\\n  --parallel 1 \\\n\
+    \  -ngl 999 \\\n    --flash-attn on \\\n  --jinja -a local-model --host 0.0.0.0\
+    \ --port 8888"
+  local_commands:
+  - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/kollibri/build-vulkan/bin\" \\\n\"/home/dinesh/llamacpps/kollibri/build-vulkan/bin/llama-server\"\
+    \ \\\n  --model /home/dinesh/models/Kolibri-1-GGUF/Kolibri-1-Q4_K_M.gguf \\\n\
+    \    --batch-size 2048 \\\n  --ubatch-size 512 \\\n  --ctx-size 98304 \\\n  --parallel\
+    \ 1 \\\n  -ngl 999 \\\n    --flash-attn on \\\n  --jinja -a local-model --host\
+    \ 0.0.0.0 --port 8888"
+  mmproj_accuracy: untested
+  task_accuracy: unreliable
+  prompt_speed: 1305.50877
+  generation_speed: 70.565395
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 74BA3.46B
