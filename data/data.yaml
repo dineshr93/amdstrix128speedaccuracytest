@@ -169,7 +169,7 @@
     local-model   --host 0.0.0.0 --port 8888   --jinja -ngl 99 -c 131072   --load-mode
     none -fa on   --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05   --presence-penalty
     0 --repeat-penalty 1.0   --reasoning on --reasoning-effort xhigh
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 777.03615
   generation_speed: 38.991453
@@ -277,7 +277,7 @@
     -t 16 -np 1   -c 196608   --load-mode none   -fa on --temp 1.0 --top-k 20 --top-p
     0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0 --reasoning on --reasoning-effort
     xhigh --reasoning-preserve   -ctk q4_0   -ctv q4_0 --agent
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 290.650127
   generation_speed: 40.434984
@@ -298,7 +298,7 @@
   local_command: llama-serverv -m /home/dinesh/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
     -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 62144 --load-mode
     none -fa on
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 38.724951
   generation_speed: 3
@@ -436,7 +436,7 @@
   local_command: llama-serverv -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf
     -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 128000 --load-mode
     none -fa on -b 2048 -ub 2048 --temp 1.0 --top-k 40
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 769.014408
   generation_speed: 38.838591
@@ -1145,7 +1145,7 @@
     docker.io/kyuz0/strix-halo-ds4-toolbox:rocm-10.0 ds4-server -m /models/Qwen3.8-Flash-Next-Q2.gguf
     --ctx 216000 --host 0.0.0.0 --port 8888 --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb
     64000 --mtp
-  mmproj_accuracy: bad
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 552
   generation_speed: 30
