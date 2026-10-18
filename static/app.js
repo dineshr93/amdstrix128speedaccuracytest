@@ -12,8 +12,10 @@ const delModal = document.getElementById("delModal");
 const toast = document.getElementById("toast");
 const benchForm = document.getElementById("benchForm");
 
-const ACC_ORDER = { good: 0, unreliable: 1, bad: 2, untested: 3 };
-const ACC_ICON = { good: "🟢", unreliable: "🟡", bad: "🔴", untested: "⚪" };
+const ACC_ORDER = { good: 0, unreliable: 1, bad: 2, untested: 3, not_available: 4 };
+const ACC_ICON = { good: "🟢", unreliable: "🟡", bad: "🔴", untested: "⚪", not_available: "⬜" };
+// Only values whose raw key is not what the user should read.
+const ACC_LABEL = { not_available: "Not Available" };
 
 let entries = [];       // all benchmarks (unsorted, as returned by server)
 let rendered = [];      // currently displayed (ranked + filtered)
@@ -103,8 +105,8 @@ function detailHtml(e) {
     <div class="card-body">
       ${paramInfoHtml}
       <div>
-        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(acc)}</span>
-        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(taskAcc)}</span>
+        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(ACC_LABEL[acc] || acc)}</span>
+        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(ACC_LABEL[taskAcc] || taskAcc)}</span>
       </div>
       <div class="speeds">
         <div class="speed-block">

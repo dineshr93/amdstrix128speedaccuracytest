@@ -17,8 +17,8 @@ Each benchmark stores:
 - `name` — model name
 - `model_url` — optional, clickable link
 - `local_command` — the full command, kept exactly as typed (never executed)
-- `mmproj_accuracy` — `good`, `unreliable`, `bad`, or `untested`
-- `task_accuracy` — `good`, `unreliable`, `bad`, or `untested` (task/vision quality, tracked separately from MMProj)
+- `mmproj_accuracy` — `good`, `unreliable`, `bad`, `untested`, or `not_available` (no vision projector, so it can never be graded)
+- `task_accuracy` — `good`, `unreliable`, `bad`, `untested`, or `not_available` (task/vision quality, tracked separately from MMProj)
 - `prompt_speed` — prompt processing speed (tok/s)
 - `generation_speed` — generation speed (tok/s)
 - `notes` — optional notes
@@ -27,7 +27,7 @@ Each benchmark stores:
 
 - Add / edit / delete / search benchmarks
 - Copy Command button (clipboard), with a "Copied!" confirmation
-- MMProj and Task status indicators: 🟢 Good, 🟡 Unreliable, 🔴 Bad, ⚪ Untested
+- MMProj and Task status indicators: 🟢 Good, 🟡 Unreliable, 🔴 Bad, ⚪ Untested, ⬜ Not Available
 - Prominent generation-speed numbers
 - Automatic ranking + **instant reranking** (no page reload)
 - Friendly errors instead of stack traces
@@ -144,7 +144,7 @@ exactly as entered.
 
 Entries are ranked automatically, best first:
 
-1. **MMProj accuracy** descending: `good` → `unreliable` → `bad` → `untested`
+1. **MMProj accuracy** descending: `good` → `unreliable` → `bad` → `untested` → `not_available`
 2. **Generation speed** descending (within the same accuracy group)
 3. **Prompt speed** descending (breaks ties)
 

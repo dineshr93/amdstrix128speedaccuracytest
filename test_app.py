@@ -96,3 +96,15 @@ def test_ranking_good_beats_fast_but_bad(client):
                                            generation_speed=10))
     names = [e["name"] for e in client.get("/api/benchmarks").get_json()]
     assert names == ["SlowGood", "FastBad"]
+
+
+def test_not_available_accepted_and_ranked_last(client):
+    """not_available = no vision projector, so accuracy can never be graded."""
+    client.post("/api/benchmarks", json=dict(BASE, name="GradedBad",
+                                            mmproj_accuracy="bad", generation_speed=10))
+    resp = client.post("/api/benchmarks", json=dict(BASE, name="NoVision",
+                                                   mmproj_accuracy="not_available",
+                                                   generation_speed=100))
+    assert resp.status_code == 201
+    names = [e["name"] for e in client.get("/api/benchmarks").get_json()]
+    assert names == ["GradedBad", "NoVision"]

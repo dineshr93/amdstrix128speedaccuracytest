@@ -31,9 +31,9 @@ DATA_FILE = Path(os.environ.get("AMDASH_DATA_FILE", "")).expanduser() \
     else Path.home() / "amddash" / "data.yaml"
 DATA_DIR = DATA_FILE.parent
 
-ALLOWED_ACCURACY = ("good", "unreliable", "bad", "untested")
+ALLOWED_ACCURACY = ("good", "unreliable", "bad", "untested", "not_available")
 
-ACCURACY_ORDER = {"good": 0, "unreliable": 1, "bad": 2, "untested": 3}
+ACCURACY_ORDER = {"good": 0, "unreliable": 1, "bad": 2, "untested": 3, "not_available": 4}
 
 # ---------------------------------------------------------------------------
 # YAML helpers
@@ -203,10 +203,16 @@ def normalize_entry(raw):
         raise ValueError("Model name is required.")
     accuracy = (raw.get("mmproj_accuracy") or "").strip().lower()
     if accuracy not in ALLOWED_ACCURACY:
-        raise ValueError("mmproj_accuracy must be good, unreliable, bad, or untested.")
+        raise ValueError(
+            "mmproj_accuracy must be " + ", ".join(ALLOWED_ACCURACY[:-1])
+            + ", or " + ALLOWED_ACCURACY[-1] + "."
+        )
     task_accuracy = (raw.get("task_accuracy") or "").strip().lower()
     if task_accuracy not in ALLOWED_ACCURACY:
-        raise ValueError("task_accuracy must be good, unreliable, bad, or untested.")
+        raise ValueError(
+            "task_accuracy must be " + ", ".join(ALLOWED_ACCURACY[:-1])
+            + ", or " + ALLOWED_ACCURACY[-1] + "."
+        )
     try:
         prompt = float(raw.get("prompt_speed") or 0)
     except (TypeError, ValueError):
