@@ -12,7 +12,6 @@ const delModal = document.getElementById("delModal");
 const toast = document.getElementById("toast");
 const benchForm = document.getElementById("benchForm");
 
-const ACC_ORDER = { good: 0, unreliable: 1, bad: 2, untested: 3, not_available: 4 };
 const ACC_ICON = { good: "🟢", unreliable: "🟡", bad: "🔴", untested: "⚪", not_available: "⬜" };
 // Only values whose raw key is not what the user should read.
 const ACC_LABEL = { not_available: "Not Available" };
@@ -22,16 +21,9 @@ let rendered = [];      // currently displayed (ranked + filtered)
 let pendingDelete = null;
 
 // ---------------------------------------------------------------------------
-// Ranking: quality first, then generation speed, then prompt speed.
+// Ordering comes from the server (rank_key in app.py). The page only filters,
+// so a new tiebreaker is one edit, not two, and no ordering test is duplicated.
 // ---------------------------------------------------------------------------
-function rank(a, b) {
-  const acc = ACC_ORDER[a.mmproj_accuracy] - ACC_ORDER[b.mmproj_accuracy];
-  if (acc !== 0) return acc;
-  const gen = Number(b.generation_speed) - Number(a.generation_speed);
-  if (gen !== 0) return gen;
-  return Number(b.prompt_speed) - Number(a.prompt_speed);
-}
-
 function matches(e, q) {
   if (!q) return true;
   q = q.toLowerCase();
@@ -60,10 +52,26 @@ function matchesFilters(e) {
 
 function refresh() {
   const q = searchBox.value.trim();
-  rendered = entries
-    .filter((e) => matches(e, q) && matchesFilters(e))
-    .sort(rank);
+  rendered = entries.filter((e) => matches(e, q) && matchesFilters(e));
   render();
+}
+
+// Refetch after a mutation: the server re-ranks, so the page never has to
+// place a saved entry itself.
+async function reload() {
+  try {
+    const res = await fetch("/api/benchmarks");
+    const data = await res.json();
+    if (!res.ok) {
+      showToast(data.error || "Could not load benchmarks.", true);
+      return;
+    }
+    entries = data;
+  } catch (err) {
+    showToast("Could not load benchmarks.", true);
+    return;
+  }
+  refresh();
 }
 
 // ---------------------------------------------------------------------------
@@ -80,7 +88,7 @@ function detailHtml(e) {
 
   const urlHtml = e.model_url
     ? `<div class="field-label">Model URL</div>
-      <div class="url"><a href="${escAttr(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`
+      <div class="url"><a href="${esc(e.model_url)}" target="_blank" rel="noopener">${esc(e.model_url)}</a></div>`
     : "";
 
   const cmdHtml = commandsSectionHtml(e);
@@ -107,8 +115,8 @@ function detailHtml(e) {
     <div class="card-body">
       ${paramInfoHtml}
       <div>
-        <span class="acc ${escAttr(acc)}">${ACC_ICON[acc]} MMProj: ${esc(ACC_LABEL[acc] || acc)}</span>
-        <span class="acc ${escAttr(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(ACC_LABEL[taskAcc] || taskAcc)}</span>
+        <span class="acc ${esc(acc)}">${ACC_ICON[acc]} MMProj: ${esc(ACC_LABEL[acc] || acc)}</span>
+        <span class="acc ${esc(taskAcc)}">${ACC_ICON[taskAcc]} Task: ${esc(ACC_LABEL[taskAcc] || taskAcc)}</span>
       </div>
       <div class="speeds">
         <div class="speed-block">
@@ -134,7 +142,7 @@ function commandBlockHtml(display, copyText, idx, total) {
   const label = "command " + (idx + 1) + " of " + total;
   return `<div class="cmd-block">
     <pre>${esc(display)}</pre>
-    <div class="cmd-foot"><button class="btn btn-sm" data-copy="${escAttr(copyText)}" data-copy-label="${escAttr(label)}">Copy</button></div>
+    <div class="cmd-foot"><button class="btn btn-sm" data-copy="${esc(copyText)}" data-copy-label="${esc(label)}">Copy</button></div>
   </div>`;
 }
 
@@ -145,7 +153,7 @@ function commandsSectionHtml(e) {
   const cmds = e.local_commands || [];
   if (!cmds.length) return "";
   const copyAll = cmds.length > 1
-    ? ` <button class="btn btn-sm btn-copy" data-copy="${escAttr(cmds.join("\n"))}" data-copy-label="all ${cmds.length} commands">Copy all</button>`
+    ? ` <button class="btn btn-sm btn-copy" data-copy="${esc(cmds.join("\n"))}" data-copy-label="all ${cmds.length} commands">Copy all</button>`
     : "";
   return `<div class="cmd-header">
          <span class="field-label">Commands (${cmds.length})</span>${copyAll}
@@ -157,12 +165,12 @@ function commandsSectionHtml(e) {
 
 function cardHTML(e) {
   return `
-    <div class="card" data-id="${escAttr(e.id)}">
+    <div class="card" data-id="${esc(e.id)}">
       ${detailHtml(e)}
       <div class="card-actions">
-        <button class="btn" data-view="${escAttr(e.id)}">View</button>
-        <button class="btn" data-edit="${escAttr(e.id)}">Edit</button>
-        <button class="btn btn-danger" data-del="${escAttr(e.id)}">Delete</button>
+        <button class="btn" data-view="${esc(e.id)}">View</button>
+        <button class="btn" data-edit="${esc(e.id)}">Edit</button>
+        <button class="btn btn-danger" data-del="${esc(e.id)}">Delete</button>
       </div>
     </div>`;
 }
@@ -183,19 +191,19 @@ function render() {
 // ---------------------------------------------------------------------------
 // Escape helpers (XSS-safe rendering)
 // ---------------------------------------------------------------------------
-function esc(s) {
-  const r = String(s == null ? "" : s);
-  const dq = String.fromCharCode(34); // double quote
-  const qEnt = "&" + "quot;";
-  return r
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(new RegExp(dq, "g"), qEnt)
-    .replace(/'/g, "&#39;");
+// Entities are assembled from character codes so this source never carries a
+// literal entity that a formatter or sync tool could decode back into markup.
+const ESC_CHARS = "&<>\"'";
+const ESC_NAMES = ["amp", "lt", "gt", "quot", "#39"];
+const ESC_MAP = {};
+for (let i = 0; i < ESC_CHARS.length; i++) {
+  ESC_MAP[ESC_CHARS[i]] = "&" + ESC_NAMES[i] + ";";
 }
-function escAttr(s) {
-  return esc(s);
+
+// Text and attribute contexts both need the same five characters escaped
+// (quotes are what break attributes), so there is one function, not two.
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ESC_MAP[c]);
 }
 
 // ---------------------------------------------------------------------------
@@ -399,14 +407,7 @@ benchForm.addEventListener("submit", async (ev) => {
       showToast(data.error || "Could not save benchmark.", true);
       return;
     }
-    // Instant in-place update (no reload):
-    if (id) {
-      const i = entries.findIndex((e) => e.id === id);
-      if (i >= 0) entries[i] = data;
-    } else {
-      entries.push(data);
-    }
-    refresh();
+    await reload();
     closeModal();
     showToast(id ? "Benchmark updated." : "Benchmark added.", false);
   } catch (err) {
@@ -449,8 +450,7 @@ document.getElementById("delConfirm").addEventListener("click", async () => {
       showToast(d.error || "Could not delete benchmark.", true);
       return;
     }
-    entries = entries.filter((e) => e.id !== id); // instant removal
-    refresh();
+    await reload();
     showToast("Benchmark deleted.", false);
   } catch (err) {
     showToast("Could not delete benchmark.", true);
@@ -582,19 +582,7 @@ function showToast(msg, isError) {
 // Load initial data
 // ---------------------------------------------------------------------------
 async function init() {
-  try {
-    const res = await fetch("/api/benchmarks");
-    const data = await res.json();
-    if (!res.ok) {
-      showToast(data.error || "Could not load benchmarks.", true);
-      return;
-    }
-    entries = data;
-  } catch (err) {
-    showToast("Could not load benchmarks.", true);
-    entries = [];
-  }
-  refresh();
+  await reload();
 }
 
 init();

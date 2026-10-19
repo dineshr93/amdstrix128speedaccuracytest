@@ -30,10 +30,6 @@ ENV AMDASH_DATA_FILE=/data/amddash/data.yaml
 
 EXPOSE 5000
 
-# Bind to 0.0.0.0 inside the container so the published port works.
-ENV AMDASH_HOST=0.0.0.0
-ENV AMDASH_PORT=5000
-
 USER amddash
 
 # Production WSGI server (never the Werkzeug dev server).

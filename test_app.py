@@ -108,3 +108,82 @@ def test_not_available_accepted_and_ranked_last(client):
     assert resp.status_code == 201
     names = [e["name"] for e in client.get("/api/benchmarks").get_json()]
     assert names == ["GradedBad", "NoVision"]
+
+
+# ---------------------------------------------------------------------------
+# Store interface (no HTTP): locking, migration and the entry shape are
+# testable directly, so no test has to reload the module to vary the store.
+# ---------------------------------------------------------------------------
+
+def test_store_round_trip(tmp_path):
+    import app as app_module
+    store = app_module.BenchmarkStore(tmp_path / "data.yaml")
+    entry = app_module.parse_entry(dict(BASE))
+    entry["id"] = "abc123"
+    store.add(entry)
+    assert [e["id"] for e in store.list()] == ["abc123"]
+
+    store.replace("abc123", dict(entry, generation_speed=7))
+    assert store.list()[0]["generation_speed"] == 7
+
+    store.remove("abc123")
+    assert store.list() == []
+
+
+def test_store_missing_id_raises(tmp_path):
+    import app as app_module
+    store = app_module.BenchmarkStore(tmp_path / "data.yaml")
+    with pytest.raises(app_module.EntryNotFound):
+        store.remove("nope")
+    with pytest.raises(app_module.EntryNotFound):
+        store.replace("nope", app_module.parse_entry(dict(BASE)))
+
+
+def test_store_rejects_invalid_entry(tmp_path):
+    import app as app_module
+    store = app_module.BenchmarkStore(tmp_path / "data.yaml")
+    entry = app_module.parse_entry(dict(BASE))
+    entry["mmproj_accuracy"] = "awesome"  # bypasses parse_entry on purpose
+    with pytest.raises(ValueError):
+        store.add(entry)
+
+
+def test_store_migrates_legacy_entry(tmp_path):
+    import app as app_module
+    path = tmp_path / "data.yaml"
+    path.write_text(
+        "- name: Legacy\n"
+        "  mmproj_accuracy: good\n"
+        "  prompt_speed: 10\n"
+        "  generation_speed: 5\n"
+        "  local_command: llama-server -m old.gguf\n"
+        "  notes: ''\n",
+        encoding="utf-8",
+    )
+    (entry,) = app_module.BenchmarkStore(path).list()
+    assert entry["task_accuracy"] == "untested"
+    assert entry["local_commands"] == ["llama-server -m old.gguf"]
+    assert entry["speculative_decoding"] is False
+
+
+def test_store_concurrent_adds_lose_nothing(tmp_path):
+    import threading
+    import app as app_module
+    store = app_module.BenchmarkStore(tmp_path / "data.yaml")
+
+    def worker(i):
+        entry = app_module.parse_entry(dict(BASE, name="M%d" % i))
+        entry["id"] = "id%d" % i
+        store.add(entry)
+
+    threads = [threading.Thread(target=worker, args=(i,)) for i in range(8)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len(store.list()) == 8
+
+
+def test_add_rejects_non_string_notes(client):
+    resp = client.post("/api/benchmarks", json=dict(BASE, notes=["not", "text"]))
+    assert resp.status_code == 400
