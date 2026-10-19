@@ -270,6 +270,10 @@ body {
 /* ---- modal ---- */
 .modal {
   position: fixed; inset: 0;
+  /* Above the sticky .cmd-foot (z-index 2). Without this the modal is z-index:auto,
+   * so background cards' pinned Copy buttons paint over the backdrop and stay
+   * clickable while the modal is open. */
+  z-index: 100;
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(2px);
   display: flex; align-items: flex-start; justify-content: center;
@@ -337,6 +341,7 @@ body {
 
 .toast {
   position: fixed;
+  z-index: 200;   /* above .modal: copy confirmations fire from inside the modal */
   bottom: 20px; left: 50%;
   transform: translateX(-50%);
   background: var(--panel-2);
