@@ -66,7 +66,7 @@ body {
 .btn:hover { background: #242830; }
 .btn:active:not(.btn-grip) { transform: scale(0.96); }
 /* Used by app.js on the Copy / Copy all buttons; was undefined until now. */
-.btn-sm { padding: 7px 12px; font-size: 13px; min-height: 36px; }
+.btn-sm { padding: 8px 12px; font-size: 13px; min-height: 40px; }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 .btn-primary:hover { filter: brightness(1.1); }
 .btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
@@ -156,14 +156,17 @@ body {
   max-height: 200px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #3a4150 transparent;
+  scrollbar-color: #4a5262 transparent;   /* was #3a4150: near-invisible on the panel */
 }
 .commands::-webkit-scrollbar { width: 10px; }
+.commands::-webkit-scrollbar-track { background: transparent; }
 .commands::-webkit-scrollbar-thumb {
-  background: #3a4150;
+  background: #4a5262;
   border-radius: 5px;
 }
-.commands::-webkit-scrollbar-thumb:hover { background: #4a5262; }
+.commands::-webkit-scrollbar-thumb:hover { background: #5b6478; }
+/* The view modal is the read-everything surface; give the same list room to breathe. */
+#viewModalBody .commands { max-height: min(46vh, 420px); }
 
 .acc {
   display: inline-flex;
@@ -191,12 +194,13 @@ body {
 .url a { color: var(--accent); overflow-wrap: anywhere; text-decoration: none; }
 .url a:hover { text-decoration: underline; }
 
-/* overflow:hidden so the scrolling <pre> never paints over the rounded corners. */
+/* No overflow:hidden here: it would make .cmd-block the foot's scrollport, and a
+   non-scrolling scrollport kills position:sticky. The foot carries its own bottom
+   radius instead. */
 .cmd-block {
   border: 1px solid var(--border);
   border-radius: 10px;
   background: #0a0c10;
-  overflow: hidden;
 }
 .cmd-header {
   display: flex;
@@ -215,10 +219,21 @@ body {
   word-break: break-all;
   overflow-wrap: anywhere;
   color: #cbd0db;
-  max-height: 260px;
-  overflow-y: auto;
 }
-.cmd-foot { display: flex; gap: 8px; padding: 8px 10px; justify-content: flex-end; align-items: center; }
+/* Sticky so Copy is reachable without scrolling: it pins to the bottom of the
+   .commands scroll window while its own command is in view. */
+.cmd-foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  justify-content: flex-end;
+  align-items: center;
+  background: #0a0c10;
+  border-radius: 0 0 10px 10px;
+}
 .cmd-foot .btn { flex: 1; justify-content: center; }
 
 /* Prominent "popping" Copy button used on each command block and the header */
@@ -279,7 +294,9 @@ body {
 }
 .modal-card.small { max-width: 380px; }
 .modal-card h2 { margin: 0 0 16px; font-size: 20px; text-wrap: balance; }
-.view-modal-body { display: flex; flex-direction: column; gap: 14px; }
+/* Selector was `.view-modal-body`; the markup only ever sets id="viewModalBody", so
+   this rule never applied. Matched to the real element. */
+#viewModalBody { display: flex; flex-direction: column; gap: 14px; }
 
 #benchForm label { display: block; margin-bottom: 14px; font-size: 14px; font-weight: 500; }
 #benchForm input, #benchForm select, #benchForm textarea {
