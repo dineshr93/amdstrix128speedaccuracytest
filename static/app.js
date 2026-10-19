@@ -75,6 +75,8 @@ function detailHtml(e) {
   const taskAcc = e.task_accuracy || "untested";
   const gen = Number(e.generation_speed) || 0;
   const prompt = Number(e.prompt_speed) || 0;
+  // 1 decimal max: raw floats (27.834378) wrap the "tok/s" unit onto its own line.
+  const fmt = (n) => String(Math.round(Number(n) * 10) / 10);
 
   const urlHtml = e.model_url
     ? `<div class="field-label">Model URL</div>
@@ -96,7 +98,7 @@ function detailHtml(e) {
     mtpSpeedHtml = `
       <div class="speed-block">
         <div class="speed-label">MTP Generation</div>
-        <div class="speed-value">${Number(e.mtp_generation_speed)} <small>tok/s</small></div>
+        <div class="speed-value">${fmt(e.mtp_generation_speed)} <small>tok/s</small></div>
       </div>`;
   }
 
@@ -111,11 +113,11 @@ function detailHtml(e) {
       <div class="speeds">
         <div class="speed-block">
           <div class="speed-label">Token Generation</div>
-          <div class="speed-value">${gen} <small>tok/s</small></div>
+          <div class="speed-value">${fmt(gen)} <small>tok/s</small></div>
         </div>
         <div class="speed-block">
           <div class="speed-label">Prompt Processing</div>
-          <div class="speed-value">${prompt} <small>tok/s</small></div>
+          <div class="speed-value">${fmt(prompt)} <small>tok/s</small></div>
         </div>
         ${mtpSpeedHtml}
       </div>

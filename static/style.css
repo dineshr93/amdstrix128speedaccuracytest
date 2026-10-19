@@ -16,6 +16,17 @@
 
 * { box-sizing: border-box; }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* One focus ring for everything keyboard-driven. Mouse clicks stay clean. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -35,8 +46,8 @@ body {
   padding: 20px 28px;
   border-bottom: 1px solid var(--border);
 }
-.brand h1 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
-.tagline { margin: 2px 0 0; color: var(--muted); }
+.brand h1 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; text-wrap: balance; }
+.tagline { margin: 2px 0 0; color: var(--muted); text-wrap: pretty; }
 .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
 .btn {
@@ -48,9 +59,14 @@ body {
   padding: 8px 14px;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.12s ease, border-color 0.12s ease;
+  transition-property: background-color, border-color, transform, filter, box-shadow;
+  transition-duration: 150ms, 150ms, 120ms, 150ms, 150ms;
+  transition-timing-function: ease-out;
 }
 .btn:hover { background: #242830; }
+.btn:active:not(.btn-grip) { transform: scale(0.96); }
+/* Used by app.js on the Copy / Copy all buttons; was undefined until now. */
+.btn-sm { padding: 7px 12px; font-size: 13px; min-height: 36px; }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 .btn-primary:hover { filter: brightness(1.1); }
 .btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
@@ -61,8 +77,15 @@ body {
   line-height: 1;
   padding: 4px 8px;
   align-self: flex-start;
+  position: relative;
 }
 .btn-grip:active { cursor: grabbing; }
+/* The ⋮⋮ glyph is ~23px tall; pad the hit area to ~43px without moving layout. */
+.btn-grip::before {
+  content: "";
+  position: absolute;
+  inset: -10px -7px; /* 40x44 hit area; 3px short of the textarea edge */
+}
 
 .search {
   background: var(--panel);
@@ -72,7 +95,7 @@ body {
   padding: 8px 12px;
   min-width: 220px;
 }
-.search:focus { outline: none; border-color: var(--accent); }
+.search:focus-visible { border-color: var(--accent); }
 
 .filterbar {
   display: flex;
@@ -91,7 +114,7 @@ body {
   font-size: 13px;
   min-width: 120px;
 }
-.filter:focus { outline: none; border-color: var(--accent); }
+.filter:focus-visible { border-color: var(--accent); }
 #filterGen, #filterMtp { width: 110px; }
 
 /* ---- board / cards ---- */
@@ -109,8 +132,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  transition-property: border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
 }
-.card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.3px; }
+.card:hover {
+  border-color: #333945;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+.card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.3px; text-wrap: balance; }
 
 /* Fixed-height scroll area: keep card from growing with many commands */
 .card-body {
@@ -126,14 +156,14 @@ body {
   max-height: 200px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: #3a4150 transparent;
 }
-.commands::-webkit-scrollbar { width: 8px; }
+.commands::-webkit-scrollbar { width: 10px; }
 .commands::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: #3a4150;
+  border-radius: 5px;
 }
-.commands::-webkit-scrollbar-thumb:hover { background: #363b45; }
+.commands::-webkit-scrollbar-thumb:hover { background: #4a5262; }
 
 .acc {
   display: inline-flex;
@@ -158,10 +188,16 @@ body {
 .speed-value small { font-size: 15px; font-weight: 500; color: var(--muted); }
 
 .field-label { color: var(--muted); font-size: 13px; margin-bottom: 4px; }
-.url a { color: var(--accent); word-break: break-all; text-decoration: none; }
+.url a { color: var(--accent); overflow-wrap: anywhere; text-decoration: none; }
 .url a:hover { text-decoration: underline; }
 
-.cmd-block { border: 1px solid var(--border); border-radius: 10px; background: #0a0c10; }
+/* overflow:hidden so the scrolling <pre> never paints over the rounded corners. */
+.cmd-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0a0c10;
+  overflow: hidden;
+}
 .cmd-header {
   display: flex;
   align-items: center;
@@ -202,7 +238,7 @@ body {
 .cmd-row-foot { display: flex; justify-content: flex-end; margin-top: 6px; }
 .cmd-manager-actions { margin-top: 8px; }
 
-.notes { color: var(--muted); white-space: pre-wrap; word-break: break-word; }
+.notes { color: var(--muted); white-space: pre-wrap; word-break: break-word; text-wrap: pretty; }
 .card-actions { display: flex; gap: 10px; margin-top: auto; }
 
 /* ---- empty state ---- */
@@ -220,10 +256,19 @@ body {
 .modal {
   position: fixed; inset: 0;
   background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
   display: flex; align-items: flex-start; justify-content: center;
   padding: 40px 16px; overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 .modal.hidden { display: none; }
+/* Enter only: display:none toggling replays the animation on every open. */
+.modal:not(.hidden) .modal-card { animation: modal-in 180ms ease-out; }
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(-8px); filter: blur(3px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
 .modal-card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -233,7 +278,7 @@ body {
   width: 100%;
 }
 .modal-card.small { max-width: 380px; }
-.modal-card h2 { margin: 0 0 16px; font-size: 20px; }
+.modal-card h2 { margin: 0 0 16px; font-size: 20px; text-wrap: balance; }
 .view-modal-body { display: flex; flex-direction: column; gap: 14px; }
 
 #benchForm label { display: block; margin-bottom: 14px; font-size: 14px; font-weight: 500; }
@@ -250,6 +295,9 @@ body {
   font-family: inherit;
 }
 #benchForm textarea { min-height: 110px; resize: vertical; }
+#benchForm input:focus-visible,
+#benchForm select:focus-visible,
+#benchForm textarea:focus-visible { border-color: var(--accent); }
 #benchForm .mono { font-family: var(--mono); }
 .row2 { display: flex; gap: 14px; }
 .row2 label { flex: 1; }
@@ -266,6 +314,7 @@ body {
   color: var(--text);
   white-space: pre-wrap;
   word-break: break-word;
+  text-wrap: pretty;
 }
 .param-info-strong { font-weight: 700; }
 
@@ -279,9 +328,24 @@ body {
   padding: 10px 16px;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  font-variant-numeric: tabular-nums;
 }
 .toast.hidden { display: none; }
+/* Keyframes must carry the -50% X translate or the toast jumps right on enter. */
+.toast:not(.hidden) { animation: toast-in 200ms ease-out; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
 .toast.error { border-color: var(--danger); color: #fca5a5; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 @media (max-width: 640px) {
   .topbar { flex-direction: column; align-items: stretch; }
