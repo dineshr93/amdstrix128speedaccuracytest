@@ -1516,3 +1516,17 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 74BA3.46B
+- id: deepseek-v4-1-flash-1017-ds4-e17181
+  name: deepseek-v4.1-flash-1017 (ds4)
+  model_url: https://huggingface.co/kyuz0/deepseek-v4.1-flash-gguf/tree/main
+  local_command: ds4
+  local_commands:
+  - ds4
+  mmproj_accuracy: untested
+  task_accuracy: good
+  prompt_speed: 10.52
+  generation_speed: 8.13
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 755B
