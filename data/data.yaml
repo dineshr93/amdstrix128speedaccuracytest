@@ -1535,10 +1535,10 @@
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-122B-GGUF
   local_command: ''
   local_commands: []
-  mmproj_accuracy: untested
-  task_accuracy: untested
+  mmproj_accuracy: good
+  task_accuracy: good
   prompt_speed: 0
-  generation_speed: 0
+  generation_speed: 31
   notes: ''
   speculative_decoding: false
   mtp_generation_speed: 0
