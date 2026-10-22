@@ -1543,16 +1543,3 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 125B
-- id: save-probe-5a9449
-  name: save-probe
-  model_url: ''
-  local_command: ''
-  local_commands: []
-  mmproj_accuracy: untested
-  task_accuracy: untested
-  prompt_speed: 0
-  generation_speed: 0
-  notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
-  parameter_info: ''
