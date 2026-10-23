@@ -1543,3 +1543,21 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 125B
+- id: flint-bab26e
+  name: flint
+  model_url: https://huggingface.co/RecursiveSI/flint-int4-gguf
+  local_command: llama-serverv -m flint-int4-gguf/flint-int4-q4_1.gguf --alias local-model
+    -ngl all -c 262144 -np 1 -b 256 -ub 128 -t 8 -fa on -ctk f16 -ctv f16 --jinja
+    --temp 1 --top-p 0.95 --top-k 20 --min-p 0 --host 0.0.0.0 --port 8888
+  local_commands:
+  - llama-serverv -m flint-int4-gguf/flint-int4-q4_1.gguf --alias local-model -ngl
+    all -c 262144 -np 1 -b 256 -ub 128 -t 8 -fa on -ctk f16 -ctv f16 --jinja --temp
+    1 --top-p 0.95 --top-k 20 --min-p 0 --host 0.0.0.0 --port 8888
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 1961.401366
+  generation_speed: 75.515191
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 40B-A2.5B
