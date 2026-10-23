@@ -1544,7 +1544,7 @@
   mtp_generation_speed: 0
   parameter_info: 125B
 - id: flint-bab26e
-  name: flint
+  name: flint-int4-gguf
   model_url: https://huggingface.co/RecursiveSI/flint-int4-gguf
   local_command: llama-serverv -m flint-int4-gguf/flint-int4-q4_1.gguf --alias local-model
     -ngl all -c 262144 -np 1 -b 256 -ub 128 -t 8 -fa on -ctk f16 -ctv f16 --jinja
