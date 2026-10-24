@@ -1821,26 +1821,6 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 4B
-- id: xhtoken-spark-x2-6-4b-gguf-550e22
-  name: XHToken/Spark-X2.6-4B-GGUF
-  model_url: https://huggingface.co/XHToken/Spark-X2.6-4B-GGUF/blob/main/Spark-X2.6-4B-Q4_K_M.gguf
-  local_command: "llama-serverv \\\n  -m ~/models/Spark-X2.6-4B-GGUF/Spark-X2.6-4B-Q4_K_M.gguf\
-    \ \\\n  -ngl 999 -c 131072 -b 2048 -ub 1024 -t 16 -np 1 \\\n  -fa on -ctk q8_0\
-    \ -ctv q8_0 --jinja \\\n  --temp 1.0 --top-k 0 --top-p 0.95 \\\n  --host 0.0.0.0\
-    \ --port 8888"
-  local_commands:
-  - "llama-serverv \\\n  -m ~/models/Spark-X2.6-4B-GGUF/Spark-X2.6-4B-Q4_K_M.gguf\
-    \ \\\n  -ngl 999 -c 131072 -b 2048 -ub 1024 -t 16 -np 1 \\\n  -fa on -ctk q8_0\
-    \ -ctv q8_0 --jinja \\\n  --temp 1.0 --top-k 0 --top-p 0.95 \\\n  --host 0.0.0.0\
-    \ --port 8888"
-  mmproj_accuracy: not_available
-  task_accuracy: untested
-  prompt_speed: 0
-  generation_speed: 0
-  notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
-  parameter_info: 4B
 - id: xhtoken-spark-x2-6-4b-gguf-642978
   name: XHToken/Spark-X2.6-4B-GGUF
   model_url: https://huggingface.co/XHToken/Spark-X2.6-4B-GGUF/blob/main/Spark-X2.6-4B-Q4_K_M.gguf
