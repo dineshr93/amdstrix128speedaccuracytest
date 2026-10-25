@@ -1641,9 +1641,41 @@
 - id: peonist-ai-halogen-qwen3-8-flash-next-halogen-57a1db
   name: peonist-ai/halogen-qwen3.8-flash-next (halogen)
   model_url: https://huggingface.co/peonist-ai/halogen-qwen3.8-flash-next
-  local_command: Ai-tool-cockpit
+  local_command: podman run --rm -it --name ai-toolbox-cockpit-halogen-server --pull=always
+    --device /dev/kfd --device /dev/dri --group-add keep-groups --security-opt seccomp=unconfined
+    --ipc=host --ulimit memlock=-1:-1 --network=none --cap-drop=NET_ADMIN --cap-drop=NET_RAW
+    --security-opt no-new-privileges -v /home/dinesh/halogen-models/qwen38-flash-next-w4b.hgn:/models/qwen38-flash-next-w4b.hgn:ro
+    -v /home/dinesh/halogen-models/qwen38-flash-next-w4b.overlay.hgn:/models/qwen38-flash-next-w4b.overlay.hgn:ro
+    -v /home/dinesh/halogen-models/tokenizer/chat_template.jinja:/models/tokenizer/chat_template.jinja:ro
+    -v /home/dinesh/halogen-models/tokenizer/generation_config.json:/models/tokenizer/generation_config.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/merges.txt:/models/tokenizer/merges.txt:ro
+    -v /home/dinesh/halogen-models/tokenizer/tokenizer.json:/models/tokenizer/tokenizer.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/tokenizer_config.json:/models/tokenizer/tokenizer_config.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/vocab.json:/models/tokenizer/vocab.json:ro
+    -v /home/dinesh/halogen-models/qwen38-flash-next-vision.hgn:/models/qwen38-flash-next-vision.hgn:ro
+    -e HALOGEN_CHECKPOINT=/models/qwen38-flash-next-w4b.hgn -e HALOGEN_TOKENIZER=/models/tokenizer
+    -e HALOGEN_API_PORT=8888 -e HALOGEN_CTX=212144 -e HALOGEN_KV_POOL_POSITIONS=524288
+    -e HALOGEN_KV_SLOTS=3 -e HALOGEN_PROMPT_CACHE=2 -e HALOGEN_CK_OVERLAY=/models/qwen38-flash-next-w4b.overlay.hgn
+    -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn -e HALOGEN_MODEL_ID=local-model
+    ghcr.io/peonist-ai/halogen-flash-server:latest
   local_commands:
-  - Ai-tool-cockpit
+  - podman run --rm -it --name ai-toolbox-cockpit-halogen-server --pull=always --device
+    /dev/kfd --device /dev/dri --group-add keep-groups --security-opt seccomp=unconfined
+    --ipc=host --ulimit memlock=-1:-1 --network=none --cap-drop=NET_ADMIN --cap-drop=NET_RAW
+    --security-opt no-new-privileges -v /home/dinesh/halogen-models/qwen38-flash-next-w4b.hgn:/models/qwen38-flash-next-w4b.hgn:ro
+    -v /home/dinesh/halogen-models/qwen38-flash-next-w4b.overlay.hgn:/models/qwen38-flash-next-w4b.overlay.hgn:ro
+    -v /home/dinesh/halogen-models/tokenizer/chat_template.jinja:/models/tokenizer/chat_template.jinja:ro
+    -v /home/dinesh/halogen-models/tokenizer/generation_config.json:/models/tokenizer/generation_config.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/merges.txt:/models/tokenizer/merges.txt:ro
+    -v /home/dinesh/halogen-models/tokenizer/tokenizer.json:/models/tokenizer/tokenizer.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/tokenizer_config.json:/models/tokenizer/tokenizer_config.json:ro
+    -v /home/dinesh/halogen-models/tokenizer/vocab.json:/models/tokenizer/vocab.json:ro
+    -v /home/dinesh/halogen-models/qwen38-flash-next-vision.hgn:/models/qwen38-flash-next-vision.hgn:ro
+    -e HALOGEN_CHECKPOINT=/models/qwen38-flash-next-w4b.hgn -e HALOGEN_TOKENIZER=/models/tokenizer
+    -e HALOGEN_API_PORT=8888 -e HALOGEN_CTX=212144 -e HALOGEN_KV_POOL_POSITIONS=524288
+    -e HALOGEN_KV_SLOTS=3 -e HALOGEN_PROMPT_CACHE=2 -e HALOGEN_CK_OVERLAY=/models/qwen38-flash-next-w4b.overlay.hgn
+    -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn -e HALOGEN_MODEL_ID=local-model
+    ghcr.io/peonist-ai/halogen-flash-server:latest
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 1531
