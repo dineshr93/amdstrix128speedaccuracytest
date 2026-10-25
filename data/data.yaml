@@ -1687,13 +1687,13 @@
 - id: abenzerps-nanbeige4-3-33b-gsq-rco-gguf-9197e1
   name: abenzerps/Nanbeige4.3-33B-GSQ-RCO-GGUF
   model_url: https://huggingface.co/abenzerps/Nanbeige4.3-33B-GSQ-RCO-GGUF
-  local_command: "llama-serverv \\\n  -m /home/dinesh/models/Nanbeige4.3-33B-GSQ-RCO-GGUF/Nanbeige4.3-33B-GSQ-RCO-IQ4_XS.gguf\
+  local_command: "llama-serverv \\\n  -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf\
     \ \\\n  -ngl 999 -c 165536 -b 2048 -ub 1024 -t 16 -np 3 -a local-model \\\n  -fa\
     \ on -ctk q8_0 -ctv q8_0 --jinja \\\n  --host 0.0.0.0 --port 8888 \\\n  --temp\
     \ 1.0 --top-p 0.95 --top-k 40 --min-p 0.05 \\\n  --chat-template-kwargs '{\"preserve_thinking\"\
     : true}'"
   local_commands:
-  - "llama-serverv \\\n  -m /home/dinesh/models/Nanbeige4.3-33B-GSQ-RCO-GGUF/Nanbeige4.3-33B-GSQ-RCO-IQ4_XS.gguf\
+  - "llama-serverv \\\n  -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf\
     \ \\\n  -ngl 999 -c 165536 -b 2048 -ub 1024 -t 16 -np 3 -a local-model \\\n  -fa\
     \ on -ctk q8_0 -ctv q8_0 --jinja \\\n  --host 0.0.0.0 --port 8888 \\\n  --temp\
     \ 1.0 --top-p 0.95 --top-k 40 --min-p 0.05 \\\n  --chat-template-kwargs '{\"preserve_thinking\"\
