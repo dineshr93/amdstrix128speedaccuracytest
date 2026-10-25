@@ -1581,3 +1581,17 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 4B
+- id: peonist-ai-halogen-qwen3-8-flash-next-halogen-57a1db
+  name: peonist-ai/halogen-qwen3.8-flash-next (halogen)
+  model_url: https://huggingface.co/peonist-ai/halogen-qwen3.8-flash-next
+  local_command: Ai-tool-cockpit
+  local_commands:
+  - Ai-tool-cockpit
+  mmproj_accuracy: good
+  task_accuracy: good
+  prompt_speed: 1531
+  generation_speed: 39.77
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 180B
