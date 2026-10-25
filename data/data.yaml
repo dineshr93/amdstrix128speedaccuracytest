@@ -1535,7 +1535,7 @@
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-122B-GGUF
   local_command: 'llama-serverv \
 
-    -m $HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf" \                                                                -a
     local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
     \                                                     --image-min-tokens 1024
     \                                        --jinja --reasoning auto \                                       -ngl
@@ -1548,7 +1548,7 @@
   local_commands:
   - 'llama-serverv \
 
-    -m $HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf" \                                                                -a
     local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
     \                                                     --image-min-tokens 1024
     \                                        --jinja --reasoning auto \                                       -ngl
@@ -1560,7 +1560,7 @@
     --port 8888'
   - 'llama-serverv \
 
-    -m $HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf" \                                                                -a
     local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
     \                                                     --image-min-tokens 1024
     \                                        --jinja --reasoning auto \                                       -ngl
