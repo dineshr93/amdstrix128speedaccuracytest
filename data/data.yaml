@@ -1705,8 +1705,8 @@
     --jinja   --host 0.0.0.0 --port 8888   --temp 1.0 --top-p 0.95 -np 1'
   mmproj_accuracy: not_available
   task_accuracy: good
-  prompt_speed: 331.52
-  generation_speed: 14.8
+  prompt_speed: 317.03
+  generation_speed: 10.79
   notes: ''
   speculative_decoding: false
   mtp_generation_speed: 0
