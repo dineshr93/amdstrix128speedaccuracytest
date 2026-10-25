@@ -1610,7 +1610,7 @@
   - llama-serverv -m ~/models/flint-int4-gguf/flint-int4-q4_1.gguf --alias local-model
     -ngl all -c 262144 -np 1 -b 256 -ub 128 -t 8 -fa on -ctk f16 -ctv f16 --jinja
     --temp 1 --top-p 0.95 --top-k 20 --min-p 0 --host 0.0.0.0 --port 8888
-  mmproj_accuracy: untested
+  mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 664.53
   generation_speed: 75.515191
