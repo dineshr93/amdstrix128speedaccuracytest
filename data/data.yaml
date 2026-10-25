@@ -1555,7 +1555,7 @@
 
     --presence-penalty 1.5 \
 
-    --host 0.0.0.0 --port 8888'
+    --host 0.0.0.0 --port 8888  --spec-draft-n-max 2'
   local_commands:
   - 'llama-serverv \
 
@@ -1579,7 +1579,7 @@
 
     --presence-penalty 1.5 \
 
-    --host 0.0.0.0 --port 8888'
+    --host 0.0.0.0 --port 8888  --spec-draft-n-max 2'
   - 'llama-serverv \
 
     -m ~/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
@@ -1591,14 +1591,14 @@
     0.6 --top-k 20 --top-p 0.95 --min-p 0.0 \
 
     --presence-penalty 0.0 \                                         --host 0.0.0.0
-    --port 8888'
+    --port 8888 --spec-draft-n-max 2'
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 0
-  generation_speed: 31
+  prompt_speed: 454.93
+  generation_speed: 30
   notes: ''
-  speculative_decoding: false
-  mtp_generation_speed: 0
+  speculative_decoding: true
+  mtp_generation_speed: 30
   parameter_info: 125B
 - id: flint-bab26e
   name: flint-int4-gguf
