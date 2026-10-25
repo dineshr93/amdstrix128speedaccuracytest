@@ -1533,8 +1533,43 @@
 - id: ornith-ai-ornith-1-5-122b-gguf-c874f6
   name: ornith-ai/Ornith-1.5-122B-GGUF
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-122B-GGUF
-  local_command: ''
-  local_commands: []
+  local_command: 'llama-serverv \
+
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
+    \                                                     --image-min-tokens 1024
+    \                                        --jinja --reasoning auto \                                       -ngl
+    999 -c 262144 \                                             -fa on -b 2048 -ub
+    1024 -t 16 -np 1 \                            -ctk q8_0 -ctv q8_0 \                                            --temp
+    1.0 --top-k 20 --top-p 0.95 --min-p 0.0 \
+
+    --presence-penalty 1.5 \                                         --host 0.0.0.0
+    --port 8888'
+  local_commands:
+  - 'llama-serverv \
+
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
+    \                                                     --image-min-tokens 1024
+    \                                        --jinja --reasoning auto \                                       -ngl
+    999 -c 262144 \                                             -fa on -b 2048 -ub
+    1024 -t 16 -np 1 \                            -ctk q8_0 -ctv q8_0 \                                            --temp
+    1.0 --top-k 20 --top-p 0.95 --min-p 0.0 \
+
+    --presence-penalty 1.5 \                                         --host 0.0.0.0
+    --port 8888'
+  - 'llama-serverv \
+
+    -m "$HOME/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
+    local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
+    \                                                     --image-min-tokens 1024
+    \                                        --jinja --reasoning auto \                                       -ngl
+    999 -c 262144 \                                             -fa on -b 2048 -ub
+    1024 -t 16 -np 1 \                            -ctk q8_0 -ctv q8_0 \                                            --temp
+    0.6 --top-k 20 --top-p 0.95 --min-p 0.0 \
+
+    --presence-penalty 0.0 \                                         --host 0.0.0.0
+    --port 8888'
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 0
