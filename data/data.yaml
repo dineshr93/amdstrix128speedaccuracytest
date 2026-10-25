@@ -1687,16 +1687,22 @@
 - id: abenzerps-nanbeige4-3-33b-gsq-rco-gguf-9197e1
   name: abenzerps/Nanbeige4.3-33B-GSQ-RCO-GGUF
   model_url: https://huggingface.co/AtomicChat/Nanbeige4.3-33B-GGUF
-  local_command: llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
+  local_command: '# reasoning
+
+    llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
     999 -c 165536 -b 2048 -ub 1024 -t 16 -a local-model   -fa on -ctk q8_0 -ctv q8_0
-    --jinja   --host 0.0.0.0 --port 8888   --temp 1.0 --top-p 0.95 -np 1
+    --jinja   --host 0.0.0.0 --port 8888   --temp 0.6 --top-p 0.95 -np 1'
   local_commands:
-  - llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
+  - '# reasoning
+
+    llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
     999 -c 165536 -b 2048 -ub 1024 -t 16 -a local-model   -fa on -ctk q8_0 -ctv q8_0
-    --jinja   --host 0.0.0.0 --port 8888   --temp 1.0 --top-p 0.95 -np 1
-  - llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
+    --jinja   --host 0.0.0.0 --port 8888   --temp 0.6 --top-p 0.95 -np 1'
+  - '#coding
+
+    llama-serverv   -m /home/dinesh/models/Nanbeige4.3-33B-GGUF/Nanbeige4.3-33B-Q4_K_M.gguf   -ngl
     999 -c 165536 -b 2048 -ub 1024 -t 16 -a local-model   -fa on -ctk q8_0 -ctv q8_0
-    --jinja   --host 0.0.0.0 --port 8888   --temp 0.6 --top-p 0.95 -np 1
+    --jinja   --host 0.0.0.0 --port 8888   --temp 1.0 --top-p 0.95 -np 1'
   mmproj_accuracy: not_available
   task_accuracy: good
   prompt_speed: 331.52
