@@ -1612,7 +1612,7 @@
     --temp 1 --top-p 0.95 --top-k 20 --min-p 0 --host 0.0.0.0 --port 8888
   mmproj_accuracy: untested
   task_accuracy: untested
-  prompt_speed: 1961.401366
+  prompt_speed: 664.53
   generation_speed: 75.515191
   notes: ''
   speculative_decoding: false
