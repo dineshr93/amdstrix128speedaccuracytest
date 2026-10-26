@@ -1551,7 +1551,7 @@
 - id: ornith-ai-ornith-1-5-122b-gguf-c874f6
   name: ornith-ai/Ornith-1.5-122B-GGUF
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-122B-GGUF
-  local_command: 'llama-serverv \
+  local_command: 'llama-server \
 
     -m ~/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \
 
@@ -1575,7 +1575,7 @@
 
     --host 0.0.0.0 --port 8888 --spec-type draft-mtp'
   local_commands:
-  - 'llama-serverv \
+  - 'llama-server \
 
     -m ~/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \
 
@@ -1598,7 +1598,7 @@
     --presence-penalty 1.5 \
 
     --host 0.0.0.0 --port 8888 --spec-type draft-mtp'
-  - 'llama-serverv \
+  - 'llama-server \
 
     -m ~/models/Ornith-1.5-122B-GGUF/Ornith-1.5-122B-Q4_K_M.gguf \                                                                -a
     local-model \                                                 --mmproj "$HOME/models/Ornith-1.5-122B-GGUF/mmproj-Ornith-1.5-122B-BF16.gguf"
@@ -1612,8 +1612,8 @@
     --port 8888 --spec-type draft-mtp'
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 454.93
-  generation_speed: 31.49
+  prompt_speed: 565.57
+  generation_speed: 34.81
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 30
