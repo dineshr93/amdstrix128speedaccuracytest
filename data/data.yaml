@@ -1362,6 +1362,13 @@
     999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
     2048 -ub 1024 -t 16 -np 1   --load-mode none -fa on --temp 0.7 --top-k 100 --top-p
     0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03
+  - LD_LIBRARY_PATH=/opt/rocm/core-10.0/lib:/home/dinesh/llamacpps/strix.cpp/strix.cpp/lib
+    /home/dinesh/llamacpps/strix.cpp/strix.cpp/bin/strix-server -m /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/MiniCPM-V-4_7-35B-A3B-mix_q3gud_im.gguf   -a
+    local-model   -mm /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/mmproj-model-f16-4x.gguf
+    --image-min-tokens 1024   --host 0.0.0.0   --port 8888   -c 162144 --jinja -ngl
+    999   --spec-type draft-dspark --spec-draft-n-max 2 --spec-draft-ngl all -md /home/dinesh/models/MiniCPM-V-4.7-35B-A3B-gguf/dspark-MiniCPM-V-4_7-35B-A3B-F16.gguf   -b
+    2048 -ub 1024 -t 16 -np 1   --load-mode none -fa on --temp 0.7 --top-k 100 --top-p
+    0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 1391.340928
