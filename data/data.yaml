@@ -1704,7 +1704,7 @@
     999 -c 165536 -b 2048 -ub 1024 -t 16 -a local-model   -fa on -ctk q8_0 -ctv q8_0
     --jinja   --host 0.0.0.0 --port 8888   --temp 1.0 --top-p 0.95 -np 1'
   mmproj_accuracy: not_available
-  task_accuracy: good
+  task_accuracy: unreliable
   prompt_speed: 317.03
   generation_speed: 10.79
   notes: ''
