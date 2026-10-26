@@ -1685,7 +1685,7 @@
   mtp_generation_speed: 0
   parameter_info: 180B
 - id: abenzerps-nanbeige4-3-33b-gsq-rco-gguf-9197e1
-  name: abenzerps/Nanbeige4.3-33B-GSQ-RCO-GGUF
+  name: abenzerps/Nanbeige4.3-33B-GGUF
   model_url: https://huggingface.co/AtomicChat/Nanbeige4.3-33B-GGUF
   local_command: '# reasoning
 
