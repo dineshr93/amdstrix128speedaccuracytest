@@ -1701,7 +1701,7 @@
     ghcr.io/peonist-ai/halogen-flash-server:latest
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 1461.53
+  prompt_speed: 1589.13
   generation_speed: 39.77
   notes: ''
   speculative_decoding: false
