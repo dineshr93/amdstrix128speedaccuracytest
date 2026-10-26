@@ -1615,8 +1615,8 @@
     ''{"reasoning_effort":"off","clear_thinking":true}'''
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 565.57
-  generation_speed: 34.81
+  prompt_speed: 593.07
+  generation_speed: 35.57
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 30
