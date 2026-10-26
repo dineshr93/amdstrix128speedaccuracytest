@@ -1441,11 +1441,11 @@
     1024 -ctk q8_0 -ctv q8_0
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 341.390139
+  prompt_speed: 345.28
   generation_speed: 9.650005
   notes: ''
   speculative_decoding: true
-  mtp_generation_speed: 18.52
+  mtp_generation_speed: 19.19
   parameter_info: 27B
 - id: jetbrains-mellum2-1-12b-a2-5b-thinking-gguf-coding-f2d0d6
   name: JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (coding)
