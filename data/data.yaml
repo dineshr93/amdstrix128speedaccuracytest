@@ -1506,7 +1506,7 @@
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 535.852593
-  generation_speed: 27.834378
+  generation_speed: 32.29
   notes: ''
   speculative_decoding: true
   mtp_generation_speed: 51.95
