@@ -1324,7 +1324,7 @@
   parameter_info: 27B
 - id: vllm-d3-gguf-decision-d55613
   name: vllm-d3-GGUF(decision)
-  model_url: https://huggingface.co/ggml-org/vllm-d3-GGUF/tree/main
+  model_url: https://huggingface.co/ggml-org/vllm-d3-flash-GGUF/tree/main
   local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
     \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
     \  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf \\\n  -a local-decision\
@@ -1342,7 +1342,10 @@
   task_accuracy: good
   prompt_speed: 0
   generation_speed: 0
-  notes: https://github.com/dzhng/jevgrep
+  notes: 'https://github.com/dzhng/jevgrep
+
+
+    https://huggingface.co/ggml-org/vllm-d3-GGUF/tree/main'
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
