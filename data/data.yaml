@@ -1327,22 +1327,22 @@
   model_url: https://huggingface.co/ggml-org/vllm-d3-GGUF/tree/main
   local_command: "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\"\
     \ \\\n\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n\
-    \  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf \\\n  -a local-model\
-    \  \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf --image-min-tokens\
-    \ 1024 \\\n  --host 0.0.0.0 \\\n  --port 8809 \\\n  -c 65144 --jinja -ngl 999\
+    \  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf \\\n  -a local-decision\
+    \ \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf --image-min-tokens\
+    \ 1024 \\\n  --host 0.0.0.0 \\\n  --port 8889 \\\n  -c 65144 --jinja -ngl 999\
     \ \\\n  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa on"
   local_commands:
   - "LD_LIBRARY_PATH=\"/home/dinesh/llamacpps/llama.cpp/build-vulkan/bin\" \\\n\"\
     /home/dinesh/llamacpps/llama.cpp/build-vulkan/bin/llama-server\" \\\n  -m /home/dinesh/models/vllm-d3-GGUF/vllm-d3-Q4_K_M.gguf\
-    \ \\\n  -a local-model \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf\
-    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8809 \\\n  -c 65144\
+    \ \\\n  -a local-decision \\\n  -mm /home/dinesh/models/vllm-d3-GGUF/mmproj-vllm-d3-BF16.gguf\
+    \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8889 \\\n  -c 65144\
     \ --jinja -ngl 999 \\\n  -b 2048 -ub 1024 -t 16 -np 1 \\\n  --load-mode none -fa\
     \ on"
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 0
   generation_speed: 0
-  notes: ''
+  notes: https://github.com/dzhng/jevgrep
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
