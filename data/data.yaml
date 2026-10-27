@@ -1748,7 +1748,7 @@
   task_accuracy: untested
   prompt_speed: 0
   generation_speed: 0
-  notes: ''
+  notes: https://github.com/dzhng/jevgrep
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 9B
