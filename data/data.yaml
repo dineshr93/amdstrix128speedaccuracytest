@@ -1734,3 +1734,21 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 33B
+- id: bespoke-nimble-9b-v3-gguf-decision-699d6c
+  name: Bespoke-Nimble-9B-v3-GGUF (decision)
+  model_url: https://huggingface.co/ggml-org/Bespoke-Nimble-9B-v3-GGUF
+  local_command: "llama-serverv \\\n-m /home/dinesh/models/Bespoke-Nimble-9B-v3-GGUF/Bespoke-Nimble-9B-v3-Q4_K_M.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8889 \\\n  --ctx-size 40960 \\\n  --n-gpu-layers\
+    \ 999 -a local-decision"
+  local_commands:
+  - "llama-serverv \\\n-m /home/dinesh/models/Bespoke-Nimble-9B-v3-GGUF/Bespoke-Nimble-9B-v3-Q4_K_M.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8889 \\\n  --ctx-size 40960 \\\n  --n-gpu-layers\
+    \ 999 -a local-decision"
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 0
+  generation_speed: 0
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 9B
