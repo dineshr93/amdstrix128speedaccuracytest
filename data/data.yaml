@@ -1797,3 +1797,30 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+- id: liquidai-lfm3-omni-2b-gguf-08a25c
+  name: LiquidAI/LFM3-Omni-2B-GGUF
+  model_url: https://huggingface.co/LiquidAI/LFM3-Omni-2B-GGUF
+  local_command: "#Text output (greedy decoding)\n\nllama-serverv \\\n  -m /home/dinesh/models/LFM3-Omni-2B-GGUF/LFM3-Omni-2B-Q4_K_M.gguf\
+    \ \\\n  --mmproj /home/dinesh/models/LFM3-Omni-2B-GGUF/mmproj-LFM3-Omni-2B-BF16.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8888 \\\n  --jinja \\\n  -ngl 999 -c 32768 \\\n\
+    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  -fa on -ctk q8_0 -ctv q8_0 \\\n  --reasoning\
+    \ off"
+  local_commands:
+  - "#Text output (greedy decoding)\n\nllama-serverv \\\n  -m /home/dinesh/models/LFM3-Omni-2B-GGUF/LFM3-Omni-2B-Q4_K_M.gguf\
+    \ \\\n  --mmproj /home/dinesh/models/LFM3-Omni-2B-GGUF/mmproj-LFM3-Omni-2B-BF16.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8888 \\\n  --jinja \\\n  -ngl 999 -c 32768 \\\n\
+    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  -fa on -ctk q8_0 -ctv q8_0 \\\n  --reasoning\
+    \ off"
+  - "#Speech/interleaved output\n\nllama-server\" \\\n  -m /home/dinesh/models/LFM3-Omni-2B-GGUF/LFM3-Omni-2B-Q4_K_M.gguf\
+    \ \\\n  --mmproj /home/dinesh/models/LFM3-Omni-2B-GGUF/mmproj-LFM3-Omni-2B-BF16.gguf\
+    \ \\\n  --host 0.0.0.0 --port 8888 \\\n  --jinja \\\n  -ngl 999 -c 32768 \\\n\
+    \  -b 2048 -ub 1024 -t 16 -np 1 \\\n  -fa on -ctk q8_0 -ctv q8_0 \\\n  --reasoning\
+    \ off \\\n  --temp 0.4 --repeat-penalty 1.2"
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 5271.07
+  generation_speed: 156.11
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 2B
