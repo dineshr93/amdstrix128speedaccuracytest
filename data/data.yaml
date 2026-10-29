@@ -1775,3 +1775,25 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+- id: liquidai-lfm3-vl-2b-gguf-6843f1
+  name: LiquidAI/LFM3-VL-2B-GGUF
+  model_url: https://huggingface.co/LiquidAI/LFM3-VL-2B-GGUF
+  local_command: llama-serverv -m /home/dinesh/models/LFM3-VL-2B-GGUF/LFM3-VL-2B-Q4_K_M.gguf
+    --mmproj /home/dinesh/models/LFM3-VL-2B-GGUF/mmproj-LFM3-VL-2B-BF16.gguf --host
+    0.0.0.0 --port 8888 --jinja -ngl 999 -c 131072 -b 2048 -ub 1024 -t 16 -np 1 -fa
+    on -ctk q8_0 -ctv q8_0 --temp 0.1 --top-k 50 --top-p 1.0 --min-p 0.0 --repeat-penalty
+    1.1 --no-reasoning-preserve
+  local_commands:
+  - llama-serverv -m /home/dinesh/models/LFM3-VL-2B-GGUF/LFM3-VL-2B-Q4_K_M.gguf --mmproj
+    /home/dinesh/models/LFM3-VL-2B-GGUF/mmproj-LFM3-VL-2B-BF16.gguf --host 0.0.0.0
+    --port 8888 --jinja -ngl 999 -c 131072 -b 2048 -ub 1024 -t 16 -np 1 -fa on -ctk
+    q8_0 -ctv q8_0 --temp 0.1 --top-k 50 --top-p 1.0 --min-p 0.0 --repeat-penalty
+    1.1 --no-reasoning-preserve
+  mmproj_accuracy: unreliable
+  task_accuracy: good
+  prompt_speed: 5264.16
+  generation_speed: 146.52
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 2B
