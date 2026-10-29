@@ -1824,3 +1824,25 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+- id: liquidai-d1-omni-2b-gguf-decision-3d6c9e
+  name: LiquidAI/d1-Omni-2B-GGUF (decision)
+  model_url: https://huggingface.co/LiquidAI/d1-Omni-2B-GGUF
+  local_command: "llama-serverv \\\n  -m \"/home/dinesh/models/d1-Omni-2B-GGUF/d1-Omni-2B-Q8_0.gguf\"\
+    \ \\\n  -a local-decision \\\n  --mmproj \"/home/dinesh/models/d1-Omni-2B-GGUF/mmproj-d1-Omni-2B-BF16.gguf\"\
+    \ \\\n  --image-min-tokens 1024 \\\n  --host 0.0.0.0 --port 8889 \\\n  --jinja\
+    \ -ngl 999 -c 32768 \\\n  -fa on \\\n  -b 8192 -ub 8192 \\\n  -t 16 -np 1 \\\n\
+    \  -ctk q8_0 -ctv q8_0 \\\n  --reasoning off"
+  local_commands:
+  - "llama-serverv \\\n  -m \"/home/dinesh/models/d1-Omni-2B-GGUF/d1-Omni-2B-Q8_0.gguf\"\
+    \ \\\n  -a local-decision \\\n  --mmproj \"/home/dinesh/models/d1-Omni-2B-GGUF/mmproj-d1-Omni-2B-BF16.gguf\"\
+    \ \\\n  --image-min-tokens 1024 \\\n  --host 0.0.0.0 --port 8889 \\\n  --jinja\
+    \ -ngl 999 -c 32768 \\\n  -fa on \\\n  -b 8192 -ub 8192 \\\n  -t 16 -np 1 \\\n\
+    \  -ctk q8_0 -ctv q8_0 \\\n  --reasoning off"
+  mmproj_accuracy: untested
+  task_accuracy: good
+  prompt_speed: 0
+  generation_speed: 0
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 2B
