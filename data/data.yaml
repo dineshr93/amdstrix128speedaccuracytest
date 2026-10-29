@@ -1753,3 +1753,25 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 9B
+- id: liquidai-lfm3-1-7b-gguf-e58805
+  name: LiquidAI/LFM3-1.7B-GGUF
+  model_url: https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF
+  local_command: LD_LIBRARY_PATH="$HOME/llamacpps/llama.cpp/build-vulkan/bin" "$HOME/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m
+    "$HOME/models/LFM3-1.7B-GGUF/LFM3-1.7B-Q4_K_M.gguf"   -a local-model   --host
+    0.0.0.0 --port 8888   --jinja -ngl 999 -c 211072   -fa on -b 2048 -ub 1024 -t
+    16 -np 1   -ctk q8_0 -ctv q8_0   --chat-template-kwargs '{"enable_thinking":true,"preserve_thinking":false}'   --temp
+    0.1 --top-k 50 --repeat-penalty 1.1
+  local_commands:
+  - LD_LIBRARY_PATH="$HOME/llamacpps/llama.cpp/build-vulkan/bin" "$HOME/llamacpps/llama.cpp/build-vulkan/bin/llama-server"   -m
+    "$HOME/models/LFM3-1.7B-GGUF/LFM3-1.7B-Q4_K_M.gguf"   -a local-model   --host
+    0.0.0.0 --port 8888   --jinja -ngl 999 -c 211072   -fa on -b 2048 -ub 1024 -t
+    16 -np 1   -ctk q8_0 -ctv q8_0   --chat-template-kwargs '{"enable_thinking":true,"preserve_thinking":false}'   --temp
+    0.1 --top-k 50 --repeat-penalty 1.1
+  mmproj_accuracy: not_available
+  task_accuracy: untested
+  prompt_speed: 5266.49
+  generation_speed: 148.01
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 2B
