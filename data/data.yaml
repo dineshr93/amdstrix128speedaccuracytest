@@ -1540,9 +1540,13 @@
 - id: deepseek-v4-1-flash-1017-ds4-e17181
   name: deepseek-v4.1-flash-1017 (ds4)
   model_url: https://huggingface.co/kyuz0/deepseek-v4.1-flash-gguf/tree/main
-  local_command: ds4
+  local_command: ./ds4-server -m /home/dinesh/ds4/DeepSeek-V4.1-Flash-1017-Q2.gguf
+    -a local-model --ctx 262144 --host 0.0.0.0 --port 8888 --ssd-streaming --ssd-streaming-cache-experts
+    85GB
   local_commands:
-  - ds4
+  - ./ds4-server -m /home/dinesh/ds4/DeepSeek-V4.1-Flash-1017-Q2.gguf -a local-model
+    --ctx 262144 --host 0.0.0.0 --port 8888 --ssd-streaming --ssd-streaming-cache-experts
+    85GB
   mmproj_accuracy: untested
   task_accuracy: good
   prompt_speed: 10.52
