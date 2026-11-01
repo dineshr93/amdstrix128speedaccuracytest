@@ -1860,6 +1860,10 @@
   - export MODEL='/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf'
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
     261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+  - export MODEL='/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf'
+    && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    --stream-experts
   mmproj_accuracy: untested
   task_accuracy: untested
   prompt_speed: 763661.01
