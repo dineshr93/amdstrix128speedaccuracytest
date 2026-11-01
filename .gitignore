@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 examples/
+.metrics/
+.pytest_cache/

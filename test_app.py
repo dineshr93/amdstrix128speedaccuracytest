@@ -187,3 +187,19 @@ def test_store_concurrent_adds_lose_nothing(tmp_path):
 def test_add_rejects_non_string_notes(client):
     resp = client.post("/api/benchmarks", json=dict(BASE, notes=["not", "text"]))
     assert resp.status_code == 400
+
+
+def test_parse_rejects_misplaced_text_and_bool(client):
+    """Form helpers must reject non-string text and non-bool spec flags rather than crash."""
+    resp = client.post("/api/benchmarks", json=dict(BASE, parameter_info=1))
+    assert resp.status_code == 400
+    resp = client.post("/api/benchmarks", json=dict(BASE, model_url=5))
+    assert resp.status_code == 400
+    resp = client.post("/api/benchmarks", json=dict(BASE, speculative_decoding="true"))
+    assert resp.status_code == 400
+
+
+def test_parse_number_keeps_integer(client):
+    resp = client.post("/api/benchmarks", json=dict(BASE, prompt_speed="100.0"))
+    assert resp.status_code == 201
+    assert resp.get_json()["prompt_speed"] == 100
