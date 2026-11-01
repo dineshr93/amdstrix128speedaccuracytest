@@ -1850,3 +1850,21 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+- id: ista-daslab-deepseek-v4-1-flash-1017-gsq-rco-gguf-fd1c74
+  name: ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF
+  model_url: https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF
+  local_command: export MODEL='/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf'
+    && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+  local_commands:
+  - export MODEL='/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf'
+    && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 763661.01
+  generation_speed: 22.89
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 197B
