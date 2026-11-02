@@ -1889,10 +1889,10 @@
   name: qwen3.8-27b (Talus)
   model_url: https://huggingface.co/j2ipper
   local_command: /home/dinesh/repos/talus-public/rust/target/release/talus-server
-    --config configs/qwen3.8-27b.strix-halo.dflash.json --host 0.0.0.0 --port 8888
-    --model-alias local-model
+    --config /home/dinesh/repos/talus-public/configs/qwen3.8-27b.strix-halo.dflash.json
+    --host 0.0.0.0 --port 8888 --model-alias local-model
   local_commands:
-  - /home/dinesh/repos/talus-public/rust/target/release/talus-server --config configs/qwen3.8-27b.strix-halo.dflash.json
+  - /home/dinesh/repos/talus-public/rust/target/release/talus-server --config /home/dinesh/repos/talus-public/configs/qwen3.8-27b.strix-halo.dflash.json
     --host 0.0.0.0 --port 8888 --model-alias local-model
   mmproj_accuracy: untested
   task_accuracy: untested
