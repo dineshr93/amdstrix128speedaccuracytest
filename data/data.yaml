@@ -1885,3 +1885,19 @@
   speculative_decoding: true
   mtp_generation_speed: 22.89
   parameter_info: 197B
+- id: qwen3-8-27b-talus-0042cf
+  name: qwen3.8-27b (Talus)
+  model_url: https://huggingface.co/j2ipper
+  local_command: rust/target/release/talus-server --config configs/qwen3.8-27b.strix-halo.dflash.json
+    --host 0.0.0.0 --port 8888 --model-alias local-model
+  local_commands:
+  - rust/target/release/talus-server --config configs/qwen3.8-27b.strix-halo.dflash.json
+    --host 0.0.0.0 --port 8888 --model-alias local-model
+  mmproj_accuracy: untested
+  task_accuracy: untested
+  prompt_speed: 314919.25
+  generation_speed: 42.33
+  notes: ''
+  speculative_decoding: false
+  mtp_generation_speed: 0
+  parameter_info: 27B
