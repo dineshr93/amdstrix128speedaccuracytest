@@ -1883,7 +1883,7 @@
   generation_speed: 22.89
   notes: ''
   speculative_decoding: true
-  mtp_generation_speed: 29.12
+  mtp_generation_speed: 31.03
   parameter_info: 197B
 - id: qwen3-8-27b-talus-0042cf
   name: qwen3.8-27b (Talus)
