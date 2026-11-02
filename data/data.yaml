@@ -1896,8 +1896,8 @@
     --host 0.0.0.0 --port 8888 --model-alias local-model
   mmproj_accuracy: untested
   task_accuracy: untested
-  prompt_speed: 314919.25
-  generation_speed: 42.33
+  prompt_speed: 339786.65
+  generation_speed: 44.3
   notes: ''
   speculative_decoding: false
   mtp_generation_speed: 0
