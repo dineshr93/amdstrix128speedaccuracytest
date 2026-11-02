@@ -1887,7 +1887,7 @@
   task_accuracy: good
   prompt_speed: 763661.01
   generation_speed: 22.89
-  notes: ''
+  notes: ' 690742.98 pp / 27.78 t/s'
   speculative_decoding: true
   mtp_generation_speed: 31.03
   parameter_info: 197B
