@@ -1857,20 +1857,20 @@
 
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
-    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
     --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-ROCMFP-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
   local_commands:
   - '#stream+mtp+vision IQ2_XXS
 
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
-    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
     --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-ROCMFP-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
   - '#stream+mtp+vision IQ1_M-
 
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
-    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
     --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-ROCMFP-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
   - '#stream
 
