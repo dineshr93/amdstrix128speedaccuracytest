@@ -1926,7 +1926,7 @@
   mtp_generation_speed: 0
   parameter_info: 27B
 - id: unsloth-qwen3-8-flash-next-gguf-a256dd
-  name: unsloth/Qwen3.8-Flash-Next-GGUF
+  name: unsloth/Qwen3.8-Flash-Next-GGUF (november)
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF
   local_command: llama-serverv -m /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00004.gguf
     -a local-model --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
