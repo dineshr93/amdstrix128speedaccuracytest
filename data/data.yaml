@@ -1949,9 +1949,9 @@
     --image-min-tokens 1024 --reasoning-preserve -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 547.4
-  generation_speed: 29.53
-  notes: ''
+  prompt_speed: 449.8
+  generation_speed: 38.47
+  notes: 'Rocm10: 547.4 / 29.53'
   speculative_decoding: true
-  mtp_generation_speed: 32.95
+  mtp_generation_speed: 38.47
   parameter_info: 177B
