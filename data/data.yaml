@@ -1966,14 +1966,18 @@
 - id: abiray-deepseek-v4-1-flash-1017-uncensored-gsq-rco-coder-gguf-9410be
   name: Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
   model_url: https://huggingface.co/Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
-  local_command: '#uncensored IQ1 stream+mtp+vision
+  local_command: '#  not working
 
-    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-IQ2_XXS-00001-of-00006.gguf''
-    && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
-    161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
-    --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
+    llama-serverv -m /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-IQ2_XXS-00001-of-00006.gguf
+    -a local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    --jinja -c 16384 -n 2048 -t 16 --temp 0.2'
   local_commands:
-  - '#uncensored IQ1 stream+mtp+vision
+  - '#  not working
+
+    llama-serverv -m /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-IQ2_XXS-00001-of-00006.gguf
+    -a local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    --jinja -c 16384 -n 2048 -t 16 --temp 0.2'
+  - '#uncensored IQ1 stream+mtp+vision not working
 
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-IQ2_XXS-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
