@@ -1955,6 +1955,16 @@
     --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --load-mode none -fa 1 -ctk q4_0
     -ctv q4_0 -c 222144 -np 1 --jinja --host 0.0.0.0 --port 8888 --image-min-tokens
     1024 --reasoning-preserve --spec-type draft-mtp --spec-draft-n-max 2 -md /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-Q8_0.gguf'
+  - "#gufo\npodman run --rm \\\n  --userns=keep-id:uid=1000,gid=1000 \\\n  --name\
+    \ gufo-server \\\n  --device /dev/kfd \\\n  --device /dev/dri \\\n  --group-add\
+    \ keep-groups \\\n  --ulimit memlock=-1 \\\n  --security-opt seccomp=unconfined\
+    \ --ipc=host --ulimit memlock=-1:-1 --network=none --cap-drop=NET_ADMIN --cap-drop=NET_RAW\
+    \ --security-opt no-new-privileges \\\n  -p 8888:8888 \\\n  -v /home/dinesh/models/Qwen3.8-Flash-Next-GGUF:/models:ro\
+    \ \\\n  ghcr.io/gufo-org/toolboxes/gufo-runtime:latest \\\n  gufo serve --host\
+    \ 0.0.0.0 --port 8888 llm \\\n  --model models/Qwen3.8-Flash-Next-UD-Q3_K_XL-00001-of-00004.gguf\
+    \ \\\n  --context 162497 --served-model-name=local-model \\\n  --mmproj /models/mmproj-BF16.gguf\
+    \ \\\n  --speculative mtp \\\n  --dflash-model /models/mtp-Qwen3.8-Flash-Next-Q8_0.gguf\
+    \ --stream-experts"
   mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 449.8
