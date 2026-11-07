@@ -1967,8 +1967,8 @@
     \ --stream-experts"
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 449.8
-  generation_speed: 31.47
+  prompt_speed: 648.08
+  generation_speed: 33.48
   notes: 'Rocm10: 547.4 / 29.53'
   speculative_decoding: true
   mtp_generation_speed: 38.47
