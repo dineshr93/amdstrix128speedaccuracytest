@@ -2101,11 +2101,11 @@
   task_accuracy: good
   prompt_speed: 615.31
   generation_speed: 36.38
-  notes: 'Rocm10: 547.4 / 29.53'
   speculative_decoding: true
+  favorite: true
   mtp_generation_speed: 38.47
   parameter_info: 177B
-  favorite: false
+  notes: 'Rocm10: 547.4 / 29.53'
 - id: abiray-deepseek-v4-1-flash-1017-uncensored-gsq-rco-coder-gguf-9410be
   name: Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
   model_url: https://huggingface.co/Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
