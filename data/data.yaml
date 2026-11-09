@@ -51,6 +51,7 @@
   speculative_decoding: true
   mtp_generation_speed: 0
   parameter_info: 284B
+  favorite: false
 - id: qwen3-8-flash-next-ud-iq4-xs-00001-of-00003-gguf-f043a4
   name: Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
@@ -78,6 +79,7 @@
     --spec-ngram-mod-n-match 24 --mmproj /home/dinesh/models/Qwen3.8-Flash-Next-GGUF/mmproj-BF16.gguf
     --load-mode none -fa 1 -ctk q8_0 -ctv q8_0 -c 162144 -np 1 --jinja --host 0.0.0.0
     --port 8888 --image-min-tokens 1024"
+  favorite: false
 - id: qwen3-8-flash-next-rocmfp4-fast-v2-ple16-gguf-9daad0
   name: Qwen3.8-Flash-Next-ROCmFP4-FAST-v2-ple16.gguf
   model_url: https://huggingface.co/agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF/tree/main
@@ -104,6 +106,7 @@
     --image-min-tokens 1024   -ngl 999 --load-mode none -fa 1 -ctk q8_0 -ctv q8_0
     -c 162144 -np 1 --jinja --host 0.0.0.0 --port 8888 -b 2048 -ub 2048   --temp 1.0
     --top-k 20 --top-p 0.85 --min-p 0 --presence-penalty 0 --repeat-penalty 1.0
+  favorite: false
 - id: glm-5-3-flash-ud-iq2-xxs-00001-of-00004-gguf-d1fb3d
   name: GLM-5.3-Flash-UD-IQ2_XXS-00001-of-00004.gguf
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ2_XXS
@@ -128,6 +131,7 @@
   speculative_decoding: true
   mtp_generation_speed: 11
   parameter_info: 321B
+  favorite: false
 - id: glm-5-3-flash-ud-iq1-m-c26b90
   name: GLM-5.3-Flash-UD-IQ1_M
   model_url: https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF/tree/main/UD-IQ1_M
@@ -162,6 +166,7 @@
   speculative_decoding: true
   mtp_generation_speed: 15.67
   parameter_info: 321B
+  favorite: false
 - id: hauhaucs-gptoss-120b-uncensored-hauhaucs-aggressive-600d44
   name: HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/tree/main
@@ -182,6 +187,7 @@
     local-model   --host 0.0.0.0 --port 8888   --jinja -ngl 99 -c 131072   --load-mode
     none -fa on   --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05   --presence-penalty
     0 --repeat-penalty 1.0   --reasoning on --reasoning-effort xhigh
+  favorite: false
 - id: gemma4-31b-qat-uncensored-hauhaucs-balanced-mtp-dff209
   name: Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
   model_url: https://huggingface.co/HauhauCS/Gemma4-31B-QAT-Uncensored-HauhauCS-Balanced-MTP
@@ -208,6 +214,7 @@
     \ none -fa on \\\n  --temp 0.75 --top-k 64 --top-p 0.95 --min-p 0.05 \\\n  --presence-penalty\
     \ 0 --repeat-penalty 1.0 \\\n  --reasoning on --reasoning-effort xhigh --spec-type\
     \ draft-mtp --spec-draft-ngl all --spec-draft-n-max 3"
+  favorite: false
 - id: hauhaucs-qwen3-8-27b-uncensored-hauhaucs-aggressive-mtp-gguf-17a95c
   name: HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF
   model_url: https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF
@@ -236,6 +243,7 @@
     0   --presence-penalty 0   --repeat-penalty 1.0   --reasoning on   --reasoning-effort
     xhigh   --reasoning-preserve   --reasoning-format deepseek   --spec-type draft-mtp   --spec-draft-ngl
     all --spec-draft-n-max 3 -ctk q8_0 -ctv q8_0
+  favorite: false
 - id: empero-ai-qwen3-8-27b-ridge-gguf-b3b896
   name: empero-ai/Qwen3.8-27B-Ridge-GGUF (Nathanw1014/strix-halo-llamacpp)
   model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
@@ -268,6 +276,7 @@
   speculative_decoding: true
   mtp_generation_speed: 28.6
   parameter_info: 27B
+  favorite: false
 - id: minimax-m2-7-gguf-009f25
   name: MiniMax-M2.7-GGUF
   model_url: https://huggingface.co/unsloth/MiniMax-M2.7-GGUF/tree/main
@@ -292,6 +301,7 @@
     none   -fa on --temp 1.0 --top-k 20 --top-p 0.85 --min-p 0 --presence-penalty
     0 --repeat-penalty 1.0 --reasoning on --reasoning-effort xhigh --reasoning-preserve   -ctk
     q4_0   -ctv q4_0 --agent
+  favorite: false
 - id: unsloth-devstral-2-123b-instruct-2512-gguf-4baf69
   name: unsloth/Devstral-2-123B-Instruct-2512-GGUF
   model_url: https://huggingface.co/unsloth/Devstral-2-123B-Instruct-2512-GGUF/tree/main
@@ -310,6 +320,7 @@
   - llama-serverv -m /home/dinesh/models/Devstral-2-123B-Instruct-2512-GGUF/Devstral-2-123B-Instruct-2512-Q4_K_M-00001-of-00002.gguf
     -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 62144 --load-mode
     none -fa on
+  favorite: false
 - id: inkling-small-gguf-b445b5
   name: Inkling-Small-GGUF
   model_url: https://huggingface.co/unsloth/Inkling-Small-GGUF
@@ -336,6 +347,7 @@
     \ --jinja -ngl 999 \\\n  --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16\
     \ -np 1 --temp 1.0  --top-p 1.0  --min-p 0.0 \\\n  --presence-penalty 0 --repeat-penalty\
     \ 1.0 --chat-template-kwargs '{\"reasoning_effort\":\"none\"}'"
+  favorite: false
 - id: thinkingcap-qwen3-6-27b-q4-k-m-gguf-8a2158
   name: ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
   model_url: https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.6-27B-GGUF/tree/main
@@ -360,6 +372,7 @@
     --image-min-tokens 3192 -a local-model --host 0.0.0.0 --port 8888 --jinja -fa
     on -t 20 --temp 0.85 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.1
     --repeat-penalty 1.0 -ngl 99 -c 162144
+  favorite: false
 - id: badtheorylabs-btl-4-gguf-8d8e7f
   name: badtheorylabs_BTL-4-GGUF
   model_url: https://huggingface.co/bartowski/badtheorylabs_BTL-4-GGUF
@@ -380,6 +393,7 @@
     0.0.0.0 --port 8888 --jinja -ngl 999 -c 162144 -fa on   --temp 1.0 --top-p 0.95   --mmproj
     ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf --image-min-tokens
     1024
+  favorite: false
 - id: jashepp-agents-a1-35b-a3b-mxfp4-moe-hybrid-imatrix-gguf-a87a4c
   name: jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
   model_url: https://huggingface.co/jashepp/Agents-A1-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
@@ -404,6 +418,7 @@
     0.90 --min-p 0.15 --top-k 15 --presence-penalty 0.00 --repeat-penalty 1.08 --reasoning
     on --mmproj ~/models/badtheorylabs_BTL-4-GGUF/mmproj-badtheorylabs_BTL-4-bf16.gguf
     --image-min-tokens 1024
+  favorite: false
 - id: deepseek-v4-flash-vision-exp-gguf-9f1410
   name: DeepSeek-V4-Flash-Vision-Exp-GGUF
   model_url: https://huggingface.co/unsloth/DeepSeek-V4-Flash-Vision-Exp-GGUF
@@ -430,6 +445,7 @@
     999   --load-mode none -fa on   -b 2048 -ub 1024 -t 16 -np 1 --temp 1.0  --top-p
     1.0  --min-p 0.0   --presence-penalty 0 --repeat-penalty 1.0 --chat-template-kwargs
     '{"reasoning_effort":"low"}'
+  favorite: false
 - id: hauhaucs-gptoss-120b-uncensored-hauhaucs-aggressive-62bd85
   name: GPTOSS-120B-Uncensored-HauhauCS-Aggressive
   model_url: https://huggingface.co/HauhauCS/GPTOSS-120B-Uncensored-HauhauCS-Aggressive
@@ -448,6 +464,7 @@
   - llama-serverv -m ~/models/GPTOSS-120B-Uncensored-HauhauCS-Aggressive/GPTOSS-120B-Uncensored-HauhauCS-Aggressive-MXFP4.gguf
     -a local-model --host 0.0.0.0 --port 8888 --jinja -ngl 99 -c 128000 --load-mode
     none -fa on -b 2048 -ub 2048 --temp 1.0 --top-k 40
+  favorite: false
 - id: unsloth-qwen3-8-27b-gguf-2d3292
   name: unsloth/Qwen3.8-27B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
@@ -470,6 +487,7 @@
     --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
     --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
     --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
+  favorite: false
 - id: unsloth-qwen3-8-27b-gguf-9330d2
   name: unsloth/Qwen3.8-27B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
@@ -492,6 +510,7 @@
     --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.7 --parallel 1
     --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 200000 -fa on --load-mode none
     --reasoning on --image-min-tokens 1024 -ctk q4_0 -ctv q4_0
+  favorite: false
 - id: minicpm5-2b-gguf-c295e9
   name: MiniCPM5-2B-GGUF
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
@@ -515,6 +534,7 @@
     \ \\\n  -a local-model \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 131072\
     \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
     \ --chat-template-kwargs '{\"reasoning_effort\":\"none\"}' --agent"
+  favorite: false
 - id: unsloth-mistral-small-4-119b-2603-gguf-fda5a8
   name: unsloth/Mistral-Small-4-119B-2603-GGUF
   model_url: https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF
@@ -546,6 +566,7 @@
     \ --image-min-tokens 1024 \\\n  --host 0.0.0.0 \\\n  --port 8888 \\\n  -c 262144\
     \ --jinja -ngl 999 --load-mode none -fa on \\\n  -b 2048 -ub 1024 -t 16 -np 1\
     \ --agent"
+  favorite: false
 - id: qwen-agentworld-35b-a3b-gguf-78fa23
   name: Qwen-AgentWorld-35B-A3B-GGUF
   model_url: https://huggingface.co/unsloth/Qwen-AgentWorld-35B-A3B-GGUF
@@ -576,6 +597,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
+  favorite: false
 - id: ornith-1-0-35b-a3b-mxfp4-moe-q8-0-f16-imatrix-c7f009
   name: Ornith-1.0-35B-A3B-MXFP4_MOE_Q8_0_F16-Imatrix
   model_url: https://huggingface.co/jashepp/Ornith-1.0-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF
@@ -612,6 +634,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
+  favorite: false
 - id: qwen3-8-27b-turbofcfusion-735-882-here-uncen-neo-coder-max-mtp-q4-k-m-gguf-bb91fa
   name: Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
     (Nathanw1014/strix-halo-llamacpp)
@@ -637,6 +660,7 @@
     -ctk q8_0 -ctv q8_0 --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
+  favorite: false
 - id: qwen3-8-flash-next-ud-iq4-xs-engramhalo-cpp-8cb2f7
   name: Qwen3.8-Flash-Next-UD-IQ4_XS (EngramHalo.cpp)
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/main
@@ -683,6 +707,7 @@
   speculative_decoding: true
   mtp_generation_speed: 43.42
   parameter_info: 117B
+  favorite: false
 - id: empero-ai-qwen3-8-27b-ridge-gguf-engramhalo-cpp-49985d
   name: empero-ai/Qwen3.8-27B-Ridge-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF/tree/main
@@ -713,6 +738,7 @@
   speculative_decoding: true
   mtp_generation_speed: 29.8
   parameter_info: 27B
+  favorite: false
 - id: unsloth-qwen3-8-27b-gguf-engramhalo-cpp-58fd0f
   name: unsloth/Qwen3.8-27B-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/unsloth/Qwen3.8-27B-GGUF/tree/main
@@ -742,6 +768,7 @@
   speculative_decoding: true
   mtp_generation_speed: 26.59
   parameter_info: 27B
+  favorite: false
 - id: qwen3-8-27b-turbofcfusion-735-882-here-uncen-neo-coder-max-mtp-q4-k-m-gguf-engramhalo-cpp-dd8a0f
   name: Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-MTP-Q4_K_M.gguf
     (EngramHalo.cpp)
@@ -769,6 +796,7 @@
     0.7 --parallel 1 --host 0.0.0.0 --port 8888 --jinja -ngl 999 -c 262144 -fa on
     --load-mode none --reasoning on --image-min-tokens 1024 -md ~/models/Qwen3.8-27B-GGUF/mtp-Qwen3.8-27B-Q4_0.gguf
     --reasoning-effort xhigh
+  favorite: false
 - id: peculiar-ragdoll-tiel-coder-35b-a3b-gguf-engramhalo-cpp-3fb9a8
   name: peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF
@@ -806,6 +834,7 @@
   speculative_decoding: true
   mtp_generation_speed: 68
   parameter_info: 35B-A3B
+  favorite: false
 - id: xingchen-agi-xing4-0-29b-a4b-gguf-86b273
   name: XingChen-AGI/Xing4.0-29B-A4B-GGUF
   model_url: https://huggingface.co/XingChen-AGI/Xing4.0-29B-A4B-GGUF/tree/main
@@ -834,6 +863,7 @@
   speculative_decoding: true
   mtp_generation_speed: 39.05
   parameter_info: 29B
+  favorite: false
 - id: bartowski-mimo-v2-6-distill-qwen-9b-gguf-b9c0ae
   name: bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF
   model_url: https://huggingface.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF/tree/main
@@ -856,6 +886,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 9B
+  favorite: false
 - id: prism-ml-ternary-bonsai-2-27b-gguf-e82f24
   name: prism-ml/Ternary-Bonsai-2-27B-gguf
   model_url: https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/tree/main
@@ -878,6 +909,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
+  favorite: false
 - id: empero-ai-qwen3-8-35b-a3b-distill-gguf-77d489
   name: empero-ai/Qwen3.8-35B-A3B-Distill-GGUF
   model_url: https://huggingface.co/empero-ai/Qwen3.8-35B-A3B-Distill-GGUF/tree/main
@@ -911,6 +943,7 @@
   speculative_decoding: true
   mtp_generation_speed: 92.38
   parameter_info: 35B-A3B
+  favorite: false
 - id: brainnxdomain-hemmingway-1-heretic-mtp-gguf-v2-0d1da1
   name: brainnxdomain/Hemmingway-1-Heretic-MTP-GGUF-V2
   model_url: https://huggingface.co/brainnxdomain/Hemmingway-1-Heretic-MTP-GGUF-V2/tree/main
@@ -935,6 +968,7 @@
   speculative_decoding: true
   mtp_generation_speed: 27
   parameter_info: 27B
+  favorite: false
 - id: vadikulous-ai-qwen-agentworld-35b-a3b-ud-q4-k-xl-mtp-gguf-2fcbea
   name: vadikulous-ai/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF
   model_url: https://huggingface.co/vadikulous-ai/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL-MTP-GGUF
@@ -980,6 +1014,7 @@
   speculative_decoding: true
   mtp_generation_speed: 90
   parameter_info: 35B-A3B
+  favorite: false
 - id: ornith-ai-ornith-1-5-35b-a3b-gguf-acc197
   name: ornith-ai/Ornith-1.5-35B-A3B-GGUF
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF/tree/main
@@ -1018,6 +1053,7 @@
   speculative_decoding: true
   mtp_generation_speed: 90
   parameter_info: 35B-A3B
+  favorite: false
 - id: swift-1-5-qwen3-8-27b-iq4-xs-gguf-9aff83
   name: ukisai/Swift-1.5-Qwen3.8-27B-IQ4_XS.gguf
   model_url: https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-27B-GGUF/tree/main
@@ -1042,6 +1078,7 @@
   speculative_decoding: true
   mtp_generation_speed: 32.02
   parameter_info: 27B
+  favorite: false
 - id: ukisai-swift-1-5-qwen3-8-flash-next-gguf-677a2f
   name: ukisai/Swift-1.5-Qwen3.8-Flash-Next-IQ3_M (EngramHalo.cpp)
   model_url: https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-Flash-Next-GGUF/tree/main
@@ -1074,6 +1111,7 @@
   speculative_decoding: true
   mtp_generation_speed: 45.33
   parameter_info: 177B
+  favorite: false
 - id: sc117-occamy-1-0-abliterated-fit-gguf-engramhalo-cpp-ed05bf
   name: SC117/occamy-1.0-abliterated-FIT-GGUF (EngramHalo.cpp)
   model_url: https://huggingface.co/SC117/occamy-1.0-abliterated-FIT-GGUF/tree/main
@@ -1103,6 +1141,7 @@
   speculative_decoding: true
   mtp_generation_speed: 119.95
   parameter_info: 35B-A3B
+  favorite: false
 - id: mradermacher-eikos-27b-gguf-engramhalo-openjev-compete-e0bb56
   name: mradermacher/Eikos-27B-GGUF (EngramHalo) openjev compete
   model_url: https://huggingface.co/mradermacher/Eikos-27B-GGUF/tree/main
@@ -1127,6 +1166,7 @@
   speculative_decoding: true
   mtp_generation_speed: 25
   parameter_info: 27B
+  favorite: false
 - id: antirez-qwen3-8-flash-next-gguf-ds4-bab108
   name: antirez/qwen3.8-flash-next-gguf (ds4)
   model_url: https://huggingface.co/antirez/qwen3.8-flash-next-gguf/tree/main
@@ -1153,6 +1193,7 @@
   speculative_decoding: true
   mtp_generation_speed: 30
   parameter_info: 188B
+  favorite: false
 - id: openbmb-minicpm5-2b-gguf-dspark-349071
   name: openbmb/MiniCPM5-2B-GGUF (dspark) (command and tools)
   model_url: https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/tree/main
@@ -1180,6 +1221,7 @@
   speculative_decoding: true
   mtp_generation_speed: 100
   parameter_info: 2B
+  favorite: false
 - id: qwen3-8-27b-pi-q4-k-m-engram-dflash2-a6aab7
   name: Qwen3.8-27B-pi-Q4_K_M engram + dflash2
   model_url: https://huggingface.co/bytkim/Qwen3.8-27B-pi-GGUF
@@ -1216,6 +1258,7 @@
   speculative_decoding: true
   mtp_generation_speed: 23
   parameter_info: 27B
+  favorite: false
 - id: hcompany-holo4-35b-a3b-e8c692
   name: Hcompany/Holo4-35B-A3B
   model_url: https://huggingface.co/Hcompany/Holo4-35B-A3B
@@ -1243,6 +1286,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 35B-A3B
+  favorite: false
 - id: hcompany-holo4-27b-gguf-21e54d
   name: Hcompany/Holo4-27B-GGUF
   model_url: https://huggingface.co/Hcompany/Holo4-27B-GGUF
@@ -1268,6 +1312,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
+  favorite: false
 - id: frosty40-qwen3-8-27b-gguf-81e0e6
   name: Frosty40/Qwen3.8-27B-GGUF
   model_url: https://huggingface.co/Frosty40/Qwen3.8-27B-GGUF
@@ -1292,6 +1337,7 @@
   speculative_decoding: true
   mtp_generation_speed: 20
   parameter_info: 27B
+  favorite: false
 - id: qwen3-8-27b-ud-q4-k-m-gguf-dflash2-mmproj-gufo-cockpit-server-5eb7d3
   name: Qwen3.8-27B-UD-Q4_K_M.gguf + DFlash2 + mmproj (gufo-cockpit-server)
   model_url: ''
@@ -1322,6 +1368,7 @@
   speculative_decoding: true
   mtp_generation_speed: 30
   parameter_info: 27B
+  favorite: false
 - id: vllm-d3-gguf-decision-d55613
   name: vllm-d3-GGUF(decision)
   model_url: https://huggingface.co/ggml-org/vllm-d3-flash-GGUF/tree/main
@@ -1347,6 +1394,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
+  favorite: false
 - id: minicpm-v-4-7-35b-a3b-gguf-56f020
   name: MiniCPM-V-4.7-35B-A3B-gguf
   model_url: https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B-gguf
@@ -1389,6 +1437,7 @@
   speculative_decoding: true
   mtp_generation_speed: 78
   parameter_info: 35B-A3B
+  favorite: false
 - id: atomicchat-nvidia-nemotron-3-5-super-vl-120b-a12b-uncensored-gguf-60104f
   name: AtomicChat/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF
   model_url: https://huggingface.co/AtomicChat/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Uncensored-GGUF
@@ -1413,6 +1462,7 @@
   speculative_decoding: true
   mtp_generation_speed: 24
   parameter_info: 124B
+  favorite: false
 - id: nerkyor-qwen3-8-27b-coder390-efficientthink-opus5-5-gpt6astra-grok4-7-dsv4pro-k3-sft-rloo-mtp-dflash2-engram-fd5fcc
   name: nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
   model_url: https://huggingface.co/nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2
@@ -1448,6 +1498,7 @@
   speculative_decoding: true
   mtp_generation_speed: 19.19
   parameter_info: 27B
+  favorite: false
 - id: jetbrains-mellum2-1-12b-a2-5b-thinking-gguf-coding-f2d0d6
   name: JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (coding)
   model_url: https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF
@@ -1466,6 +1517,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 12B-A2.5B
+  favorite: false
 - id: davidau-nvidia-nemotron-3-5-bolt-turbo-brilliance-50x-74b-a9b-24gb-gguf-b6c043
   name: DavidAU/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF
   model_url: https://huggingface.co/DavidAU/NVIDIA-Nemotron-3.5-Bolt-Turbo-Brilliance-50x-74B-A9B-24GB-GGUF
@@ -1492,6 +1544,7 @@
   speculative_decoding: true
   mtp_generation_speed: 45.99
   parameter_info: 74B-A9B
+  favorite: false
 - id: sc117-swift-1-5-qwen3-8-flash-next-gsq-rco-abliterated-gguf-e7c19d
   name: SC117/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF
   model_url: https://huggingface.co/SC117/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-abliterated-GGUF/tree/main
@@ -1514,6 +1567,7 @@
   speculative_decoding: true
   mtp_generation_speed: 51.95
   parameter_info: 177B
+  favorite: false
 - id: hob-forge-kolibri-1-gguf-dc2a66
   name: Hob-forge/Kolibri-1-GGUF
   model_url: https://huggingface.co/Hob-forge/Kolibri-1-GGUF
@@ -1537,6 +1591,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 74BA3.46B
+  favorite: false
 - id: deepseek-v4-1-flash-1017-ds4-e17181
   name: deepseek-v4.1-flash-1017 (ds4)
   model_url: https://huggingface.co/kyuz0/deepseek-v4.1-flash-gguf/tree/main
@@ -1555,6 +1610,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 755B
+  favorite: false
 - id: ornith-ai-ornith-1-5-122b-gguf-c874f6
   name: ornith-ai/Ornith-1.5-122B-GGUF
   model_url: https://huggingface.co/ornith-ai/Ornith-1.5-122B-GGUF
@@ -1628,6 +1684,7 @@
   speculative_decoding: true
   mtp_generation_speed: 30
   parameter_info: 125B
+  favorite: false
 - id: flint-bab26e
   name: flint-int4-gguf
   model_url: https://huggingface.co/RecursiveSI/flint-int4-gguf
@@ -1646,6 +1703,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 40B-A2.5B
+  favorite: false
 - id: xhtoken-spark-x2-6-4b-gguf-e06050
   name: XHToken/Spark-X2.6-4B-GGUF
   model_url: https://huggingface.co/XHToken/Spark-X2.6-4B-GGUF/blob/main/Spark-X2.6-4B-Q4_K_M.gguf
@@ -1666,6 +1724,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 4B
+  favorite: false
 - id: peonist-ai-halogen-qwen3-8-flash-next-halogen-57a1db
   name: peonist-ai/halogen-qwen3.8-flash-next (halogen)
   model_url: https://huggingface.co/peonist-ai/halogen-qwen3.8-flash-next
@@ -1712,6 +1771,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 180B
+  favorite: false
 - id: abenzerps-nanbeige4-3-33b-gsq-rco-gguf-9197e1
   name: abenzerps/Nanbeige4.3-33B-GGUF
   model_url: https://huggingface.co/AtomicChat/Nanbeige4.3-33B-GGUF
@@ -1739,6 +1799,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 33B
+  favorite: false
 - id: bespoke-nimble-9b-v3-gguf-decision-699d6c
   name: Bespoke-Nimble-9B-v3-GGUF (decision)
   model_url: https://huggingface.co/ggml-org/Bespoke-Nimble-9B-v3-GGUF
@@ -1757,6 +1818,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 9B
+  favorite: false
 - id: liquidai-lfm3-1-7b-gguf-e58805
   name: LiquidAI/LFM3-1.7B-GGUF
   model_url: https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF
@@ -1779,6 +1841,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+  favorite: false
 - id: liquidai-lfm3-vl-2b-gguf-6843f1
   name: LiquidAI/LFM3-VL-2B-GGUF
   model_url: https://huggingface.co/LiquidAI/LFM3-VL-2B-GGUF
@@ -1801,6 +1864,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+  favorite: false
 - id: liquidai-lfm3-omni-2b-gguf-08a25c
   name: LiquidAI/LFM3-Omni-2B-GGUF
   model_url: https://huggingface.co/LiquidAI/LFM3-Omni-2B-GGUF
@@ -1828,6 +1892,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+  favorite: false
 - id: liquidai-d1-omni-2b-gguf-decision-3d6c9e
   name: LiquidAI/d1-Omni-2B-GGUF (decision)
   model_url: https://huggingface.co/LiquidAI/d1-Omni-2B-GGUF
@@ -1850,6 +1915,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 2B
+  favorite: false
 - id: ista-daslab-deepseek-v4-1-flash-1017-gsq-rco-gguf-fd1c74
   name: ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF
   model_url: https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF
@@ -1904,10 +1970,11 @@
   task_accuracy: good
   prompt_speed: 763661.01
   generation_speed: 22.89
-  notes: IQ2_XXS  690742.98 pp / 27.78 t/s
   speculative_decoding: true
+  favorite: true
   mtp_generation_speed: 31.03
   parameter_info: 197B
+  notes: IQ2_XXS  690742.98 pp / 27.78 t/s
 - id: qwen3-8-27b-talus-0042cf
   name: qwen3.8-27b (Talus)
   model_url: https://huggingface.co/j2ipper
@@ -1925,6 +1992,7 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 27B
+  favorite: false
 - id: unsloth-qwen3-8-flash-next-gguf-a256dd
   name: unsloth/Qwen3.8-Flash-Next-GGUF (november)
   model_url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF
@@ -2037,6 +2105,7 @@
   speculative_decoding: true
   mtp_generation_speed: 38.47
   parameter_info: 177B
+  favorite: false
 - id: abiray-deepseek-v4-1-flash-1017-uncensored-gsq-rco-coder-gguf-9410be
   name: Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
   model_url: https://huggingface.co/Abiray/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-Coder-GGUF
@@ -2065,3 +2134,4 @@
   speculative_decoding: false
   mtp_generation_speed: 0
   parameter_info: 197B
+  favorite: false
