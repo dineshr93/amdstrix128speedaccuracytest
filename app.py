@@ -63,6 +63,7 @@ def migrate(entry):
         ("mtp_generation_speed", 0),
         ("parameter_info", ""),
         ("task_accuracy", "untested"),
+        ("favorite", False),
     ):
         entry.setdefault(field, value)
     if "local_commands" not in entry:
@@ -98,10 +99,10 @@ def _clean_number(raw, field):
     return int(value) if value.is_integer() else value
 
 
-def _clean_speculative(raw):
-    value = raw.get("speculative_decoding", False)
+def _clean_bool(raw, field):
+    value = raw.get(field, False)
     if not isinstance(value, bool):
-        raise ValueError("speculative_decoding must be a boolean")
+        raise ValueError(f"{field} must be a boolean")
     return value
 
 
@@ -154,6 +155,8 @@ def validate_entry(entry):
             raise ValueError("Invalid benchmark data.")
     if not isinstance(entry.get("speculative_decoding"), bool):
         raise ValueError("Invalid benchmark data.")
+    if not isinstance(entry.get("favorite"), bool):
+        raise ValueError("Invalid benchmark data.")
     for field in ("parameter_info", "notes", "model_url", "local_command"):
         if field in entry and not isinstance(entry[field], str):
             raise ValueError("Invalid benchmark data.")
@@ -188,7 +191,8 @@ def parse_entry(raw):
         "task_accuracy": _clean_accuracy(raw, "task_accuracy"),
         "prompt_speed": _clean_number(raw, "prompt_speed"),
         "generation_speed": _clean_number(raw, "generation_speed"),
-        "speculative_decoding": _clean_speculative(raw),
+        "speculative_decoding": _clean_bool(raw, "speculative_decoding"),
+        "favorite": _clean_bool(raw, "favorite"),
         "mtp_generation_speed": _clean_number(raw, "mtp_generation_speed"),
         "parameter_info": _clean_text(raw, "parameter_info"),
         "notes": _clean_text(raw, "notes"),
@@ -310,12 +314,13 @@ class BenchmarkStore:
 # ---------------------------------------------------------------------------
 
 def rank_key(entry):
-    """Sort key: MMProj quality first (good < unreliable < bad), then
-    generation speed descending, then prompt speed descending."""
+    """Sort key: favorites first, then MMProj quality, then generation speed
+    descending, then prompt speed descending."""
     accuracy = entry.get("mmproj_accuracy")
     if accuracy not in ACCURACY_ORDER:
         raise ValueError(f"mmproj_accuracy {accuracy!r} is not in ACCURACY_ORDER")
     return (
+        0 if entry.get("favorite") else 1,
         ACCURACY_ORDER[accuracy],
         -float(entry.get("generation_speed", 0) or 0),
         -float(entry.get("prompt_speed", 0) or 0),

@@ -71,6 +71,16 @@ body {
 .btn-primary:hover { filter: brightness(1.1); }
 .btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
 .btn-ghost { background: transparent; }
+.btn-fav {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 8px 12px;
+}
+.btn-fav:hover { background: #242830; color: var(--text); }
+.btn-fav.fav-on { color: #fbbf24; border-color: #fbbf24; }
 .btn-grip {
   background: transparent;
   cursor: grab;
@@ -140,6 +150,7 @@ body {
   border-color: #333945;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.22);
 }
+.card.fav { border-color: var(--accent); }
 .card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.3px; text-wrap: balance; }
 
 /* Fixed-height scroll area: keep card from growing with many commands */
@@ -183,6 +194,19 @@ body {
 .acc.bad { color: var(--bad); }
 .acc.untested { color: var(--muted); }
 .acc.not_available { color: var(--muted); }
+
+.fav-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid #b45309;
+  background: #2a1b0b;
+}
 
 .speeds { display: flex; gap: 24px; }
 .speed-block { flex: 1; }

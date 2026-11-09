@@ -110,6 +110,21 @@ def test_not_available_accepted_and_ranked_last(client):
     assert names == ["GradedBad", "NoVision"]
 
 
+def test_favorite_ranks_before_accuracy(client):
+    client.post("/api/benchmarks", json=dict(BASE, name="FavoriteBad",
+                                             mmproj_accuracy="bad", generation_speed=1,
+                                             favorite=True))
+    client.post("/api/benchmarks", json=dict(BASE, name="GoodFast",
+                                             mmproj_accuracy="good", generation_speed=100))
+    names = [e["name"] for e in client.get("/api/benchmarks").get_json()]
+    assert names == ["FavoriteBad", "GoodFast"]
+
+
+def test_favorite_must_be_boolean(client):
+    resp = client.post("/api/benchmarks", json=dict(BASE, favorite="yes"))
+    assert resp.status_code == 400
+
+
 # ---------------------------------------------------------------------------
 # Store interface (no HTTP): locking, migration and the entry shape are
 # testable directly, so no test has to reload the module to vary the store.
@@ -164,6 +179,7 @@ def test_store_migrates_legacy_entry(tmp_path):
     assert entry["task_accuracy"] == "untested"
     assert entry["local_commands"] == ["llama-server -m old.gguf"]
     assert entry["speculative_decoding"] is False
+    assert entry["favorite"] is False
 
 
 def test_store_concurrent_adds_lose_nothing(tmp_path):

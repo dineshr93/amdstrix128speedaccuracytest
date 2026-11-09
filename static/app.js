@@ -74,6 +74,28 @@ async function reload() {
   refresh();
 }
 
+async function toggleFavorite(id) {
+  const entry = entries.find((e) => e.id === id);
+  if (!entry) return;
+  const payload = { ...entry, favorite: !entry.favorite };
+  try {
+    const res = await fetch(`/api/benchmarks/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      showToast(data.error || "Could not update favorite.", true);
+      return;
+    }
+    await reload();
+    showToast(entry.favorite ? "Favorite removed." : "Favorited.", false);
+  } catch (err) {
+    showToast("Could not update favorite.", true);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Rendering
 // ---------------------------------------------------------------------------
@@ -110,9 +132,14 @@ function detailHtml(e) {
       </div>`;
   }
 
+  const favHtml = e.favorite
+    ? `<div class="fav-badge">★ Favorite</div>`
+    : "";
+
   return `
     <h2>${esc(e.name)}</h2>
     <div class="card-body">
+      ${favHtml}
       ${paramInfoHtml}
       <div>
         <span class="acc ${esc(acc)}">${ACC_ICON[acc]} MMProj: ${esc(ACC_LABEL[acc] || acc)}</span>
@@ -165,9 +192,12 @@ function commandsSectionHtml(e) {
 
 function cardHTML(e) {
   return `
-    <div class="card" data-id="${esc(e.id)}">
+    <div class="card ${e.favorite ? "fav" : ""}" data-id="${esc(e.id)}">
       ${detailHtml(e)}
       <div class="card-actions">
+        <button class="btn btn-fav ${e.favorite ? "fav-on" : ""}" data-fav="${esc(e.id)}"
+                title="${e.favorite ? "Remove favorite" : "Favorite this card"}"
+                aria-label="${e.favorite ? "Remove favorite" : "Favorite this card"}">★</button>
         <button class="btn" data-view="${esc(e.id)}">View</button>
         <button class="btn" data-edit="${esc(e.id)}">Edit</button>
         <button class="btn btn-danger" data-del="${esc(e.id)}">Delete</button>
@@ -504,7 +534,9 @@ board.addEventListener("click", (ev) => {
   if ("add" in btn.dataset) { openModal(null); return; }
   if (!card) return;
   const id = card.dataset.id;
-  if (btn.dataset.copy) {
+  if (btn.dataset.fav) {
+    toggleFavorite(id);
+  } else if (btn.dataset.copy) {
     copyCommand(btn.dataset.copy, btn.dataset.copyLabel);
   } else if (btn.dataset.view) {
     openView(id);
