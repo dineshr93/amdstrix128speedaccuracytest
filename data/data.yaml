@@ -1977,12 +1977,18 @@
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
     261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
     --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
+  - '#IQ1_M + Dspark mtp
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
+    161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+    --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
   mmproj_accuracy: unreliable
   task_accuracy: good
   prompt_speed: 763661.01
   generation_speed: 22.89
   speculative_decoding: true
-  favorite: true
+  favorite: false
   mtp_generation_speed: 31.03
   parameter_info: 197B
   notes: IQ2_XXS  690742.98 pp / 27.78 t/s
