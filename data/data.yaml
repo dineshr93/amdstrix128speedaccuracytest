@@ -2160,14 +2160,23 @@
 - id: johnlockejrr-thinkingcap-qwen3-8-flash-next-hgn-halogen-d806a4
   name: johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN (Halogen)
   model_url: https://huggingface.co/johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN
-  local_command: "podman run --rm -it \\\n  --name halogen-flash-server \\\n  --pull=always\
+  local_command: "#vision\npodman run --rm -it \\\n  --name halogen-flash-server \\\
+    \n  --pull=always \\\n  -p 0.0.0.0:8888:8888 \\\n  --device /dev/kfd \\\n  --device\
+    \ /dev/dri \\\n  --group-add keep-groups \\\n  --ipc=host \\\n  --ulimit memlock=-1:-1\
+    \ \\\n  --cap-drop=NET_ADMIN \\\n  --cap-drop=NET_RAW \\\n  --security-opt seccomp=unconfined\
+    \ \\\n  --security-opt no-new-privileges \\\n  -v ~/halogen-models:/models:ro\
+    \ \\\n  -e HALOGEN_CHECKPOINT=/models/model.hgn \\\n  -e HALOGEN_API_PORT=8888\
+    \ \\\n  -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn \\\n  -e\
+    \ HALOGEN_MODEL_ID=local-model \\\n  ghcr.io/peonist-ai/halogen-flash-server:latest"
+  local_commands:
+  - "#vision\npodman run --rm -it \\\n  --name halogen-flash-server \\\n  --pull=always\
     \ \\\n  -p 0.0.0.0:8888:8888 \\\n  --device /dev/kfd \\\n  --device /dev/dri \\\
     \n  --group-add keep-groups \\\n  --ipc=host \\\n  --ulimit memlock=-1:-1 \\\n\
     \  --cap-drop=NET_ADMIN \\\n  --cap-drop=NET_RAW \\\n  --security-opt seccomp=unconfined\
     \ \\\n  --security-opt no-new-privileges \\\n  -v ~/halogen-models:/models:ro\
     \ \\\n  -e HALOGEN_CHECKPOINT=/models/model.hgn \\\n  -e HALOGEN_API_PORT=8888\
-    \ \\\n  -e HALOGEN_VISION_TOWER=1 -e HALOGEN_MODEL_ID=local-model \\\n  ghcr.io/peonist-ai/halogen-flash-server:latest"
-  local_commands:
+    \ \\\n  -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn \\\n  -e\
+    \ HALOGEN_MODEL_ID=local-model \\\n  ghcr.io/peonist-ai/halogen-flash-server:latest"
   - "podman run --rm -it \\\n  --name halogen-flash-server \\\n  --pull=always \\\n\
     \  -p 0.0.0.0:8888:8888 \\\n  --device /dev/kfd \\\n  --device /dev/dri \\\n \
     \ --group-add keep-groups \\\n  --ipc=host \\\n  --ulimit memlock=-1:-1 \\\n \
@@ -2180,7 +2189,7 @@
   prompt_speed: 1779
   generation_speed: 41
   speculative_decoding: false
-  favorite: true
+  favorite: false
   mtp_generation_speed: 0
   parameter_info: 199B
   notes: ''
