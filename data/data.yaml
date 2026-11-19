@@ -1988,13 +1988,47 @@
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/result/bin/gufo serve llm --model "$MODEL" --context
     161072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts'
-  - '#uncensored IQ2_XSS + vision
+  - '#uncensored IQ2_XSS + vision + MTP
 
     export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
     && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
     261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
     --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
-  mmproj_accuracy: unreliable
+  - '#uncensored IQ2_XSS + vision
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    --stream-experts'
+  - '#uncensored IQ2_XSS + MTP
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+    --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
+  - '#uncensored IQ2_XSS
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ2_XXS-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts'
+  - '#uncensored IQ1_M + vision + MTP
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf
+    --stream-experts --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
+  - "#uncensored IQ1_M + MTP \nexport MODEL='/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf'\
+    \ && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model \"$MODEL\"\
+    \ --context 261072 --served-model-name=local-model --host 0.0.0.0 --port 8888\
+    \ --mmproj /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/mmproj-DeepSeek-V4.1-Flash-1017-BF16.gguf\
+    \ --stream-experts"
+  - '#uncensored IQ1_M + vision
+
+    export MODEL=''/home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-GSQ-RCO-IQ1_M-00001-of-00006.gguf''
+    && /home/dinesh/llamacpps/ds41/build/release/gufo serve llm --model "$MODEL" --context
+    261072 --served-model-name=local-model --host 0.0.0.0 --port 8888 --stream-experts
+    --speculative dspark --dspark-model /home/dinesh/models/DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-GGUF/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf'
+  mmproj_accuracy: good
   task_accuracy: good
   prompt_speed: 763661.01
   generation_speed: 22.89
@@ -2002,7 +2036,7 @@
   favorite: false
   mtp_generation_speed: 31.03
   parameter_info: 197B
-  notes: IQ2_XXS  690742.98 pp / 27.78 t/s
+  notes: IQ2_XXS  690742.98 pp / 27.78 t/s high mode accurate image
 - id: qwen3-8-27b-talus-0042cf
   name: qwen3.8-27b (Talus)
   model_url: https://huggingface.co/j2ipper
