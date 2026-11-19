@@ -1434,7 +1434,7 @@
   prompt_speed: 1391.340928
   generation_speed: 77.016802
   speculative_decoding: true
-  favorite: false
+  favorite: true
   mtp_generation_speed: 78
   parameter_info: 35B-A3B
   notes: ''
