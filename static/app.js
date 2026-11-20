@@ -422,6 +422,9 @@ benchForm.addEventListener("submit", async (ev) => {
     speculative_decoding: speculativeDecoding,
     mtp_generation_speed: speculativeDecoding ? (mtpGenerationSpeed || 0) : 0,
     parameter_info: document.getElementById("f_param_info").value,
+    // PUT replaces the whole entry, so carry the existing flag or editing
+    // silently unfavourites the card.
+    favorite: id ? Boolean(entries.find((e) => e.id === id)?.favorite) : false,
   };
 
   try {
