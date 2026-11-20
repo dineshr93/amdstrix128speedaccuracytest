@@ -2193,15 +2193,33 @@
 - id: johnlockejrr-thinkingcap-qwen3-8-flash-next-hgn-halogen-d806a4
   name: johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN (Halogen)
   model_url: https://huggingface.co/johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN
-  local_command: "#vision\npodman run --rm -it \\\n  --name halogen-flash-server \\\
-    \n  --pull=always \\\n  -p 0.0.0.0:8888:8888 \\\n  --device /dev/kfd \\\n  --device\
-    \ /dev/dri \\\n  --group-add keep-groups \\\n  --ipc=host \\\n  --ulimit memlock=-1:-1\
-    \ \\\n  --cap-drop=NET_ADMIN \\\n  --cap-drop=NET_RAW \\\n  --security-opt seccomp=unconfined\
-    \ \\\n  --security-opt no-new-privileges \\\n  -v ~/halogen-models:/models:ro\
-    \ \\\n  -e HALOGEN_CHECKPOINT=/models/model.hgn \\\n  -e HALOGEN_API_PORT=8888\
-    \ \\\n  -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn \\\n  -e\
-    \ HALOGEN_MODEL_ID=local-model \\\n  ghcr.io/peonist-ai/halogen-flash-server:latest"
+  local_command: '#vision + 4 parallel suppport
+
+    podman run --rm -it --name halogen-flash-server --pull=always -p 127.0.0.1:8888:8888
+    --device /dev/kfd --device /dev/dri --group-add keep-groups --ipc=host --ulimit
+    memlock=-1:-1 --cap-drop=NET_ADMIN --cap-drop=NET_RAW --security-opt seccomp=unconfined
+    --security-opt no-new-privileges -v $HOME/halogen-models/model.hgn:/models/model.hgn:ro
+    -v $HOME/halogen-models/qwen38-flash-next-ngram.hgn:/models/qwen38-flash-next-ngram.hgn:ro
+    -v $HOME/halogen-models/qwen38-flash-next-vision.hgn:/models/qwen38-flash-next-vision.hgn:ro
+    -v $HOME/halogen-models/tokenizer:/models/tokenizer:ro -e HALOGEN_CHECKPOINT=/models/model.hgn
+    -e HALOGEN_NGRAM_TABLE=/models/qwen38-flash-next-ngram.hgn -e HALOGEN_API_PORT=8888
+    -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn -e HALOGEN_TOKENIZER=/models/tokenizer
+    -e HALOGEN_KV_SLOTS=4 -e HALOGEN_KV_POOL_POSITIONS=524288 -e HALOGEN_CTX=131072
+    -e HALOGEN_PROMPT_CACHE=2 -e HALOGEN_MODEL_ID=local-model ghcr.io/peonist-ai/halogen-flash-server:latest'
   local_commands:
+  - '#vision + 4 parallel suppport
+
+    podman run --rm -it --name halogen-flash-server --pull=always -p 127.0.0.1:8888:8888
+    --device /dev/kfd --device /dev/dri --group-add keep-groups --ipc=host --ulimit
+    memlock=-1:-1 --cap-drop=NET_ADMIN --cap-drop=NET_RAW --security-opt seccomp=unconfined
+    --security-opt no-new-privileges -v $HOME/halogen-models/model.hgn:/models/model.hgn:ro
+    -v $HOME/halogen-models/qwen38-flash-next-ngram.hgn:/models/qwen38-flash-next-ngram.hgn:ro
+    -v $HOME/halogen-models/qwen38-flash-next-vision.hgn:/models/qwen38-flash-next-vision.hgn:ro
+    -v $HOME/halogen-models/tokenizer:/models/tokenizer:ro -e HALOGEN_CHECKPOINT=/models/model.hgn
+    -e HALOGEN_NGRAM_TABLE=/models/qwen38-flash-next-ngram.hgn -e HALOGEN_API_PORT=8888
+    -e HALOGEN_VISION_TOWER=/models/qwen38-flash-next-vision.hgn -e HALOGEN_TOKENIZER=/models/tokenizer
+    -e HALOGEN_KV_SLOTS=4 -e HALOGEN_KV_POOL_POSITIONS=524288 -e HALOGEN_CTX=131072
+    -e HALOGEN_PROMPT_CACHE=2 -e HALOGEN_MODEL_ID=local-model ghcr.io/peonist-ai/halogen-flash-server:latest'
   - "#vision\npodman run --rm -it \\\n  --name halogen-flash-server \\\n  --pull=always\
     \ \\\n  -p 0.0.0.0:8888:8888 \\\n  --device /dev/kfd \\\n  --device /dev/dri \\\
     \n  --group-add keep-groups \\\n  --ipc=host \\\n  --ulimit memlock=-1:-1 \\\n\
@@ -2222,7 +2240,7 @@
   prompt_speed: 1779
   generation_speed: 41
   speculative_decoding: false
-  favorite: true
+  favorite: false
   mtp_generation_speed: 0
   parameter_info: 199B
   notes: ''
