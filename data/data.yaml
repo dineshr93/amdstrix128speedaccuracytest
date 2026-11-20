@@ -2193,7 +2193,7 @@
 - id: johnlockejrr-thinkingcap-qwen3-8-flash-next-hgn-halogen-d806a4
   name: johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN (Halogen)
   model_url: https://huggingface.co/johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN
-  local_command: '#vision + 4 parallel suppport
+  local_command: '#vision + 4 parallel
 
     podman run --rm -it --name halogen-flash-server --pull=always -p 127.0.0.1:8888:8888
     --device /dev/kfd --device /dev/dri --group-add keep-groups --ipc=host --ulimit
@@ -2207,7 +2207,7 @@
     -e HALOGEN_KV_SLOTS=4 -e HALOGEN_KV_POOL_POSITIONS=524288 -e HALOGEN_CTX=131072
     -e HALOGEN_PROMPT_CACHE=2 -e HALOGEN_MODEL_ID=local-model ghcr.io/peonist-ai/halogen-flash-server:latest'
   local_commands:
-  - '#vision + 4 parallel suppport
+  - '#vision + 4 parallel
 
     podman run --rm -it --name halogen-flash-server --pull=always -p 127.0.0.1:8888:8888
     --device /dev/kfd --device /dev/dri --group-add keep-groups --ipc=host --ulimit
