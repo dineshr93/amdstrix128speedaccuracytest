@@ -1431,8 +1431,8 @@
     0.95 --min-p 0   --presence-penalty 0 --repeat-penalty 1.03'
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 1391.340928
-  generation_speed: 77.016802
+  prompt_speed: 1522.71
+  generation_speed: 66.57
   speculative_decoding: true
   favorite: true
   mtp_generation_speed: 78
