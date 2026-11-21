@@ -2221,8 +2221,8 @@
     \ \\\n  -e HALOGEN_VISION_TOWER=1 -e HALOGEN_MODEL_ID=local-model \\\n  ghcr.io/peonist-ai/halogen-flash-server:latest"
   mmproj_accuracy: good
   task_accuracy: good
-  prompt_speed: 1779
-  generation_speed: 41
+  prompt_speed: 1827.41
+  generation_speed: 41.8
   speculative_decoding: false
   favorite: true
   mtp_generation_speed: 0
