@@ -2175,7 +2175,7 @@
   parameter_info: 197B
   favorite: false
 - id: johnlockejrr-thinkingcap-qwen3-8-flash-next-hgn-halogen-d806a4
-  name: johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN (Halogen)
+  name: johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN (Halogen) (qfn4 alias)
   model_url: https://huggingface.co/johnlockejrr/ThinkingCap-Qwen3.8-Flash-Next-HGN
   local_command: '#vision + 4 parallel
 
